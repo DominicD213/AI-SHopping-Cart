@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/css/index.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/root.css') }}">
+    
+</head>
+<body>
+   
+<!-- ============================================ -->
+<!--                  Collection                  -->
+<!-- ============================================ -->
+
+<!--
+    To add a 4th or 5th collection or more, copy and paste the cs-button and change it's data-filter to the next number, in this case it's 4. Do the same to the cs-listing and its data-category number. And that's it!
+-->
+
+<section id="collection-1602">
+    <div class="cs-container">
+        <div class="cs-content">
+            <h2 class="cs-title">New Collection</h2>
+            <div class="cs-button-group">
+                {% if username %}
+                    <p>Hello, {{ username }}! you are already logged in.</p>
+                    <a href="/logout">Logout</a>
+                {% else %}
+                <button class="cs-button" data-filter="one"> 
+                        <a href="/login">login</a>
+                </button>  
+                <button class="cs-button" data-filter="one"> 
+                    <a href="/login"><a href="/register">register</a></a>
+                </button> 
+                {% endif %}
+               
+                <button class="cs-button" data-filter="one">
+                    New Arrival
+                </button>
+                <button class="cs-button" data-filter="two">
+                    Top Rating
+                </button>
+                <button class="cs-button" data-filter="three">
+                    Best Seller
+                </button>
+            </div>
+        </div>
+        <div class="cs-listing-wrapper">
+            <div class="cs-listing" data-category="one">
+                {% for item in items %}
+                <div class="cs-item">
+                    <a href="{{ item.link }}" class="cs-link">
+                        <div class="cs-picture-group">
+                            <picture class="cs-picture">
+                                <source media="(max-width: 600px)" srcset="{{ item.image }}">
+                                <source media="(min-width: 601px)" srcset="{{ item.image }}">
+                                <img loading="lazy" decoding="async"
+                                     src="{{ item.image }}"
+                                     alt="{{ item.name }}" width="305" height="400">
+                            </picture>
+                            <span class="cs-offer">{{ item.discount }}</span>
+                        </div>
+                        <div class="cs-details">
+                            <span class="cs-category">{{ item.category }}</span>
+                            <h3 class="cs-name">{{ item.name }}</h3>
+                            <div class="cs-actions">
+                                <div class="cs-flex">
+                                    <span class="cs-price">{{ item.price }}</span>
+                                    <span class="cs-was-price">{{ item.was_price }}</span>
+                                    <div class="cs-stars">
+                                        {% for star in range(1, 6) %}
+                                            <img class="cs-star"
+                                                 src="https://csimg.nyc3.cdn.digitaloceanspaces.com/Images/MISC/review-star.svg"
+                                                 alt="star" height="24" width="24" loading="lazy" decoding="async">
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                <button class="cs-buy">
+                                    <img class="cs-basket"
+                                         src="https://csimg.nyc3.cdn.digitaloceanspaces.com/Images/Icons/ecomm-bag-icon.svg"
+                                         alt="buy" height="24" width="24" loading="lazy" decoding="async">
+                                </button>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        
+</section>
+                                
+</body>
+</html>

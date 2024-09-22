@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 from flask_mysqldb import MySQL
 from dotenv import load_dotenv
+import json
 import os
 
 load_dotenv()
@@ -21,10 +22,12 @@ mysql = MySQL(app)
 
 @app.route("/")
 def home():
-    if 'username' in session:
-        return render_template('home.html', username=session['username'])
-    else:
-        return render_template('home.html')
+    with open('products.json') as f:
+        items = json.load(f)
+        if 'username' in session:
+            return render_template('html/home.html', username=session['username'],items = items)
+        else:
+            return render_template('html/home.html', items = items)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -41,8 +44,8 @@ def login():
             session['username'] = user[0]
             return redirect(url_for('home'))
         else:
-            return render_template('login.html', error='invalid username or password')
-    return render_template('login.html')
+            return render_template('html/login.html', error='invalid username or password')
+    return render_template('html/login.html')
 
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -58,9 +61,9 @@ def register():
 
         return redirect(url_for('login'))
     
-    render_template('register.html')
+    render_template('html/register.html')
 
-    return render_template('register.html')
+    return render_template('html/register.html')
 
 
 @app.route('/logout')
