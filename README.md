@@ -29,6 +29,8 @@
     Talon - Back-End Engineer & Secondary Front-End Engineer
 
     Nya - Back-End Engineer & Database Engineer
+
+    Jakub - ML/AI Engineer & Secondary Database Engineer
     
 
 # 2. Installation requirements and steps
