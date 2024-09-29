@@ -1,3 +1,8 @@
+# Jakub Bartkowiak - v0.1 - 9-28-24
+# [please add your name and version number (make sure to sync with the backend functions) if you change stuff - even if using github]
+
+
+
 from sqlalchemy import create_engine, Column, Integer, String, Float, LargeBinary
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
