@@ -1,4 +1,4 @@
-# AI-SHopping-Cart
+<h1 align="center">AI-Shopping-Cart</h1>
 
     The AI-Integrated Shopping Management System is a sophisticated software solution designed to enhance the online shopping experience by leveraging artificial intelligence. 
     
