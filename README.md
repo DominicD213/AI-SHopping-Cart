@@ -1,64 +1,61 @@
-# AI-SHopping-Cart
+AI-Shopping-Cart Project
 
-    The AI-Integrated Shopping Management System is a sophisticated software solution designed to enhance the online shopping experience by leveraging artificial intelligence. 
-    
-    It provides users with a comprehensive toolset for managing their shopping activities, improving efficiency, and making more informed purchasing decisions. 
+The AI-Integrated Shopping Management System is an AI-inspired software solution designed to enhance the online shopping experience by leveraging artificial intelligence. It provides users with a dynamically tailored search results and product recommendations, taking into account product popularity and ratings, as well as an improved shopping and cart/checkout experience
 
-# Table of Contents
 
-    1. The development Team
+Table of Contents
 
-    2. Installation
+1. The development team
 
-        cloning repo
-        installing dependencies
-
-    3. Usage
-
+2. Installation
+   
+        Cloning repo
+        Dependencies
+        
+4. Usage
+   
         How to start application
 
 
-# 1. V1 Contributors:
 
-    Dominic - Scrum Master & General Engineer
+# 1. Contributors:
 
-    Navy - Front-End Engineer
-
-    Mariam - Product Owner and Primary Database Engineer
-
-    Talon - Back-End Engineer & Secondary Front-End Engineer
-
-    Nya - Back-End Engineer & Database Engineer
-
-    Jakub - ML/AI Engineer & Secondary Database Engineer
+Dominic - Scrum Master & General Engineer
     
+Navy - Front-End Engineer
+    
+Mariam - Product Owner and Primary Database Engineer
+    
+Talon - Back-End Engineer & Secondary Front-End Engineer
+    
+Nya - Back-End Engineer & Secondary Database Engineer
+    
+Jakub - ML/AI Engineer & Secondary Database Engineer
+
+
+
 
 # 2. Installation requirements and steps
+Using your terminal or CLI, clone the repository to your computer, then locate it, and finally install dependencies:
 
-    To be able to use this project, you first clone the Repo, using terminal. You can do this by entering
+To clone the repository from your terminal or CLI:
+
+    git clone https://github.com/DominicD213/AI-SHopping-Cart.git
 
 
-        ``` Bash
-        'git clone https://github.com/DominicD213/AI-SHopping-Cart.git'
-        ```
 
-    Install Depenencies:
+Install Depenencies:
 
-        ``` Bash
-
-        pip install -r requirements.txt
-         
-        ```
+    pip install -r requirements.txt
+ 
 
 # 3. Usage
 
-    To start the application, locate your local repo in terminal, and enter 'Flask run' or 'python app.py'.
-
-    ``` Bash
+To start the application, type 'Flask run' or 'python app.py'.
 
     Flask run
 
-    ```
+    python app.py
 
 
 
