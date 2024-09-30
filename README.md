@@ -1,24 +1,27 @@
-AI-Shopping-Cart Project
+# AI-Shopping-Cart Project
 
 The AI-Integrated Shopping Management System is an AI-inspired software solution designed to enhance the online shopping experience by leveraging artificial intelligence. It provides users with a dynamically tailored search results and product recommendations, taking into account product popularity and ratings, as well as an improved shopping and cart/checkout experience
 
 
-Table of Contents
+# Table of Contents
 
 1. The development team
+
+
 
 2. Installation
    
         Cloning repo
         Dependencies
         
-4. Usage
+
+3. Usage
    
         How to start application
 
 
 
-# 1. Contributors:
+# 1. Contributors
 
 Dominic - Scrum Master & General Engineer
     
@@ -51,7 +54,7 @@ Install Depenencies:
 
 # 3. Usage
 
-To start the application, type 'Flask run' or 'python app.py'.
+To start the application, type 'Flask run' or 'python app.py':
 
     Flask run
 
