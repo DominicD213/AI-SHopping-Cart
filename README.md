@@ -1,4 +1,4 @@
-# AI-Shopping-Cart Project
+<h1 align="center">AI-Shopping-Cart Project</h1>
 
 The AI-Integrated Shopping Management System is an AI-inspired software solution designed to enhance the online shopping experience by leveraging artificial intelligence. It provides users with a dynamically tailored search results and product recommendations, taking into account product popularity and ratings, as well as an improved shopping and cart/checkout experience
 
