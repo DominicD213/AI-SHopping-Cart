@@ -1,67 +1,90 @@
-<h1 align="center">AI-Shopping-Cart Project</h1>
 
-The AI-Integrated Shopping Management System is an AI-inspired software solution designed to enhance the online shopping experience. It provides users with a dynamically tailored search results and product recommendations, taking into account product popularity and ratings, as well as an improved shopping and cart/checkout experience
+<h1 align="center"><strong>AI-Shopping-Cart Project</strong></h1>
 
+<p align="center">
+    The <strong>AI-Integrated Shopping Management System</strong> is an AI-powered software solution designed to enhance the online shopping experience. It provides users with dynamically tailored search results and product recommendations, considering product popularity, ratings, and an improved shopping cart and checkout experience.
+</p>
 
-# Table of Contents
+<h2><strong>Table of Contents</strong></h2>
+<ol>
+    <li><a href="#contributors"><strong>Contributors</strong></a></li>
+    <li><a href="#installation-requirements-and-steps"><strong>Installation Requirements and Steps</strong></a></li>
+    <li><a href="#usage"><strong>Usage</strong></a></li>
+</ol>
 
-1. The development team
+<h2 id="contributors"><strong>1. Contributors</strong></h2>
 
+<h3><strong>By Name</strong></h3>
+<ul>
+    <li><strong>Dominic</strong> - Scrum Master & General Engineer</li>
+    <li><strong>Navy</strong> - Front-End Engineer</li>
+    <li><strong>Mariam</strong> - Product Owner & Primary Database Engineer</li>
+    <li><strong>Talon</strong> - Back-End Engineer & Secondary Front-End Engineer</li>
+    <li><strong>Nya</strong> - Back-End Engineer & Secondary Database Engineer</li>
+    <li><strong>Jakub</strong> - ML/AI Engineer & Secondary Database Engineer</li>
+</ul>
 
+<h3><strong>By Role</strong></h3>
 
-2. Installation
-   
-        Cloning repo
-        Dependencies
-        
+<h4><strong>Database Engineering</strong></h4>
+<ul>
+    <li><strong>Mariam</strong> - Lead Database Engineer</li>
+    <li><strong>Nya</strong> - Assistant Database Engineer</li>
+    <li><strong>Jakub</strong> - Assistant Database Engineer</li>
+</ul>
 
-3. Usage
-   
-        How to start application
+<h4><strong>Front-End Engineering</strong></h4>
+<ul>
+    <li><strong>Navy</strong> - Lead Front-End Engineer</li>
+    <li><strong>Talon</strong> - Assistant Front-End Engineer</li>
+</ul>
 
+<h4><strong>Back-End Engineering</strong></h4>
+<ul>
+    <li><strong>Talon</strong> - Lead Back-End Engineer</li>
+    <li><strong>Nya</strong> - Assistant Back-End Engineer</li>
+</ul>
 
+<h4><strong>Machine Learning / AI</strong></h4>
+<ul>
+    <li><strong>Jakub</strong> - Lead ML/AI Engineer</li>
+</ul>
 
-# 1. Contributors
+<h4><strong>General Engineering</strong></h4>
+<ul>
+    <li><strong>Dominic</strong> - General Engineer</li>
+</ul>
 
-Dominic - Scrum Master & General Engineer
-    
-Navy - Front-End Engineer
-    
-Mariam - Product Owner and Primary Database Engineer
-    
-Talon - Back-End Engineer & Secondary Front-End Engineer
-    
-Nya - Back-End Engineer & Secondary Database Engineer
-    
-Jakub - ML/AI Engineer & Secondary Database Engineer
+<h4><strong>Administration</strong></h4>
+<ul>
+    <li><strong>Dominic</strong> - Scrum Master</li>
+    <li><strong>Mariam</strong> - Product Owner</li>
+</ul>
 
+<h2 id="installation-requirements-and-steps"><strong>2. Installation Requirements and Steps</strong></h2>
+<p>To install the project, follow these steps:</p>
 
+<h4><strong>Cloning the Repository</strong></h4>
+<p>Using your terminal or CLI, clone the repository to your local machine:</p>
 
+```bash
+git clone https://github.com/DominicD213/AI-SHopping-Cart.git
+```
 
-# 2. Installation requirements and steps
-Using your terminal or CLI, clone the repository to your computer, then locate it, and finally install dependencies:
+<h4><strong>Installing Dependencies</strong></h4>
+<p>Navigate to the project directory and install the necessary dependencies:</p>
 
-To clone the repository from your terminal or CLI:
+```bash
+pip install -r requirements.txt
+```
 
-    git clone https://github.com/DominicD213/AI-SHopping-Cart.git
+<h2 id="usage"><strong>3. Usage</strong></h2>
+<p>To start the application, use either of the following commands:</p>
 
+```bash
+Flask run
+```
 
-
-Install Depenencies:
-
-    pip install -r requirements.txt
- 
-
-# 3. Usage
-
-To start the application, type 'Flask run' or 'python app.py':
-
-    Flask run
-
-    python app.py
-
-
-
-
-
-
+```bash
+python app.py
+```
