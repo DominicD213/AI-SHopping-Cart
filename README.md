@@ -21,7 +21,7 @@
     <li><strong>Mariam</strong> - Product Owner & Primary Database Engineer</li>
     <li><strong>Talon</strong> - Back-End Engineer & Secondary Front-End Engineer</li>
     <li><strong>Nya</strong> - Back-End Engineer & Secondary Database Engineer</li>
-    <li><strong>Jakub</strong> - ML/AI Engineer & Secondary Database Engineer</li>
+    <li><strong>Jakub</strong> - ML/AI Engineer & Integration [backend-database-AI/ML] Engineer</li>
 </ul>
 
 <h3><strong>By Role</strong></h3>
@@ -30,7 +30,7 @@
 <ul>
     <li><strong>Mariam</strong> - Lead Database Engineer</li>
     <li><strong>Nya</strong> - Assistant Database Engineer</li>
-    <li><strong>Jakub</strong> - Assistant Database Engineer</li>
+    <li><strong>Jakub</strong> - Backend-Database-AI/ML Integration Engineer</li>
 </ul>
 
 <h4><strong>Front-End Engineering</strong></h4>
