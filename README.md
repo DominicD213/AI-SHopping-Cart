@@ -43,6 +43,7 @@
 <ul>
     <li><strong>Talon</strong> - Lead Back-End Engineer</li>
     <li><strong>Nya</strong> - Assistant Back-End Engineer</li>
+    <li><strong>Jakub</strong> - Backend-Database-AI/ML Integration Engineer</li>
 </ul>
 
 <h4><strong>Machine Learning / AI</strong></h4>
