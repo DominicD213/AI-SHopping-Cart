@@ -17,7 +17,7 @@
 <h3><strong>By Name</strong></h3>
 <ul>
     <li><strong>Dominic</strong> - Scrum Master & General Engineer</li>
-    <li><strong>Navy</strong> - Front-End Engineer</li>
+    <li><strong>Navya</strong> - Front-End Engineer</li>
     <li><strong>Mariam</strong> - Product Owner & Primary Database Engineer</li>
     <li><strong>Talon</strong> - Back-End Engineer & Secondary Front-End Engineer</li>
     <li><strong>Nya</strong> - Back-End Engineer & Secondary Database Engineer</li>
@@ -35,7 +35,7 @@
 
 <h4><strong>Front-End Engineering</strong></h4>
 <ul>
-    <li><strong>Navy</strong> - Lead Front-End Engineer</li>
+    <li><strong>Navya</strong> - Lead Front-End Engineer</li>
     <li><strong>Talon</strong> - Assistant Front-End Engineer</li>
 </ul>
 
