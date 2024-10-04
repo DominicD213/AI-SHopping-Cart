@@ -26,15 +26,17 @@ class Product(Base):
     tags = Column("tags", String)
     category = Column("category", String)
     description = Column("description", String)
+    price = Column("price", Float)
     brand = Column("brand", String)
     popularity = Column("popularity", Integer)  # Popularity score out of 1000
     ratings = Column("ratings", Float)  # Ratings out of 5.0
 
-    def __init__(self, title, tags, category, description, brand, popularity, ratings):
+    def __init__(self, title, tags, category, description, price, brand, popularity, ratings):
         self.title = title
         self.tags = tags
         self.category = category
         self.description = description
+        self.price = price
         self.brand = brand
         self.popularity = popularity
         self.ratings = ratings
