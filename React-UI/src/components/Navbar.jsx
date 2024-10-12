@@ -51,6 +51,7 @@ const Logo = styled.h1`
   font-weight: bold;
   ${mobile({ fontSize: "24px" })}
 `;
+
 const Right = styled.div`
   flex: 1;
   display: flex;
@@ -65,8 +66,14 @@ const MenuItem = styled.div`
   margin-left: 25px;
   ${mobile({ fontSize: "12px", marginLeft: "10px" })}
 `;
+const Button = styled.button`
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+`;
 
-const Navbar = () => {
+const Navbar = ({ changeRegState, toggleSignin, toggleShoppingCart }) => {
   return (
     <Container>
       <Wrapper>
@@ -81,9 +88,13 @@ const Navbar = () => {
           <Logo>ShopSmart</Logo>
         </Center>
         <Right>
-          <MenuItem>REGISTER</MenuItem>
-          <MenuItem>SIGN IN</MenuItem>
-          <MenuItem>
+          <Button onClick={changeRegState}>
+            <MenuItem>REGISTER</MenuItem>
+          </Button>
+          <Button onClick={toggleSignin}>
+            <MenuItem>SIGN IN</MenuItem>
+          </Button>
+          <MenuItem onClick={toggleShoppingCart}>
             <Badge badgeContent={0} color="primary">
               <ShoppingCartOutlined />
             </Badge>
