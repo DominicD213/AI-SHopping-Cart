@@ -19,6 +19,9 @@ const Home = () => {
   // Function to toggle the registration modal
   const changeRegState = () => {
     setActiveRegistration(!activeRegistration);
+    if(activeSignin){
+      setActiveSignin(!activeSignin)
+    }
   };
 
   // Function to toggle the shopping cart modal
@@ -29,6 +32,9 @@ const Home = () => {
   // Function to toggle the sign-in modal
   const toggleSignin = () => {
     setActiveSignin(!activeSignin);
+    if(activeRegistration){
+      setActiveRegistration(!activeRegistration);
+    }
   };
 
   return (
