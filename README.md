@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+<h1 align="center">AI-Shopping-Cart</h1>
+>>>>>>> main
 
 <h1 align="center"><strong>AI-Shopping-Cart Project</strong></h1>
 
