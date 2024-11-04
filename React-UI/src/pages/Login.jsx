@@ -67,18 +67,19 @@ const Login = () => {
     e.preventDefault();
     
     try {
-      const response = await fetch("http://localhost:5000/login", {
+      const response = await fetch("http://localhost:5000/api/login", { // Ensure this matches Flask server port
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: "include", // Allows sending/receiving cookies for session management
         body: JSON.stringify({ username, password }),
       });
       
       const result = await response.json();
       
       if (response.ok) {
-        // Redirect to homepage or set session in React
+        // Handle successful login (e.g., redirect to homepage or update global user state)
         window.location.href = "/";
       } else {
         setError(result.error);

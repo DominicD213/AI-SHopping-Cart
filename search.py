@@ -1,5 +1,6 @@
 
 # Jakub Bartkowiak - v0.1 - 9-28-24
+# Jakub Bartkowiak - v0.3 - 10-14-24
 # [add your name and version number if you change stuff - even if using github]
 
 
@@ -15,7 +16,7 @@ If fewer than 5 results are found, the cosine similarity threshold is relaxed it
 
 The final set of results is reranked based on cosine similarity [60%], popularity (0-1000) [20%], and ratings (0.0-5.0) [20%].
 This ensures the results are relevant while considering product popularity and quality.
-"""
+""" 
 
 
 import spacy
