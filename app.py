@@ -24,6 +24,9 @@ v0.4 - 10-28-24
     - Added weighted importance for different activities
     - New endpoints for cart and purchase tracking
     - API versioning with /api prefix
+
+v0.5 - 11-08-24 - Talon Jasper
+    - Added admin role support to User model with role-based access checks
 """
 
 from flask import Flask, render_template, request, redirect, url_for, session, jsonify
