@@ -1,20 +1,16 @@
-<<<<<<< HEAD
-=======
-<h1 align="center">AI-Shopping-Cart</h1>
->>>>>>> main
+
 
 <h1 align="center"><strong>AI-Shopping-Cart Project</strong></h1>
 
 <p align="center">
-    The <strong>AI-Integrated Shopping Management System</strong> is an AI-powered software solution designed to enhance the online shopping experience. It provides users with dynamically tailored search results and product recommendations, considering product popularity, ratings, and an improved shopping cart and checkout experience.
-</p>
+    The <strong>AI-Integrated Shopping Management System</strong> is an AI-powered software solution designed to enhance the online shopping experience with dynamically tailored search results and product recommendations, using both direct user data and general product data to provide semantically meaningful alternatives and suggestions
 
 <h2><strong>Table of Contents</strong></h2>
 <ol>
     <li><a href="#contributors"><strong>Contributors</strong></a></li>
     <li><a href="#installation-requirements-and-steps"><strong>Installation Requirements and Steps</strong></a></li>
     <li><a href="#usage"><strong>Usage</strong></a></li>
-    <li><a href="#recent-changes"><strong>Recent Changes</strong></a></li>
+    <li><a href="#recent-changes"><strong>Most Recent Changes</strong></a></li>
 </ol>
 
 <h2 id="contributors"><strong>1. Contributors</strong></h2>
@@ -88,13 +84,19 @@ pip install -r requirements.txt
 <p>As a developer, you'll need to have MySQL installed and running to support the application database.</p>
 <ol>
     <li><strong>Download and Install MySQL:</strong> Download the installer from the <a href="https://dev.mysql.com/downloads/installer/">MySQL website</a> and follow the installation instructions.</li>
-    <li><strong>Start the MySQL Server:</strong> Ensure MySQL is running by starting it from the command line or through your system's services.
+    <li>Confirm installation by running <code>sc query type= service state= all </code> - find the MySQL entry in the output, if installed it will be termed "MySQL80", "MySQL-AISC", or similar. Note that you will need to use this exact service name below
+ </li> 
+    <li><strong>Start the MySQL Server:</strong> Ensure MySQL is running by starting it from the command line or through your system's services. The MySQL server will generally need to be run as root or with admin privileges, so using PowerShell (admin) or its functional equivalent is necessary for some of these instructions.
         <ul>
-            <li><strong>Windows:</strong> Open Command Prompt and run: <code>net start MySQL</code></li>
+            <li><strong>Windows:</strong> Open your CLI with admin privileges (be careful to note that 'MySQL' is a placeholder and you must use the actual service name such as 'MySQL-AISC': <code>net start MySQL</code> e.g. <code>net start MySQL-ASIC</code> </li>
             <li><strong>macOS (if installed via Homebrew):</strong> Run: <code>brew services start mysql</code></li>
             <li><strong>Linux:</strong> Use: <code>sudo service mysql start</code></li>
         </ul>
     </li>
+    <li> If MySQL has been successfully installed and configured, the output in your shell should be (note the exact service name may be different): 
+<code>
+The MySQL-AISC service is starting.
+The MySQL-AISC service was started successfully.</code></li> 
     <li><strong>Set up the Database:</strong> Log into the MySQL shell and create the necessary database and user:
         <ol>
             <li>Access MySQL: <code>mysql -u root -p</code></li>
@@ -105,13 +107,20 @@ CREATE USER 'username'@'localhost' IDENTIFIED BY 'password';
 GRANT ALL PRIVILEGES ON my_database.* TO 'username'@'localhost';
 FLUSH PRIVILEGES;
                 </pre>
+            <li>  in practice steps ii and iii would appear something like:
+                <pre>
+CREATE DATABASE ASCdb;
+CREATE USER 'jbart'@'localhost' IDENTIFIED BY 'root99';
+GRANT ALL PRIVILEGES ON ASCdb.* TO 'jbart'@'localhost';
+FLUSH PRIVILEGES;
+                </pre>
             </li>
         </ol>
     </li>
 </ol>
 
 <h4><strong>Environment Variables (.env) Setup</strong></h4>
-<p>The project uses a <code>.env</code> file to securely store database credentials and Flask app secrets. This file should be created in the root of your project directory. It is loaded at runtime to provide these values to the application without hardcoding them in the source code.</p>
+<p>The project uses a <code>.env</code> file to securely store database credentials and Flask app secrets. This file should be created in the root of your project directory. It is loaded at runtime to provide these values to the application without hardcoding them. Note that the filename is ".env" with the period, not "env" /p>
 
 <p>Here is an example of what your <code>.env</code> file should look like:</p>
 
@@ -146,7 +155,7 @@ MYSQL_PORT=3306
     </li>
 </ol>
 
-<p><strong>Note:</strong> Be sure to add your <code>.env</code> file to <code>.gitignore</code> to prevent it from being uploaded to version control, as it contains sensitive information.</p>
+<p><strong>Note:</strong> Be sure to add your <code>.env</code> file to <code>.gitignore</code> to prevent it from being uploaded to version control, as it contains sensitive information. </p>
 
 ```plaintext
 # .gitignore
@@ -166,5 +175,5 @@ python app.py
 
 <h2 id="recent-changes"><strong>4. Recent Changes</strong></h2>
 <ul>
-    <li><strong>v0.3 - 10-14-24 (Jakub Bartkowiak)</strong> - Refactored code to utilize a MySQL connection via SQLAlchemy instead of SQLite. Changed the <code>users</code> table name to <code>user</code> and implemented password hashing with <code>werkzeug.security</code> for enhanced security.</li>
+    <li><strong>v0.5 - 11-8-24 (Talon Jasper)</strong> - Addition of admin role to user model and role-based access.</li>
 </ul>
