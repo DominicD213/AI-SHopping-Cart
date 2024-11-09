@@ -5,7 +5,8 @@ import ChatPopup from "../components/chatPopup";
 import { Add, Remove } from "@material-ui/icons";
 import styled from "styled-components";
 import Footer from "../components/Footer";
-import { mobile } from "../responsive"; // Responsive design utilities
+import { mobile } from "../responsive";
+import CheckoutPage from "../components/checkout"; // Responsive design utilities
 
 // Styled Components
 const Container = styled.div``;
@@ -147,163 +148,168 @@ const Button = styled.button`
 `;
 
 const Cart = () => {
-  const [cartItems, setCartItems] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [isChatOpen, setChatOpen] = useState(false); // State to manage chat visibility
-
-  useEffect(() => {
-      // Fetch initial cart items
+    const [cartItems, setCartItems] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [isChatOpen, setChatOpen] = useState(false);
+    const [isCheckout, setCheckout] = useState(false);
+  
+    useEffect(() => {
+      // Set the initial cart items
       setCartItems([
-          {
-              id: 1,
-              name: "JESSIE THUNDER SHOES",
-              color: "black",
-              size: "37.5",
-              price: 30,
-              quantity: 2,
-              image: "https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1614188818-TD1MTHU_SHOE_ANGLE_GLOBAL_MENS_TREE_DASHERS_THUNDER_b01b1013-cd8d-48e7-bed9-52db26515dc4.png?crop=1xw:1.00xh;center,top&resize=480%3A%2A",
-          },
-          {
-              id: 2,
-              name: "HAKURA T-SHIRT",
-              color: "gray",
-              size: "M",
-              price: 20,
-              quantity: 1,
-              image: "https://i.pinimg.com/originals/2d/af/f8/2daff8e0823e51dd752704a47d5b795c.png",
-          },
+        {
+          id: 1,
+          name: "JESSIE THUNDER SHOES",
+          color: "black",
+          size: "37.5",
+          price: 30,
+          quantity: 2,
+          image:
+            "https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1614188818-TD1MTHU_SHOE_ANGLE_GLOBAL_MENS_TREE_DASHERS_THUNDER_b01b1013-cd8d-48e7-bed9-52db26515dc4.png?crop=1xw:1.00xh;center,top&resize=480%3A%2A",
+        },
+        {
+          id: 2,
+          name: "HAKURA T-SHIRT",
+          color: "gray",
+          size: "M",
+          price: 20,
+          quantity: 1,
+          image:
+            "https://i.pinimg.com/originals/2d/af/f8/2daff8e0823e51dd752704a47d5b795c.png",
+        },
       ]);
       setLoading(false);
-  }, []);
-
-  const handleIncreaseQuantity = (itemId) => {
+    }, []);
+  
+    const handleIncreaseQuantity = (itemId) => {
       setCartItems((prevItems) =>
-          prevItems.map((item) =>
-              item.id === itemId
-                  ? { ...item, quantity: item.quantity + 1 }
-                  : item
-          )
+        prevItems.map((item) =>
+          item.id === itemId ? { ...item, quantity: item.quantity + 1 } : item
+        )
       );
-  };
-
-  const handleDecreaseQuantity = (itemId) => {
+    };
+  
+    const handleDecreaseQuantity = (itemId) => {
       setCartItems((prevItems) =>
-          prevItems.map((item) =>
-              item.id === itemId && item.quantity > 1
-                  ? { ...item, quantity: item.quantity - 1 }
-                  : item
-          )
+        prevItems.map((item) =>
+          item.id === itemId && item.quantity > 1
+            ? { ...item, quantity: item.quantity - 1 }
+            : item
+        )
       );
-  };
-
-  const handlePurchase = async () => {
-      const productIds = cartItems.map(item => item.id);
+    };
+  
+    const handlePurchase = async () => {
+      setCheckout(true); // Transition to Checkout Page
+      const productIds = cartItems.map((item) => item.id);
+  
       try {
-          await axios.post('/api/purchase', { product_ids: productIds });
-          console.log("Purchase logged successfully.");
-          setCartItems([]);
+        await axios.post("/api/purchase", { product_ids: productIds });
+        console.log("Purchase logged successfully.");
+        setCartItems([]); // Clear cart after purchase
       } catch (error) {
-          console.error("Failed to log purchase", error);
+        console.error("Failed to log purchase", error);
       }
-  };
-
-  const subtotal = cartItems.reduce(
+    };
+  
+    const subtotal = cartItems.reduce(
       (acc, item) => acc + item.price * item.quantity,
       0
-  );
-
-  const toggleChat = () => {
+    );
+  
+    const toggleChat = () => {
       setChatOpen((prev) => !prev);
-  };
-
-  if (loading) return <div>Loading...</div>;
-
-  return (
+    };
+  
+    if (loading) return <div>Loading...</div>;
+  
+    return !isCheckout ? (
       <Container>
-          <Wrapper>
-              <Title>YOUR BAG</Title>
-              <Top>
-                  <TopButton onClick={handlePurchase}>CHECKOUT NOW</TopButton>
-              </Top>
-              <Bottom>
-                  <Info>
-                      {cartItems.map((item) => (
-                          <Product key={item.id}>
-                              <ProductDetail>
-                                  <Image src={item.image} />
-                                  <Details>
-                                      <ProductName>
-                                          <b>Product:</b> {item.name}
-                                      </ProductName>
-                                      <ProductId>
-                                          <b>ID:</b> {item.id}
-                                      </ProductId>
-                                      <ProductColor color={item.color} />
-                                      <ProductSize>
-                                          <b>Size:</b> {item.size}
-                                      </ProductSize>
-                                  </Details>
-                              </ProductDetail>
-                              <PriceDetail>
-                                  <ProductAmountContainer>
-                                      <Add onClick={() => handleIncreaseQuantity(item.id)} />
-                                      <ProductAmount>{item.quantity}</ProductAmount>
-                                      <Remove onClick={() => handleDecreaseQuantity(item.id)} />
-                                  </ProductAmountContainer>
-                                  <ProductPrice>${item.price * item.quantity}</ProductPrice>
-                              </PriceDetail>
-                          </Product>
-                      ))}
-                      <Hr />
-                  </Info>
-                  <Summary>
-                      <SummaryTitle>ORDER SUMMARY</SummaryTitle>
-                      <SummaryItem>
-                          <SummaryItemText>Subtotal</SummaryItemText>
-                          <SummaryItemPrice>${subtotal}</SummaryItemPrice>
-                      </SummaryItem>
-                      <SummaryItem>
-                          <SummaryItemText>Estimated Shipping</SummaryItemText>
-                          <SummaryItemPrice>$5.90</SummaryItemPrice>
-                      </SummaryItem>
-                      <SummaryItem>
-                          <SummaryItemText>Shipping Discount</SummaryItemText>
-                          <SummaryItemPrice>$-5.90</SummaryItemPrice>
-                      </SummaryItem>
-                      <SummaryItem type="total">
-                          <SummaryItemText>Total</SummaryItemText>
-                          <SummaryItemPrice>${subtotal}</SummaryItemPrice>
-                      </SummaryItem>
-                      <Button onClick={handlePurchase}>CHECKOUT NOW</Button>
-                      
-                      {/* Chat Popup and Chat Button */}
-                      <ChatPopup isOpen={isChatOpen} toggleChat={toggleChat} />
-                      
-                      {!isChatOpen && (
-                          <button
-                              onClick={toggleChat}
-                              style={{
-                                  position:"absolute",
-                                  right: "5rem",
-                                  marginTop:"5rem",
-                                  padding: "10px 20px",
-                                  backgroundColor: "black",
-                                  color: "white",
-                                  border: "none",
-                                  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
-                                  cursor: "pointer",
-                                  zIndex: 1000
-                              }}
-                          >
-                              Chat
-                          </button>
-                      )}
-                  </Summary>
-              </Bottom>
-          </Wrapper>
-          <Footer />
+        <Wrapper>
+          <Title>YOUR BAG</Title>
+          <Top>
+            <TopButton onClick={handlePurchase}>CHECKOUT NOW</TopButton>
+          </Top>
+          <Bottom>
+            <Info>
+              {cartItems.map((item) => (
+                <Product key={item.id}>
+                  <ProductDetail>
+                    <Image src={item.image} />
+                    <Details>
+                      <ProductName>
+                        <b>Product:</b> {item.name}
+                      </ProductName>
+                      <ProductId>
+                        <b>ID:</b> {item.id}
+                      </ProductId>
+                      <ProductColor color={item.color} />
+                      <ProductSize>
+                        <b>Size:</b> {item.size}
+                      </ProductSize>
+                    </Details>
+                  </ProductDetail>
+                  <PriceDetail>
+                    <ProductAmountContainer>
+                      <Add onClick={() => handleIncreaseQuantity(item.id)} />
+                      <ProductAmount>{item.quantity}</ProductAmount>
+                      <Remove onClick={() => handleDecreaseQuantity(item.id)} />
+                    </ProductAmountContainer>
+                    <ProductPrice>${item.price * item.quantity}</ProductPrice>
+                  </PriceDetail>
+                </Product>
+              ))}
+              <Hr />
+            </Info>
+            <Summary>
+              <SummaryTitle>ORDER SUMMARY</SummaryTitle>
+              <SummaryItem>
+                <SummaryItemText>Subtotal</SummaryItemText>
+                <SummaryItemPrice>${subtotal}</SummaryItemPrice>
+              </SummaryItem>
+              <SummaryItem>
+                <SummaryItemText>Estimated Shipping</SummaryItemText>
+                <SummaryItemPrice>$5.90</SummaryItemPrice>
+              </SummaryItem>
+              <SummaryItem>
+                <SummaryItemText>Shipping Discount</SummaryItemText>
+                <SummaryItemPrice>$-5.90</SummaryItemPrice>
+              </SummaryItem>
+              <SummaryItem type="total">
+                <SummaryItemText>Total</SummaryItemText>
+                <SummaryItemPrice>${subtotal}</SummaryItemPrice>
+              </SummaryItem>
+              <Button onClick={handlePurchase}>CHECKOUT NOW</Button>
+  
+              {/* Chat Popup and Chat Button */}
+              <ChatPopup isOpen={isChatOpen} toggleChat={toggleChat} />
+  
+              {!isChatOpen && (
+                <button
+                  onClick={toggleChat}
+                  style={{
+                    position: "absolute",
+                    right: "5rem",
+                    marginTop: "5rem",
+                    padding: "10px 20px",
+                    backgroundColor: "black",
+                    color: "white",
+                    border: "none",
+                    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
+                    cursor: "pointer",
+                    zIndex: 1000,
+                  }}
+                >
+                  Chat
+                </button>
+              )}
+            </Summary>
+          </Bottom>
+        </Wrapper>
+        <Footer />
       </Container>
-  );
-};
-
-export default Cart;
+    ) : (
+      <CheckoutPage cartItems={cartItems} subtotal={subtotal} />
+    );
+  };
+  
+  export default Cart;

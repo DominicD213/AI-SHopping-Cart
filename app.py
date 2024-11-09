@@ -24,6 +24,11 @@ v0.4 - 10-28-24
     - Added weighted importance for different activities
     - New endpoints for cart and purchase tracking
     - API versioning with /api prefix
+
+v0.05 - 11-04-24
+    - Added routing for the suggestion from the AI
+    - Placeholder function to get related products based on viewed items
+
 """
 
 from flask import Flask, render_template, request, redirect, url_for, session, jsonify
@@ -219,6 +224,39 @@ def register():
 def logout():
     session.pop('username', None)
     return jsonify({'message': 'Logout successful'})
+
+# ==================== App Suggestions ======================== #
+
+@app.route('/api/get_suggestions', methods=['GET'])
+def get_suggestions():
+    if 'username' not in session:
+        return jsonify({'error': 'User must be logged in'}), 401
+
+    # Get viewed items from query parameters
+    viewed_item_ids = request.args.getlist('viewed_items', type=int)
+
+    if not viewed_item_ids:
+        return jsonify({'error': 'No viewed items provided'}), 400
+
+    db_session = db.session
+    try:
+        # Fetch products based on viewed items (this is a placeholder, implement your own logic)
+        # You might have a method like `get_related_products`
+        suggestions = get_related_products(viewed_item_ids)
+
+        # Return a JSON response with the suggested products
+        return jsonify(suggestions)
+
+    except Exception as e:
+        return jsonify({'error': 'Error fetching suggestions'}), 500
+
+def get_related_products(viewed_item_ids):
+    # Placeholder function to get related products based on viewed items
+    # You can implement your logic here to fetch related products
+    # For example, fetching products from the same category or similar attributes
+    products = Product.query.filter(Product.id.in_(viewed_item_ids)).all()
+    return [{"id": product.id, "name": product.title, "price": product.price} for product in products]
+
 
 # ==================== APPLICATION ENTRY ======================== #
 
