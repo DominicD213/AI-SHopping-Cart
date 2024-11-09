@@ -84,11 +84,11 @@ pip install -r requirements.txt
 <p>As a developer, you'll need to have MySQL installed and running to support the application database.</p>
 <ol>
     <li><strong>Download and Install MySQL:</strong> Download the installer from the <a href="https://dev.mysql.com/downloads/installer/">MySQL website</a> and follow the installation instructions.</li>
-    <li>Confirm installation by running <code>sc query type= service state= all </code> - find the MySQL entry in the output, if installed it will be termed "MySQL80", "MySQL-AISC", or similar. Note that you will need to use this exact service name below
+    <li>Confirm installation by running <code>sc query type= service state= all </code> - find the MySQL entry in the output, if installed it will be termed "MySQL80", "MySQL-AISC", or similar. Note that 'MySQL' is a placeholder and you must use the actual service name such as 'MySQL-AISC' in your terminal commands
  </li> 
     <li><strong>Start the MySQL Server:</strong> Ensure MySQL is running by starting it from the command line or through your system's services. The MySQL server will generally need to be run as root or with admin privileges, so using PowerShell (admin) or its functional equivalent is necessary for some of these instructions.
         <ul>
-            <li><strong>Windows:</strong> Open your CLI with admin privileges (be careful to note that 'MySQL' is a placeholder and you must use the actual service name such as 'MySQL-AISC': <code>net start MySQL</code> e.g. <code>net start MySQL-ASIC</code> </li>
+            <li><strong>Windows:</strong> Open your CLI with admin privileges and run <code>net start MySQL</code> (e.g. net start MySQL-ASIC) </li>
             <li><strong>macOS (if installed via Homebrew):</strong> Run: <code>brew services start mysql</code></li>
             <li><strong>Linux:</strong> Use: <code>sudo service mysql start</code></li>
         </ul>
@@ -120,7 +120,7 @@ FLUSH PRIVILEGES;
 </ol>
 
 <h4><strong>Environment Variables (.env) Setup</strong></h4>
-<p>The project uses a <code>.env</code> file to securely store database credentials and Flask app secrets. This file should be created in the root of your project directory. It is loaded at runtime to provide these values to the application without hardcoding them. Note that the filename is ".env" with the period, not "env" /p>
+<p>The project uses a <code>.env</code> file to securely store database credentials and Flask app secrets. This file should be created in the root of your project directory. It is loaded at runtime to provide these values to the application without hardcoding them. Note that the filename is ".env" with the period, not "env" </p>
 
 <p>Here is an example of what your <code>.env</code> file should look like:</p>
 
