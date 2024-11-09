@@ -101,7 +101,7 @@ class Activity(Base):
     activity_id = Column("activity_id", Integer, primary_key=True)
     user_id = Column("user_id", Integer, ForeignKey('users.user_id'))
     product_id = Column("product_id", Integer, ForeignKey('products.product_id'))
-    action = Column("action", Enum('viewed', 'added_to_cart', 'purchased'), nullable=False, default=['viewed', 'added_to_cart', 'purchased'])    
+    action = Column("action", Enum('viewed', 'added_to_cart', 'purchased'), nullable=False, default=None)    
     timestamp = Column("timestamp", CHAR(20))
 
     user = relationship("User", backref="activity")
@@ -163,6 +163,75 @@ class Orderitems(Base):
     def __repr__(self):
         return f"Orderitem(order_id={self.order_id}, product_id={self.product_id}, quantity={self.quantity}, price={self.price})"
 
+
+# ======================= CART TABLE ============================ #
+
+class Cart(Base):
+    __tablename__ = 'cart'
+    cart_id = Column("cart_id", Integer, primary_key=True)
+    user_id = Column("user_id", Integer, ForeignKey('users.user_id'))
+    product_id = Column("product_id", Integer, ForeignKey('products.product_id'))
+    price = Column("price", Integer)
+    time_stamp = Column("time_stamp", CHAR(20))
+
+
+    user = relationship("User", backref="cart")
+    product = relationship("Product", backref="cart")
+
+    def __init__(self, user_id, product_id, price, time_stamp):
+        self.user_id = user_id
+        self.product_id = product_id
+        self.price = price
+        self.time_stamp = time_stamp
+
+    def __repr__(self):
+        return f"Cart(user_id={self.user_id}, product_id={self.product_id}, price={self.price}, time_stamp={self.time_stamp})"
+
+
+# ======================= VIEW TABLE ============================ #
+
+class View(Base):
+    __tablename__ = 'view'
+    view_id = Column("view_id", Integer, primary_key=True)
+    user_id = Column("user_id", Integer, ForeignKey('users.user_id'))
+    product_id = Column("product_id", Integer, ForeignKey('products.product_id'))
+    time_stamp = Column("time_stamp", CHAR(20))
+
+    user = relationship("User", backref="view")
+    product = relationship("Product", backref="view")
+
+    def __init__(self, user_id, product_id, time_stamp):
+        self.user_id = user_id
+        self.product_id = product_id
+        self.time_stamp = time_stamp
+
+    def __repr__(self):
+        return f"View(user_id={self.user_id}, product_id={self.product_id}, time_stamp={self.time_stamp})"
+
+
+# ======================= PURCHASE TABLE ============================ #
+
+class Purchase(Base):
+    __tablename__ = 'purchase'
+    purchase_id = Column("purchase_id", Integer, primary_key=True)
+    user_id = Column("user_id", Integer, ForeignKey('users.user_id'))
+    product_id = Column("product_id", Integer, ForeignKey('products.product_id'))
+    quantity = Column("quantity", Integer)
+    time_stamp = Column("time_stamp", CHAR(20))
+
+    user = relationship("User", backref="purchase")
+    product = relationship("Product", backref="purchase")
+
+    def __init__(self, user_id, product_id, time_stamp, quantity):
+        self.user_id = user_id
+        self.product_id = product_id
+        self.time_stamp = time_stamp
+        self.quantity = quantity
+
+    def __repr__(self):
+
+        return f"Purchase(user_id={self.user_id}, product_id={self.product_id}, time_stamp={self.time_stamp}, quantity={self.quantity})"
+    
 # ==================== SET UP DATABASE INFO ==================== #
 
 # Setup the database engine and session
