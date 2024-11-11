@@ -1,5 +1,10 @@
-# =================== DATA LOG ============================== #
+"""
+AI-Powered Shopping Tool - Data Models
+======================================
+Tracks version history for the database models used in the e-commerce system.
+"""
 
+# =================== DATA LOG ============================== #
 """
 Version History:
 ---------------
@@ -20,16 +25,18 @@ v0.4 - 10-28-24 - Jakub Bartkowiak
     - Added Activity tracking system
     - Implemented weighted importance for different activities
     - Added support for tracking searches, views, cart adds, and purchases
+
+v0.5 - 11-08-24 - Talon Jasper
+    - Added admin role to User model with role-based access
 """
 
 # =================== IMPORTS & BASE ======================== #
-
 from sqlalchemy import create_engine, Column, Integer, String, Float, LargeBinary, ForeignKey, Enum, DateTime
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, relationship
 from werkzeug.security import generate_password_hash, check_password_hash
-import os
 from datetime import datetime
+import os
 
 # Database configuration
 user = os.environ.get('DB_USER', 'jbart')
@@ -46,16 +53,6 @@ class Product(Base):
     Product Model
     ------------
     Represents products in the e-commerce system.
-    
-    Attributes:
-        product_id (int): Primary key
-        title (str): Product name/title (max 255 chars)
-        tags (str): Searchable tags/keywords (max 255 chars)
-        category (str): Product category (max 100 chars)
-        description (str): Product description (max 500 chars)
-        brand (str): Product brand name (max 100 chars)
-        popularity (int): Product popularity score
-        ratings (float): Average product rating (0.0-5.0)
     """
     __tablename__ = 'products'
     
@@ -87,16 +84,14 @@ class User(Base):
     """
     User Model
     ----------
-    Represents system users with authentication capabilities.
+    Represents system users with authentication capabilities and role-based access.
     
     Attributes:
         user_id (int): Primary key
-        username (str): Unique username (max 50 chars)
-        password_hash (str): Hashed password (max 255 chars)
-        email (str): Unique email address (max 100 chars)
-    
-    Methods:
-        check_password(password): Verifies if provided password matches hash
+        username (str): Unique username
+        password_hash (str): Hashed password
+        email (str): Unique email address
+        role (str): User role, either 'user' or 'admin'
     """
     __tablename__ = 'users'
     
@@ -104,18 +99,24 @@ class User(Base):
     username = Column(String(50), unique=True, nullable=False)
     password_hash = Column(String(255), nullable=False)
     email = Column(String(100), unique=True, nullable=False)
+    role = Column(Enum('user', 'admin'), default='user', nullable=False)
 
-    def __init__(self, username, password, email):
+    def __init__(self, username, password, email, role='user'):
         self.username = username
         self.password_hash = generate_password_hash(password)
         self.email = email
+        self.role = role
 
     def check_password(self, password):
         """Verify password against stored hash"""
         return check_password_hash(self.password_hash, password)
 
+    def is_admin(self):
+        """Check if the user has admin privileges"""
+        return self.role == 'admin'
+
     def __repr__(self):
-        return f"User(username={self.username}, email={self.email})"
+        return f"User(username={self.username}, email={self.email}, role={self.role})"
 
 # ==================== ACTIVITY TABLE ======================== #
 class Activity(Base):
@@ -173,7 +174,7 @@ class Order(Base):
                 f"order_date={self.order_date}, status={self.status})")
 
 # ======================= ORDER ITEMS TABLE ==================== #
-class Orderitems(Base):
+class OrderItem(Base):
     __tablename__ = 'orderitems'
     
     orderitem_id = Column(Integer, primary_key=True)
@@ -194,7 +195,7 @@ class Orderitems(Base):
         return (f"OrderItem(order_id={self.order_id}, product_id={self.product_id}, "
                 f"quantity={self.quantity}, price={self.price})")
 
-# ==================== SET UP DATABASE INFO ==================== #
+# ================== DATABASE SETUP ======================= #
 # Setup the database engine and session
 engine = create_engine(DATABASE_URI)
 Base.metadata.create_all(engine)
@@ -210,6 +211,15 @@ def seed_data(session):
     session.add(sample_user)
     session.add(sample_product)
     session.commit()
-
 # Uncomment to seed the database
 # seed_data(session)
+=======
+        return f"OrderItem(order_id={self.order_id}, product_id={self.product_id}, quantity={self.quantity}, price={self.price})"
+
+# ================== DATABASE SETUP ======================= #
+# Set up MySQL database connection
+DATABASE_URI = "mysql+pymysql://jbart:root99@localhost/ASCdb"
+engine = create_engine(DATABASE_URI)
+Base.metadata.create_all(engine)
+Session = sessionmaker(bind=engine)
+session = Session()

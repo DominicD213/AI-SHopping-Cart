@@ -25,10 +25,12 @@ v0.4 - 10-28-24
     - New endpoints for cart and purchase tracking
     - API versioning with /api prefix
 
-v0.05 - 11-04-24
+0.05 - 11-04-24
     - Added routing for the suggestion from the AI
     - Placeholder function to get related products based on viewed items
 
+v0.5 - 11-08-24 - Talon Jasper
+    - Added admin role support to User model with role-based access checks
 """
 
 from flask import Flask, render_template, request, redirect, url_for, session, jsonify
