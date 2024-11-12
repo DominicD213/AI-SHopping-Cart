@@ -1,158 +1,75 @@
 """
-Data Import Helper for MySQL Database
-===================================
-
-Version History:
----------------
-v0.1 - Initial version with basic CSV import
-v0.2 - Added error handling and logging
-v0.3 - Updated for MySQL compatibility
-v0.4 - Updated to match new database schemas and activity tracking
-
-This script scans a directory for CSV files and loads them into corresponding MySQL tables.
-File names should match table names (e.g., products.csv loads into products table).
-
-Database Tables:
----------------
-- products: Product information
-- user: User accounts
-- activity: User activity tracking
+AI-Powered Shopping Tool - Data Import
+Handles importing CSV files into database tables.
 """
 
 import os
 import pandas as pd
 from sqlalchemy import create_engine
-from models import Base, Product, User, Activity, Session
+from sqlalchemy.orm import sessionmaker
+import logging
 
-# Database connection configuration
-# TODO: Move to environment variables
-user = 'jbart'
-password = 'root99'
-host = 'localhost'
-database = 'ASCdb'
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
-# Create database connection
-engine = create_engine(f"mysql+pymysql://{user}:{password}@{host}/{database}")
+# Initialize database connection
+DATABASE_URI = os.getenv('DATABASE_URI')
+engine = create_engine(DATABASE_URI)
 
-# Directory where CSV files are stored
-directory = 'C:/Users/JMBar/Desktop/SHOPPING/data'
-
-def import_products(file_path, session):
+def import_csv_to_table(csv_path, table_name):
     """
-    Import product data from CSV
+    Import data from a CSV file into the specified database table.
     
-    Expected CSV columns:
-    - title: Product name (str, max 255 chars)
-    - tags: Search keywords (str, max 255 chars)
-    - category: Product category (str, max 100 chars)
-    - description: Product details (str, max 500 chars)
-    - brand: Product brand (str, max 100 chars)
-    - popularity: Popularity score (int)
-    - ratings: Average rating (float)
+    Args:
+        csv_path (str): Path to the CSV file
+        table_name (str): Name of the target database table
     """
     try:
-        df = pd.read_csv(file_path)
-        for _, row in df.iterrows():
-            product = Product(
-                title=row['title'],
-                tags=row['tags'],
-                category=row['category'],
-                description=row['description'],
-                brand=row['brand'],
-                popularity=int(row['popularity']),
-                ratings=float(row['ratings'])
-            )
-            session.add(product)
-        session.commit()
-        print(f"Successfully imported products from {file_path}")
+        # Read CSV file
+        df = pd.read_csv(csv_path)
+        
+        # Import to database
+        df.to_sql(
+            name=table_name,
+            con=engine,
+            if_exists='append',
+            index=False
+        )
+        
+        logger.info(f"Successfully imported {csv_path} to {table_name}")
+        
     except Exception as e:
-        session.rollback()
-        print(f"Error importing products: {e}")
+        logger.error(f"Error importing {csv_path} to {table_name}: {str(e)}")
+        raise
 
-def import_users(file_path, session):
-    """
-    Import user data from CSV
-    
-    Expected CSV columns:
-    - username: Unique username (str, max 50 chars)
-    - password: Plain password to be hashed (str)
-    - email: Unique email (str, max 100 chars)
-    """
+def import_all_data():
+    """Import all CSV files to their corresponding tables."""
     try:
-        df = pd.read_csv(file_path)
-        for _, row in df.iterrows():
-            user = User(
-                username=row['username'],
-                password=row['password'],  # Will be hashed by User model
-                email=row['email']
-            )
-            session.add(user)
-        session.commit()
-        print(f"Successfully imported users from {file_path}")
-    except Exception as e:
-        session.rollback()
-        print(f"Error importing users: {e}")
-
-def import_activities(file_path, session):
-    """
-    Import activity data from CSV
-    
-    Expected CSV columns:
-    - user_id: ID of user (int)
-    - activity_type: Type of activity (str: search/view/cart/purchase)
-    - search_query: Search term if applicable (str, max 255 chars)
-    - product_id: Product ID if applicable (int)
-    - timestamp: Activity timestamp (datetime)
-    """
-    try:
-        df = pd.read_csv(file_path)
-        for _, row in df.iterrows():
-            activity = Activity(
-                user_id=int(row['user_id']),
-                activity_type=row['activity_type'],
-                search_query=row['search_query'] if 'search_query' in row else None,
-                product_id=int(row['product_id']) if 'product_id' in row else None
-            )
-            if 'timestamp' in row:
-                activity.timestamp = pd.to_datetime(row['timestamp'])
-            session.add(activity)
-        session.commit()
-        print(f"Successfully imported activities from {file_path}")
-    except Exception as e:
-        session.rollback()
-        print(f"Error importing activities: {e}")
-
-def main():
-    """
-    Main function to process all CSV files in the data directory
-    """
-    # Create database session
-    session = Session()
-    
-    try:
-        # Process each CSV file in the directory
-        for filename in os.listdir(directory):
-            if filename.endswith('.csv'):
-                file_path = os.path.join(directory, filename)
-                table_name = filename.replace('.csv', '')
+        # Map CSV files to table names
+        csv_tables = {
+            'Products_Table.csv': 'Products_Table',
+            'Users_Table.csv': 'Users_Table',
+            'Activity_Table.csv': 'Activity_Table',
+            'Orders_Table.csv': 'Orders_Table',
+            'OrderItems_Table.csv': 'OrderItems_Table',
+            'CartItems_Table.csv': 'CartItems_Table',
+            'ProductEmbeddings_Table.csv': 'ProductEmbeddings_Table'
+        }
+        
+        # Import each CSV file
+        for csv_file, table_name in csv_tables.items():
+            if os.path.exists(csv_file):
+                import_csv_to_table(csv_file, table_name)
+            else:
+                logger.info(f"Skipping {csv_file} - file not found")
                 
-                print(f"\nProcessing {filename}...")
-                
-                # Import data based on table name
-                if table_name == 'products':
-                    import_products(file_path, session)
-                elif table_name == 'user':
-                    import_users(file_path, session)
-                elif table_name == 'activity':
-                    import_activities(file_path, session)
-                else:
-                    print(f"Unknown table: {table_name}")
-    
     except Exception as e:
-        print(f"An error occurred: {e}")
-    finally:
-        session.close()
-        print("\nImport process completed.")
+        logger.error(f"Error during data import: {str(e)}")
+        raise
 
 if __name__ == "__main__":
-    main()
+    try:
+        import_all_data()
+    except Exception as e:
+        logger.error(f"Error in main execution: {str(e)}")

@@ -1,300 +1,359 @@
-"""
-AI-Powered Shopping Tool - Flask Backend
-======================================
+'''
+AI-Powered Shopping Tool - Backend API
+-----------------------------------------------------------------------------
+Tracks version history for the Flask backend API used in the e-commerce system.
+-----------------------------------------------------------------------------
+# [please add your name and version number if you change stuff - even if using github]
 
 Version History:
 ---------------
-v0.1 - Initial Release
-    - Basic Flask application setup
-    - Simple user authentication
+v0.1 - 9-28-24 - Jakub Bartkowiak
+    - Initial implementation with basic product and user endpoints
 
-v0.2 - Authentication Enhancement
-    - Added password hashing
-    - Session management
-    - User registration
+v0.2 - 10-05-24 - Nya James & Mariam Lafi
+    - Added authentication routes for login and registration
+    - User roles (user/admin) were added to restrict access
 
-v0.3 - 10-14-24 - Jakub Bartkowiak
-    - Migrated to MySQL database
-    - Enhanced security with werkzeug
-    - Improved session handling
+v0.3 - 10-15-24 - Jakub Bartkowiak
+    - Migrated from SQLite to MySQL
+    - Integrated token-based authentication
 
-v0.4 - 10-28-24
-    - Added CORS support for React frontend
-    - Implemented activity tracking system
-    - Added weighted importance for different activities
-    - New endpoints for cart and purchase tracking
-    - API versioning with /api prefix
-"""
+v0.4 - 10-30-24 - Talon Jasper
+    - Added activity tracking routes for viewing, cart addition, and purchase
+    - Implemented detailed logging for user activities
 
-from flask import Flask, render_template, request, redirect, url_for, session, jsonify
-from flask_cors import CORS
-from werkzeug.security import check_password_hash
-from dotenv import load_dotenv
+v0.5 - 11-08-24 - Jakub Bartkowiak
+    - Refined activity endpoints to include importance weights for tracking
+    - Introduced error handling and custom exception classes
+
+v0.6 - 11-10-24 - Jakub Bartkowiak
+    - Added CartItem and OrderItem endpoints
+    - Implemented product recommendations based on user activity
+    - Introduced role-based access control for admin operations
+    - Added consistent documentation headers and extensive comments
+
+v0.7 - 11-11-24 - Jakub Bartkowiak
+    - Enhanced error handling and logging
+    - Added token expiry validation
+    - Improved cart management endpoints
+
+v0.8 - 11-12-24 - Jakub Bartkowiak
+    - Added trending products endpoint
+    - Enhanced recommendation system
+    - Improved search functionality with filters
+    - Added comprehensive error logging
+'''
+
+from flask import Flask, jsonify, request, abort
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+from sqlalchemy.exc import SQLAlchemyError
+from models import Base, Product, User, Activity, Order, OrderItem, CartItem
+from search import search_products, suggest_products_for_item, get_trending_products
+from validation import validate_input
+from datetime import datetime, timedelta
 import os
+import jwt
+import logging
+from functools import wraps
 
-from models import User, Session, engine, Activity, Product
-from search import search_products
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
-# ==================== APPLICATION SETUP ======================== #
-
-load_dotenv()  # Load environment variables
-
-app = Flask("__name__")
+app = Flask(__name__)
 app.secret_key = os.getenv('SECRET_KEY')
+Session = sessionmaker(bind=create_engine(os.getenv('DATABASE_URI')))
+session = Session()
 
-# CORS Configuration
-# -----------------
-# Allows React frontend to communicate with backend
-# Configured specifically for development environment
-CORS(app, supports_credentials=True, resources={
-    r"/*": {
-        "origins": ["http://localhost:3000"],  # React development server
-        "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-        "allow_headers": ["Content-Type", "Authorization"],
-        "expose_headers": ["Content-Range", "X-Content-Range"],
-        "supports_credentials": True
-    }
-})
+def generate_token(user_id):
+    """Generate JWT token with 24-hour expiry"""
+    expiry = datetime.utcnow() + timedelta(hours=24)
+    return jwt.encode({'user_id': user_id, 'exp': expiry}, app.secret_key, algorithm='HS256')
 
-# Initialize database session
-session_maker = Session()
+def token_required(f):
+    """Decorator to check for valid authentication tokens"""
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        token = request.headers.get('Authorization')
+        if not token:
+            return jsonify({'message': 'Token is missing!'}), 403
+        
+        try:
+            data = jwt.decode(token, app.secret_key, algorithms=['HS256'])
+            user = session.query(User).get(data['user_id'])
+            if not user or not user.is_token_valid():
+                return jsonify({'message': 'Token is invalid or expired!'}), 401
+        except jwt.ExpiredSignatureError:
+            return jsonify({'message': 'Token has expired!'}), 401
+        except jwt.InvalidTokenError:
+            return jsonify({'message': 'Invalid token!'}), 401
+        except SQLAlchemyError as e:
+            logger.error(f"Database error in token verification: {str(e)}")
+            session.rollback()
+            return jsonify({'error': 'Internal server error'}), 500
+        return f(user, *args, **kwargs)
+    return decorated
 
-# ==================== HELPER FUNCTIONS ======================== #
-
-def log_activity(db_session, user_id, activity_type, search_query=None, product_id=None):
-    """
-    Helper function to log user activities
-    
-    Parameters:
-        db_session: SQLAlchemy session
-        user_id: ID of the user performing the action
-        activity_type: Type of activity (search/view/cart/purchase)
-        search_query: Optional search term
-        product_id: Optional product ID for views/cart/purchases
-    """
+@app.route('/api/auth/register', methods=['POST'])
+def register():
+    """User registration endpoint"""
     try:
-        activity = Activity(
-            user_id=user_id,
-            activity_type=activity_type,
-            search_query=search_query,
-            product_id=product_id
+        data = request.get_json()
+        
+        # Check if user already exists
+        if session.query(User).filter(
+            (User.username == data['username']) | 
+            (User.email == data['email'])
+        ).first():
+            return jsonify({'message': 'Username or email already exists'}), 400
+            
+        # Create new user
+        user = User(
+            username=data['username'],
+            password=data['password'],
+            email=data['email']
         )
-        db_session.add(activity)
-        db_session.commit()
-    except Exception as e:
-        db_session.rollback()
-        print(f"Error logging {activity_type} activity: {e}")
-        raise
-
-# ==================== API ROUTES ======================== #
-
-@app.route("/")
-def home():
-    """Home route - renders main page with optional username"""
-    if 'username' in session:
-        return render_template('home.html', username=session['username'])
-    return render_template('home.html')
-
-@app.route('/api/search', methods=['POST'])
-def search():
-    """
-    Product Search Endpoint
-    ----------------------
-    Performs product search and logs search activity
-    
-    Request Body:
-        query: Search term
-    
-    Returns:
-        JSON object containing search results
-    """
-    if 'username' not in session:
-        return jsonify({'error': 'User must be logged in'}), 401
-
-    query = request.json.get('query')
-    if not query:
-        return jsonify({'error': 'No search query provided'}), 400
-
-    results = search_products(query)
-    
-    # Log search activity
-    db_session = session_maker()
-    try:
-        user = db_session.query(User).filter_by(username=session['username']).first()
-        log_activity(db_session, user.user_id, 'search', search_query=query)
-        return jsonify({'results': results})
-    except Exception as e:
-        return jsonify({'error': 'Error processing search'}), 500
-    finally:
-        db_session.close()
-
-@app.route('/api/product/<int:product_id>', methods=['GET'])
-def view_product(product_id):
-    """
-    Product View Endpoint
-    --------------------
-    Retrieves product details and logs view activity
-    
-    Parameters:
-        product_id: ID of the product to view
-    
-    Returns:
-        JSON object containing product details
-    """
-    if 'username' not in session:
-        return jsonify({'error': 'User must be logged in'}), 401
-
-    db_session = session_maker()
-    try:
-        product = db_session.query(Product).get(product_id)
-        if not product:
-            return jsonify({'error': 'Product not found'}), 404
-
-        user = db_session.query(User).filter_by(username=session['username']).first()
-        log_activity(db_session, user.user_id, 'view', product_id=product_id)
-
+        session.add(user)
+        session.commit()
+        
+        # Generate token
+        token = generate_token(user.user_id)
         return jsonify({
-            'id': product.product_id,
-            'title': product.title,
-            'description': product.description,
-            'brand': product.brand,
-            'category': product.category,
-            'ratings': product.ratings
-        })
-    except Exception as e:
+            'message': 'User registered successfully',
+            'token': token,
+            'user_id': user.user_id
+        }), 201
+    except SQLAlchemyError as e:
+        logger.error(f"Registration error: {str(e)}")
+        session.rollback()
         return jsonify({'error': 'Internal server error'}), 500
-    finally:
-        db_session.close()
+
+@app.route('/api/auth/login', methods=['POST'])
+def login():
+    """User authentication endpoint"""
+    try:
+        data = request.get_json()
+        user = session.query(User).filter_by(username=data['username']).first()
+        if user and user.check_password(data['password']):
+            token = generate_token(user.user_id)
+            user.refresh_token()
+            session.commit()
+            return jsonify({'token': token, 'user_id': user.user_id})
+        return jsonify({'message': 'Invalid credentials'}), 401
+    except SQLAlchemyError as e:
+        logger.error(f"Login error: {str(e)}")
+        session.rollback()
+        return jsonify({'error': 'Internal server error'}), 500
+
+@app.route('/api/products', methods=['GET'])
+@token_required
+def get_products(user):
+    """Get products with role-based access control"""
+    try:
+        products = session.query(Product).all()
+        output = []
+        for p in products:
+            product_data = {
+                'product_id': p.product_id,
+                'title': p.title,
+                'category': p.category,
+                'price': p.price,
+                'ratings': p.ratings
+            }
+            if user.is_admin():
+                product_data.update({
+                    'popularity': p.popularity,
+                    'tags': p.tags
+                })
+            output.append(product_data)
+        return jsonify(output)
+    except SQLAlchemyError as e:
+        logger.error(f"Error fetching products: {str(e)}")
+        session.rollback()
+        return jsonify({'error': 'Internal server error'}), 500
 
 @app.route('/api/cart/add/<int:product_id>', methods=['POST'])
-def add_to_cart(product_id):
-    """
-    Cart Addition Endpoint
-    ---------------------
-    Logs when a product is added to cart
+@token_required
+def add_to_cart(user, product_id):
+    """Add item to cart and track for recommendations"""
+    if user.role != 'user':
+        return jsonify({'message': 'Admin users cannot add items to cart'}), 403
     
-    Parameters:
-        product_id: ID of the product added to cart
-    """
-    if 'username' not in session:
-        return jsonify({'error': 'User must be logged in'}), 401
-
-    db_session = session_maker()
     try:
-        user = db_session.query(User).filter_by(username=session['username']).first()
-        log_activity(db_session, user.user_id, 'cart', product_id=product_id)
-        return jsonify({'message': 'Product added to cart successfully'})
-    except Exception as e:
-        return jsonify({'error': 'Internal server error'}), 500
-    finally:
-        db_session.close()
-
-@app.route('/api/purchase', methods=['POST'])
-def purchase():
-    """
-    Purchase Endpoint
-    ----------------
-    Logs product purchases
-    
-    Request Body:
-        product_ids: List of purchased product IDs
-    """
-    if 'username' not in session:
-        return jsonify({'error': 'User must be logged in'}), 401
-
-    product_ids = request.json.get('product_ids', [])
-    if not product_ids:
-        return jsonify({'error': 'No products specified'}), 400
-
-    db_session = session_maker()
-    try:
-        user = db_session.query(User).filter_by(username=session['username']).first()
+        product = session.query(Product).get(product_id)
+        if not product:
+            return jsonify({'message': 'Product not found'}), 404
+            
+        cart_item = session.query(CartItem).filter_by(
+            user_id=user.user_id,
+            product_id=product_id
+        ).first()
         
-        for product_id in product_ids:
-            log_activity(db_session, user.user_id, 'purchase', product_id=product_id)
-        
-        return jsonify({'message': 'Purchase logged successfully'})
-    except Exception as e:
-        return jsonify({'error': 'Internal server error'}), 500
-    finally:
-        db_session.close()
-
-# ==================== AUTH ROUTES ======================== #
-
-@app.route('/api/login', methods=['POST'])
-def login():
-    """
-    Login Endpoint
-    -------------
-    Authenticates user and creates session
-    
-    Request Body:
-        username: User's username
-        password: User's password
-    """
-    data = request.json
-    username = data.get('username')
-    password = data.get('password')
-
-    if not username or not password:
-        return jsonify({'error': 'Username and password required'}), 400
-
-    db_session = session_maker()
-    try:
-        user = db_session.query(User).filter_by(username=username).first()
-        
-        if user and user.check_password(password):
-            session['username'] = user.username
-            return jsonify({'message': 'Login successful', 'username': user.username})
+        if cart_item:
+            cart_item.quantity += 1
         else:
-            return jsonify({'error': 'Invalid username or password'}), 401
-    finally:
-        db_session.close()
+            cart_item = CartItem(user_id=user.user_id, product_id=product_id)
+            session.add(cart_item)
+            
+        activity = Activity(
+            user_id=user.user_id,
+            activity_type='cart',
+            product_id=product_id
+        )
+        session.add(activity)
+        session.commit()
+        
+        return jsonify({'message': 'Item added to cart successfully!'}), 201
+    except SQLAlchemyError as e:
+        logger.error(f"Error adding to cart: {str(e)}")
+        session.rollback()
+        return jsonify({'error': 'Internal server error'}), 500
 
-@app.route('/api/register', methods=['POST'])
-def register():
-    """
-    Registration Endpoint
-    -------------------
-    Creates new user account
+@app.route('/api/cart/remove/<int:product_id>', methods=['DELETE'])
+@token_required
+def remove_from_cart(user, product_id):
+    """Remove item from cart"""
+    if user.role != 'user':
+        return jsonify({'message': 'Admin users cannot modify cart'}), 403
     
-    Request Body:
-        username: Desired username
-        password: User's password
-        email: User's email
-    """
-    data = request.json
-    username = data.get('username')
-    password = data.get('password')
-    email = data.get('email')
-
-    if not all([username, password, email]):
-        return jsonify({'error': 'All fields are required'}), 400
-
-    db_session = session_maker()
     try:
-        new_user = User(username=username, password=password, email=email)
-        db_session.add(new_user)
-        db_session.commit()
-        return jsonify({'message': 'Registration successful'})
-    except Exception as e:
-        db_session.rollback()
-        print(f"Error during registration: {e}")
-        return jsonify({'error': 'Registration failed'}), 500
-    finally:
-        db_session.close()
+        cart_item = session.query(CartItem).filter_by(
+            user_id=user.user_id,
+            product_id=product_id
+        ).first()
+        
+        if not cart_item:
+            return jsonify({'message': 'Item not found in cart'}), 404
+            
+        session.delete(cart_item)
+        session.commit()
+        
+        return jsonify({'message': 'Item removed from cart successfully!'}), 200
+    except SQLAlchemyError as e:
+        logger.error(f"Error removing from cart: {str(e)}")
+        session.rollback()
+        return jsonify({'error': 'Internal server error'}), 500
 
-@app.route('/api/logout', methods=['POST'])
-def logout():
-    """
-    Logout Endpoint
-    --------------
-    Ends user session
-    """
-    session.pop('username', None)
-    return jsonify({'message': 'Logout successful'})
+@app.route('/api/cart', methods=['GET'])
+@token_required
+def get_cart(user):
+    """Get user's cart with recommendations"""
+    try:
+        cart_items = session.query(CartItem).filter_by(user_id=user.user_id).all()
+        output = []
+        
+        for item in cart_items:
+            product = session.query(Product).get(item.product_id)
+            if product:
+                output.append({
+                    'product_id': product.product_id,
+                    'title': product.title,
+                    'quantity': item.quantity,
+                    'price': product.price,
+                    'added_date': item.added_date.isoformat()
+                })
+        
+        recommendations = []
+        if cart_items:
+            latest_item = max(cart_items, key=lambda x: x.added_date)
+            recommendations = suggest_products_for_item(
+                latest_item.product_id,
+                user.user_id
+            )
+            
+        return jsonify({
+            'cart_items': output,
+            'recommendations': recommendations
+        })
+    except SQLAlchemyError as e:
+        logger.error(f"Error fetching cart: {str(e)}")
+        session.rollback()
+        return jsonify({'error': 'Internal server error'}), 500
 
-# ==================== APPLICATION ENTRY ======================== #
+@app.route('/api/search', methods=['POST'])
+@token_required
+def search(user):
+    """AI-powered product search endpoint"""
+    try:
+        data = request.get_json()
+        query = data.get('query')
+        if not query:
+            return jsonify({'error': 'No search query provided'}), 400
+            
+        activity = Activity(
+            user_id=user.user_id,
+            activity_type='search',
+            search_query=query
+        )
+        session.add(activity)
+        session.commit()
+        
+        results = search_products(
+            query,
+            min_price=data.get('min_price'),
+            max_price=data.get('max_price'),
+            brand=data.get('brand'),
+            min_rating=data.get('min_rating')
+        )
+        
+        return jsonify({'results': results})
+    except SQLAlchemyError as e:
+        logger.error(f"Search error: {str(e)}")
+        session.rollback()
+        return jsonify({'error': 'Internal server error'}), 500
+
+@app.route('/api/trending', methods=['GET'])
+@token_required
+def trending_products(user):
+    """Get AI-identified trending products"""
+    try:
+        days = request.args.get('days', default=7, type=int)
+        limit = request.args.get('limit', default=5, type=int)
+        
+        trending = get_trending_products(days=days, limit=limit)
+        return jsonify({'trending_products': trending})
+    except SQLAlchemyError as e:
+        logger.error(f"Error fetching trending products: {str(e)}")
+        session.rollback()
+        return jsonify({'error': 'Internal server error'}), 500
+
+@app.route('/api/recommendations', methods=['GET'])
+@token_required
+def get_recommendations(user):
+    """Get personalized AI recommendations"""
+    try:
+        recent_activity = session.query(Activity).filter(
+            Activity.user_id == user.user_id,
+            Activity.product_id.isnot(None)
+        ).order_by(
+            Activity.timestamp.desc()
+        ).first()
+        
+        if recent_activity:
+            recommendations = suggest_products_for_item(
+                recent_activity.product_id,
+                user.user_id
+            )
+        else:
+            recommendations = get_trending_products(limit=5)
+            
+        return jsonify({'recommendations': recommendations})
+    except SQLAlchemyError as e:
+        logger.error(f"Error generating recommendations: {str(e)}")
+        session.rollback()
+        return jsonify({'error': 'Internal server error'}), 500
+
+@app.errorhandler(404)
+def not_found(error):
+    """Handle 404 errors"""
+    return jsonify({'error': 'Resource not found'}), 404
+
+@app.errorhandler(500)
+def internal_error(error):
+    """Handle 500 errors"""
+    logger.error(f"Internal server error: {str(error)}")
+    return jsonify({'error': 'Internal server error'}), 500
 
 if __name__ == "__main__":
     app.run(debug=True)
