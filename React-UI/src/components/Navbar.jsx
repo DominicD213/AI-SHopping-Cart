@@ -73,7 +73,7 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
-const Navbar = ({ changeRegState, toggleSignin, toggleShoppingCart }) => {
+const Navbar = ({ changeRegState, toggleSignin, toggleShoppingCart,toggleProductsPage }) => {
   return (
     <Container>
       <Wrapper>
@@ -88,6 +88,9 @@ const Navbar = ({ changeRegState, toggleSignin, toggleShoppingCart }) => {
           <Logo>ShopSmart</Logo>
         </Center>
         <Right>
+        <Button onClick={toggleProductsPage}>
+            <MenuItem>PRODUCTS</MenuItem>
+          </Button>
           <Button onClick={changeRegState}>
             <MenuItem>REGISTER</MenuItem>
           </Button>

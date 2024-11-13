@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Announcement from "../components/Announcement";
 import Categories from "../components/Categories";
 import Footer from "../components/Footer";
@@ -6,15 +6,17 @@ import Navbar from "../components/Navbar";
 import Newsletter from "../components/Newsletter";
 import Products from "../components/Products";
 import Slider from "../components/Slider";
-import { useState } from "react";
+import Cart from "./Cart";
 import Login from "./Login";
+import ProductList from "./ProductList";
 import Register from "./Register";
-import Cart from "./Cart"
 
 const Home = () => {
   const [activeShoppingCart, setActiveShoppingCart] = useState(false);
+  const [activeProductsPage, setactiveProductsPage] = useState(false);
   const [activeRegistration, setActiveRegistration] = useState(false);
   const [activeSignin, setActiveSignin] = useState(false);
+  const [pageName, setPageName] = useState('Home');
 
   // Function to toggle the registration modal
   const changeRegState = () => {
@@ -29,12 +31,22 @@ const Home = () => {
     setActiveShoppingCart(!activeShoppingCart);
   };
 
+  // Function to toggle the products page modal
+  const toggleProductsPage = () => {
+    setactiveProductsPage(!activeProductsPage);
+  };
+
+
   // Function to toggle the sign-in modal
   const toggleSignin = () => {
     setActiveSignin(!activeSignin);
     if(activeRegistration){
       setActiveRegistration(!activeRegistration);
     }
+  };
+  // Function to toggle the sign-in modal
+  const togglePageName = (item) => {
+    setPageName = item;
   };
 
   return (
@@ -44,8 +56,10 @@ const Home = () => {
         changeRegState={changeRegState}
         toggleShoppingCart={toggleShoppingCart}
         toggleSignin={toggleSignin}
+        toggleProductsPage ={toggleProductsPage}
+        togglePageName ={togglePageName}
       />
-     {(!activeShoppingCart && !activeRegistration && !activeSignin) ? (
+     {(!activeShoppingCart && !activeRegistration && !activeSignin && !activeProductsPage) ? (
       <>
       <Slider />
       <Categories />
@@ -54,15 +68,18 @@ const Home = () => {
       <Footer />
       </>
     ) : 
-    (!activeShoppingCart && !activeRegistration && activeSignin)? (
+    (!activeShoppingCart && !activeRegistration && !activeProductsPage && activeSignin)? (
       <Login/>
     ):
-    (!activeShoppingCart && activeRegistration && !activeSignin)? (
+    (!activeShoppingCart && activeRegistration && !activeProductsPage && !activeSignin)? (
       <Register/>
     ):
-    (activeShoppingCart && !activeRegistration && !activeSignin)? (
+    (activeShoppingCart && !activeRegistration && !activeProductsPage && !activeSignin)? (
       <Cart/>
-    ): null
+    ): (!activeShoppingCart && !activeRegistration && activeProductsPage && !activeSignin)? (
+      <ProductList/>
+    ):
+    null
     }
     </div>
   );
