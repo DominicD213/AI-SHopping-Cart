@@ -25,18 +25,23 @@ v0.4 - 10-28-24
     - New endpoints for cart and purchase tracking
     - API versioning with /api prefix
 
+0.05 - 11-04-24
+    - Added routing for the suggestion from the AI
+    - Placeholder function to get related products based on viewed items
+
 v0.5 - 11-08-24 - Talon Jasper
     - Added admin role support to User model with role-based access checks
 """
 
 from flask import Flask, render_template, request, redirect, url_for, session, jsonify
 from flask_cors import CORS
-from werkzeug.security import check_password_hash
+from werkzeug.security import generate_password_hash, check_password_hash
 from dotenv import load_dotenv
 import os
 
-from models import User, Session, engine, Activity, Product
+from models import User, Activity, Product, engine
 from search import search_products
+from flask_sqlalchemy import SQLAlchemy
 
 # ==================== APPLICATION SETUP ======================== #
 
@@ -44,11 +49,13 @@ load_dotenv()  # Load environment variables
 
 app = Flask("__name__")
 app.secret_key = os.getenv('SECRET_KEY')
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://jbart:your_password@localhost/ASCdb'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+# Initialize SQLAlchemy
+db = SQLAlchemy(app)
 
 # CORS Configuration
-# -----------------
-# Allows React frontend to communicate with backend
-# Configured specifically for development environment
 CORS(app, supports_credentials=True, resources={
     r"/*": {
         "origins": ["http://localhost:3000"],  # React development server
@@ -58,9 +65,6 @@ CORS(app, supports_credentials=True, resources={
         "supports_credentials": True
     }
 })
-
-# Initialize database session
-session_maker = Session()
 
 # ==================== HELPER FUNCTIONS ======================== #
 
@@ -94,23 +98,10 @@ def log_activity(db_session, user_id, activity_type, search_query=None, product_
 @app.route("/")
 def home():
     """Home route - renders main page with optional username"""
-    if 'username' in session:
-        return render_template('home.html', username=session['username'])
-    return render_template('home.html')
+    return render_template('home.html', username=session.get('username'))
 
 @app.route('/api/search', methods=['POST'])
 def search():
-    """
-    Product Search Endpoint
-    ----------------------
-    Performs product search and logs search activity
-    
-    Request Body:
-        query: Search term
-    
-    Returns:
-        JSON object containing search results
-    """
     if 'username' not in session:
         return jsonify({'error': 'User must be logged in'}), 401
 
@@ -119,35 +110,22 @@ def search():
         return jsonify({'error': 'No search query provided'}), 400
 
     results = search_products(query)
-    
+
     # Log search activity
-    db_session = session_maker()
+    db_session = db.session
     try:
         user = db_session.query(User).filter_by(username=session['username']).first()
         log_activity(db_session, user.user_id, 'search', search_query=query)
         return jsonify({'results': results})
     except Exception as e:
         return jsonify({'error': 'Error processing search'}), 500
-    finally:
-        db_session.close()
 
 @app.route('/api/product/<int:product_id>', methods=['GET'])
 def view_product(product_id):
-    """
-    Product View Endpoint
-    --------------------
-    Retrieves product details and logs view activity
-    
-    Parameters:
-        product_id: ID of the product to view
-    
-    Returns:
-        JSON object containing product details
-    """
     if 'username' not in session:
         return jsonify({'error': 'User must be logged in'}), 401
 
-    db_session = session_maker()
+    db_session = db.session
     try:
         product = db_session.query(Product).get(product_id)
         if not product:
@@ -166,42 +144,22 @@ def view_product(product_id):
         })
     except Exception as e:
         return jsonify({'error': 'Internal server error'}), 500
-    finally:
-        db_session.close()
 
 @app.route('/api/cart/add/<int:product_id>', methods=['POST'])
 def add_to_cart(product_id):
-    """
-    Cart Addition Endpoint
-    ---------------------
-    Logs when a product is added to cart
-    
-    Parameters:
-        product_id: ID of the product added to cart
-    """
     if 'username' not in session:
         return jsonify({'error': 'User must be logged in'}), 401
 
-    db_session = session_maker()
+    db_session = db.session
     try:
         user = db_session.query(User).filter_by(username=session['username']).first()
         log_activity(db_session, user.user_id, 'cart', product_id=product_id)
         return jsonify({'message': 'Product added to cart successfully'})
     except Exception as e:
         return jsonify({'error': 'Internal server error'}), 500
-    finally:
-        db_session.close()
 
 @app.route('/api/purchase', methods=['POST'])
 def purchase():
-    """
-    Purchase Endpoint
-    ----------------
-    Logs product purchases
-    
-    Request Body:
-        product_ids: List of purchased product IDs
-    """
     if 'username' not in session:
         return jsonify({'error': 'User must be logged in'}), 401
 
@@ -209,32 +167,19 @@ def purchase():
     if not product_ids:
         return jsonify({'error': 'No products specified'}), 400
 
-    db_session = session_maker()
+    db_session = db.session
     try:
         user = db_session.query(User).filter_by(username=session['username']).first()
-        
         for product_id in product_ids:
             log_activity(db_session, user.user_id, 'purchase', product_id=product_id)
-        
         return jsonify({'message': 'Purchase logged successfully'})
     except Exception as e:
         return jsonify({'error': 'Internal server error'}), 500
-    finally:
-        db_session.close()
 
 # ==================== AUTH ROUTES ======================== #
 
 @app.route('/api/login', methods=['POST'])
 def login():
-    """
-    Login Endpoint
-    -------------
-    Authenticates user and creates session
-    
-    Request Body:
-        username: User's username
-        password: User's password
-    """
     data = request.json
     username = data.get('username')
     password = data.get('password')
@@ -242,11 +187,11 @@ def login():
     if not username or not password:
         return jsonify({'error': 'Username and password required'}), 400
 
-    db_session = session_maker()
+    db_session = db.session
     try:
         user = db_session.query(User).filter_by(username=username).first()
         
-        if user and user.check_password(password):
+        if user and check_password_hash(user.password, password):
             session['username'] = user.username
             return jsonify({'message': 'Login successful', 'username': user.username})
         else:
@@ -256,16 +201,6 @@ def login():
 
 @app.route('/api/register', methods=['POST'])
 def register():
-    """
-    Registration Endpoint
-    -------------------
-    Creates new user account
-    
-    Request Body:
-        username: Desired username
-        password: User's password
-        email: User's email
-    """
     data = request.json
     username = data.get('username')
     password = data.get('password')
@@ -274,9 +209,11 @@ def register():
     if not all([username, password, email]):
         return jsonify({'error': 'All fields are required'}), 400
 
-    db_session = session_maker()
+    db_session = db.session
     try:
-        new_user = User(username=username, password=password, email=email)
+        # Hash the password before storing it
+        hashed_password = generate_password_hash(password)
+        new_user = User(username=username, password=hashed_password, email=email)
         db_session.add(new_user)
         db_session.commit()
         return jsonify({'message': 'Registration successful'})
@@ -284,18 +221,44 @@ def register():
         db_session.rollback()
         print(f"Error during registration: {e}")
         return jsonify({'error': 'Registration failed'}), 500
-    finally:
-        db_session.close()
 
 @app.route('/api/logout', methods=['POST'])
 def logout():
-    """
-    Logout Endpoint
-    --------------
-    Ends user session
-    """
     session.pop('username', None)
     return jsonify({'message': 'Logout successful'})
+
+# ==================== App Suggestions ======================== #
+
+@app.route('/api/get_suggestions', methods=['GET'])
+def get_suggestions():
+    if 'username' not in session:
+        return jsonify({'error': 'User must be logged in'}), 401
+
+    # Get viewed items from query parameters
+    viewed_item_ids = request.args.getlist('viewed_items', type=int)
+
+    if not viewed_item_ids:
+        return jsonify({'error': 'No viewed items provided'}), 400
+
+    db_session = db.session
+    try:
+        # Fetch products based on viewed items (this is a placeholder, implement your own logic)
+        # You might have a method like `get_related_products`
+        suggestions = get_related_products(viewed_item_ids)
+
+        # Return a JSON response with the suggested products
+        return jsonify(suggestions)
+
+    except Exception as e:
+        return jsonify({'error': 'Error fetching suggestions'}), 500
+
+def get_related_products(viewed_item_ids):
+    # Placeholder function to get related products based on viewed items
+    # You can implement your logic here to fetch related products
+    # For example, fetching products from the same category or similar attributes
+    products = Product.query.filter(Product.id.in_(viewed_item_ids)).all()
+    return [{"id": product.id, "name": product.title, "price": product.price} for product in products]
+
 
 # ==================== APPLICATION ENTRY ======================== #
 

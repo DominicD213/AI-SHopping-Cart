@@ -1,57 +1,39 @@
-"""
-Data Import Helper for MySQL Database
-===================================
-
-Version History:
----------------
-v0.1 - Initial version with basic CSV import
-v0.2 - Added error handling and logging
-v0.3 - Updated for MySQL compatibility
-v0.4 - Updated to match new database schemas and activity tracking
-
-This script scans a directory for CSV files and loads them into corresponding MySQL tables.
-File names should match table names (e.g., products.csv loads into products table).
-
-Database Tables:
----------------
-- products: Product information
-- user: User accounts
-- activity: User activity tracking
-"""
-
 import os
 import pandas as pd
 from sqlalchemy import create_engine
 from models import Base, Product, User, Activity, Session
+from dotenv import load_dotenv
+import logging
+
+# Load environment variables from the .env file
+load_dotenv()
+
+# Set up logging
+logging.basicConfig(filename='data_import.log', level=logging.INFO,
+                    format='%(asctime)s - %(levelname)s - %(message)s')
 
 # Database connection configuration
-# TODO: Move to environment variables
-user = 'jbart'
-password = 'root99'
-host = 'localhost'
-database = 'ASCdb'
+user = os.getenv('DB_USER')
+password = os.getenv('DB_PASSWORD')
+host = os.getenv('DB_HOST')
+database = os.getenv('DB_NAME')
 
 # Create database connection
 engine = create_engine(f"mysql+pymysql://{user}:{password}@{host}/{database}")
 
 # Directory where CSV files are stored
-directory = 'C:/Users/JMBar/Desktop/SHOPPING/data'
+directory = os.getenv('CSV_DATA_DIRECTORY', 'C:/Users/JMBar/Desktop/SHOPPING/data')
 
 def import_products(file_path, session):
-    """
-    Import product data from CSV
-    
-    Expected CSV columns:
-    - title: Product name (str, max 255 chars)
-    - tags: Search keywords (str, max 255 chars)
-    - category: Product category (str, max 100 chars)
-    - description: Product details (str, max 500 chars)
-    - brand: Product brand (str, max 100 chars)
-    - popularity: Popularity score (int)
-    - ratings: Average rating (float)
-    """
+    """Import product data from CSV"""
     try:
         df = pd.read_csv(file_path)
+        required_columns = ['title', 'tags', 'category', 'description', 'brand', 'popularity', 'ratings']
+        
+        if not all(col in df.columns for col in required_columns):
+            logging.error(f"Missing columns in {file_path}: {set(required_columns) - set(df.columns)}")
+            return
+        
         for _, row in df.iterrows():
             product = Product(
                 title=row['title'],
@@ -64,22 +46,21 @@ def import_products(file_path, session):
             )
             session.add(product)
         session.commit()
-        print(f"Successfully imported products from {file_path}")
+        logging.info(f"Successfully imported products from {file_path}")
     except Exception as e:
         session.rollback()
-        print(f"Error importing products: {e}")
+        logging.error(f"Error importing products from {file_path}: {e}")
 
 def import_users(file_path, session):
-    """
-    Import user data from CSV
-    
-    Expected CSV columns:
-    - username: Unique username (str, max 50 chars)
-    - password: Plain password to be hashed (str)
-    - email: Unique email (str, max 100 chars)
-    """
+    """Import user data from CSV"""
     try:
         df = pd.read_csv(file_path)
+        required_columns = ['username', 'password', 'email']
+        
+        if not all(col in df.columns for col in required_columns):
+            logging.error(f"Missing columns in {file_path}: {set(required_columns) - set(df.columns)}")
+            return
+        
         for _, row in df.iterrows():
             user = User(
                 username=row['username'],
@@ -88,71 +69,64 @@ def import_users(file_path, session):
             )
             session.add(user)
         session.commit()
-        print(f"Successfully imported users from {file_path}")
+        logging.info(f"Successfully imported users from {file_path}")
     except Exception as e:
         session.rollback()
-        print(f"Error importing users: {e}")
+        logging.error(f"Error importing users from {file_path}: {e}")
 
 def import_activities(file_path, session):
-    """
-    Import activity data from CSV
-    
-    Expected CSV columns:
-    - user_id: ID of user (int)
-    - activity_type: Type of activity (str: search/view/cart/purchase)
-    - search_query: Search term if applicable (str, max 255 chars)
-    - product_id: Product ID if applicable (int)
-    - timestamp: Activity timestamp (datetime)
-    """
+    """Import activity data from CSV"""
     try:
         df = pd.read_csv(file_path)
+        required_columns = ['user_id', 'activity_type']
+        
+        if not all(col in df.columns for col in required_columns):
+            logging.error(f"Missing columns in {file_path}: {set(required_columns) - set(df.columns)}")
+            return
+        
         for _, row in df.iterrows():
             activity = Activity(
                 user_id=int(row['user_id']),
                 activity_type=row['activity_type'],
-                search_query=row['search_query'] if 'search_query' in row else None,
-                product_id=int(row['product_id']) if 'product_id' in row else None
+                search_query=row.get('search_query'),
+                product_id=row.get('product_id')
             )
             if 'timestamp' in row:
                 activity.timestamp = pd.to_datetime(row['timestamp'])
             session.add(activity)
         session.commit()
-        print(f"Successfully imported activities from {file_path}")
+        logging.info(f"Successfully imported activities from {file_path}")
     except Exception as e:
         session.rollback()
-        print(f"Error importing activities: {e}")
+        logging.error(f"Error importing activities from {file_path}: {e}")
 
 def main():
-    """
-    Main function to process all CSV files in the data directory
-    """
+    """Main function to process all CSV files in the data directory"""
     # Create database session
-    session = Session()
-    
-    try:
-        # Process each CSV file in the directory
-        for filename in os.listdir(directory):
-            if filename.endswith('.csv'):
-                file_path = os.path.join(directory, filename)
-                table_name = filename.replace('.csv', '')
-                
-                print(f"\nProcessing {filename}...")
-                
-                # Import data based on table name
-                if table_name == 'products':
-                    import_products(file_path, session)
-                elif table_name == 'user':
-                    import_users(file_path, session)
-                elif table_name == 'activity':
-                    import_activities(file_path, session)
-                else:
-                    print(f"Unknown table: {table_name}")
-    
-    except Exception as e:
-        print(f"An error occurred: {e}")
-    finally:
-        session.close()
-        print("\nImport process completed.")
+    with Session() as session:
+        try:
+            # Process each CSV file in the directory
+            for filename in os.listdir(directory):
+                if filename.endswith('.csv'):
+                    file_path = os.path.join(directory, filename)
+                    table_name = filename.replace('.csv', '')
+                    
+                    logging.info(f"\nProcessing {filename}...")
+                    
+                    # Import data based on table name
+                    if table_name == 'products':
+                        import_products(file_path, session)
+                    elif table_name == 'user':
+                        import_users(file_path, session)
+                    elif table_name == 'activity':
+                        import_activities(file_path, session)
+                    else:
+                        logging.error(f"Unknown table: {table_name}")
+        
+        except Exception as e:
+            logging.error(f"An error occurred: {e}")
+        
+        logging.info("\nImport process completed.")
 
 if __name__ == "__main__":
     main()

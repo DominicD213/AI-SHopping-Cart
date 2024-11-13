@@ -38,6 +38,13 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
 import os
 
+# Database configuration
+user = os.environ.get('DB_USER', 'jbart')
+password = os.environ.get('DB_PASSWORD', 'root99')
+host = os.environ.get('DB_HOST', 'localhost')
+database = os.environ.get('DB_NAME', 'ASCdb')
+
+DATABASE_URI = f"mysql+pymysql://{user}:{password}@{host}/{database}"
 Base = declarative_base()
 
 # ==================== PRODUCT TABLE ======================== #
@@ -48,14 +55,15 @@ class Product(Base):
     Represents products in the e-commerce system.
     """
     __tablename__ = 'products'
+    
     product_id = Column(Integer, primary_key=True)
-    title = Column(String(255))
+    title = Column(String(255), nullable=False)
     tags = Column(String(255))
     category = Column(String(100))
     description = Column(String(500))
     brand = Column(String(100))
-    popularity = Column(Integer)
-    ratings = Column(Float)
+    popularity = Column(Integer)  # Popularity score out of 1000
+    ratings = Column(Float)  # Ratings out of 5.0
 
     def __init__(self, title, tags, category, description, brand, popularity, ratings):
         self.title = title
@@ -67,9 +75,11 @@ class Product(Base):
         self.ratings = ratings
 
     def __repr__(self):
-        return f"Product(title={self.title}, tags={self.tags}, category={self.category}, description={self.description}, brand={self.brand}, popularity={self.popularity}, ratings={self.ratings})"
+        return (f"Product(title={self.title}, tags={self.tags}, category={self.category}, "
+                f"description={self.description}, brand={self.brand}, popularity={self.popularity}, "
+                f"ratings={self.ratings})")
 
-# ==================== USER TABLE WITH ROLE ======================== #
+# ==================== USER TABLE ======================== #
 class User(Base):
     """
     User Model
@@ -83,7 +93,8 @@ class User(Base):
         email (str): Unique email address
         role (str): User role, either 'user' or 'admin'
     """
-    __tablename__ = 'user'
+    __tablename__ = 'users'
+    
     user_id = Column(Integer, primary_key=True)
     username = Column(String(50), unique=True, nullable=False)
     password_hash = Column(String(255), nullable=False)
@@ -113,68 +124,66 @@ class Activity(Base):
     Activity Model
     -------------
     Tracks user interactions with the system for analytics and recommendations.
+    
+    Attributes:
+        activity_id (int): Primary key
+        user_id (int): Foreign key to User
+        product_id (int): Foreign key to Product for views/cart/purchases
+        action (str): Type of activity (search/view/cart/purchase)
+        timestamp (datetime): When the activity occurred
     """
     __tablename__ = 'activity'
+    
     activity_id = Column(Integer, primary_key=True)
-    user_id = Column(Integer, ForeignKey('user.user_id'), nullable=False)
-    activity_type = Column(String(20), nullable=False)
-    search_query = Column(String(255), nullable=True)
-    product_id = Column(Integer, ForeignKey('products.product_id'), nullable=True)
-    timestamp = Column(DateTime, default=datetime.utcnow, nullable=False)
-    importance_weight = Column(Float, nullable=False)
+    user_id = Column(Integer, ForeignKey('users.user_id', ondelete='CASCADE'), nullable=False)
+    product_id = Column(Integer, ForeignKey('products.product_id', ondelete='CASCADE'), nullable=True)
+    action = Column(Enum('viewed', 'added_to_cart', 'purchased'), nullable=False, default='viewed')    
+    timestamp = Column(DateTime, default=datetime.utcnow)
 
     user = relationship("User")
     product = relationship("Product")
 
-    def __init__(self, user_id, activity_type, search_query=None, product_id=None):
+    def __init__(self, user_id, action, product_id=None):
         self.user_id = user_id
-        self.activity_type = activity_type
-        self.search_query = search_query
+        self.action = action
         self.product_id = product_id
-        self.timestamp = datetime.utcnow()
-        
-        # Activity weights for recommendation system
-        self.importance_weight = {
-            'search': 0.2,    # Lowest impact
-            'view': 0.4,      # Medium-low impact
-            'cart': 0.7,      # Medium-high impact
-            'purchase': 1.0   # Highest impact
-        }.get(activity_type, 0.1)
 
     def __repr__(self):
-        return f"Activity(user_id={self.user_id}, activity_type={self.activity_type}, product_id={self.product_id}, importance_weight={self.importance_weight})"
-
-# =================== PRODUCT EMBEDDING TABLE ==================== #
-class ProductEmbedding(Base):
-    __tablename__ = 'product_embeddings'
-    product_id = Column(Integer, primary_key=True)
-    embedding = Column(LargeBinary)
+        return (f"Activity(user_id={self.user_id}, product_id={self.product_id}, "
+                f"action={self.action}, timestamp={self.timestamp})")
 
 # ======================= ORDER TABLE ========================== #
 class Order(Base):
     __tablename__ = 'orders'
+    
     order_id = Column(Integer, primary_key=True)
-    user_id = Column(Integer, ForeignKey('user.user_id'))
-    total_amount = Column(Float)
+    user_id = Column(Integer, ForeignKey('users.user_id', ondelete='CASCADE'))
+    total_amount = Column(Float, nullable=False)
     order_date = Column(DateTime, default=datetime.utcnow)
-    status = Column(Enum('processing', 'completed', 'cancelled'), nullable=False)
+    status = Column(Enum('processing', 'completed', 'cancelled'), nullable=False, default='processing')
 
-    def __init__(self, user_id, total_amount, status='processing'):
+    user = relationship("User")
+
+    def __init__(self, user_id, total_amount, status):
         self.user_id = user_id
         self.total_amount = total_amount
         self.status = status
 
     def __repr__(self):
-        return f"Order(user_id={self.user_id}, total_amount={self.total_amount}, status={self.status})"
+        return (f"Order(user_id={self.user_id}, total_amount={self.total_amount}, "
+                f"order_date={self.order_date}, status={self.status})")
 
 # ======================= ORDER ITEMS TABLE ==================== #
 class OrderItem(Base):
     __tablename__ = 'orderitems'
+    
     orderitem_id = Column(Integer, primary_key=True)
-    order_id = Column(Integer, ForeignKey('orders.order_id'))
-    product_id = Column(Integer, ForeignKey('products.product_id'))
-    quantity = Column(Integer)
-    price = Column(Float)
+    order_id = Column(Integer, ForeignKey('orders.order_id', ondelete='CASCADE'))
+    product_id = Column(Integer, ForeignKey('products.product_id', ondelete='CASCADE'))
+    quantity = Column(Integer, nullable=False)
+    price = Column(Float, nullable=False)
+
+    order = relationship("Order")
 
     def __init__(self, order_id, product_id, quantity, price):
         self.order_id = order_id
@@ -183,6 +192,28 @@ class OrderItem(Base):
         self.price = price
 
     def __repr__(self):
+        return (f"OrderItem(order_id={self.order_id}, product_id={self.product_id}, "
+                f"quantity={self.quantity}, price={self.price})")
+
+# ================== DATABASE SETUP ======================= #
+# Setup the database engine and session
+engine = create_engine(DATABASE_URI)
+Base.metadata.create_all(engine)
+Session = sessionmaker(bind=engine)
+session = Session()
+
+# ==================== DUMMY INFO ADDED ======================== #
+def seed_data(session):
+    # Example: Add dummy products and users
+    sample_user = User(username="sampleuser", password="password123", email="user@example.com")
+    sample_product = Product(title="Sample Product", tags="sample, product", category="General", description="A sample product", brand="SampleBrand", popularity=100, ratings=4.5)
+
+    session.add(sample_user)
+    session.add(sample_product)
+    session.commit()
+# Uncomment to seed the database
+# seed_data(session)
+=======
         return f"OrderItem(order_id={self.order_id}, product_id={self.product_id}, quantity={self.quantity}, price={self.price})"
 
 # ================== DATABASE SETUP ======================= #
