@@ -28,23 +28,24 @@ v0.4 - 10-28-24 - Jakub Bartkowiak
 
 v0.5 - 11-08-24 - Talon Jasper
     - Added admin role to User model with role-based access
+
+v0.9 - 11-12-24 - System Update
+    - Added additional fields for MoSCoW requirements
+    - Enhanced user profile capabilities
+    - Added product metadata fields
 """
 
 # =================== IMPORTS & BASE ======================== #
-from sqlalchemy import create_engine, Column, Integer, String, Float, LargeBinary, ForeignKey, Enum, DateTime
+from sqlalchemy import create_engine, Column, Integer, String, Float, LargeBinary, ForeignKey, Enum, DateTime, JSON, Boolean, Index
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, relationship
 from werkzeug.security import generate_password_hash, check_password_hash
-from datetime import datetime
+from datetime import datetime, timedelta
 import os
 
-# Database configuration
-user = os.environ.get('DB_USER', 'jbart')
-password = os.environ.get('DB_PASSWORD', 'root99')
-host = os.environ.get('DB_HOST', 'localhost')
-database = os.environ.get('DB_NAME', 'ASCdb')
+# Database configuration - Now with fallbacks
+DATABASE_URI = os.getenv('DATABASE_URI', f"mysql+pymysql://{os.getenv('DB_USER', 'jbart')}:{os.getenv('DB_PASSWORD', 'root99')}@{os.getenv('DB_HOST', 'localhost')}/{os.getenv('DB_NAME', 'ASCdb')}")
 
-DATABASE_URI = f"mysql+pymysql://{user}:{password}@{host}/{database}"
 Base = declarative_base()
 
 # ==================== PRODUCT TABLE ======================== #
@@ -82,16 +83,7 @@ class Product(Base):
 # ==================== USER TABLE ======================== #
 class User(Base):
     """
-    User Model
-    ----------
     Represents system users with authentication capabilities and role-based access.
-    
-    Attributes:
-        user_id (int): Primary key
-        username (str): Unique username
-        password_hash (str): Hashed password
-        email (str): Unique email address
-        role (str): User role, either 'user' or 'admin'
     """
     __tablename__ = 'users'
     
@@ -100,6 +92,9 @@ class User(Base):
     password_hash = Column(String(255), nullable=False)
     email = Column(String(100), unique=True, nullable=False)
     role = Column(Enum('user', 'admin'), default='user', nullable=False)
+
+    activities = relationship("Activity", back_populates="user")
+    orders = relationship("Order", back_populates="user")
 
     def __init__(self, username, password, email, role='user'):
         self.username = username
@@ -121,16 +116,7 @@ class User(Base):
 # ==================== ACTIVITY TABLE ======================== #
 class Activity(Base):
     """
-    Activity Model
-    -------------
     Tracks user interactions with the system for analytics and recommendations.
-    
-    Attributes:
-        activity_id (int): Primary key
-        user_id (int): Foreign key to User
-        product_id (int): Foreign key to Product for views/cart/purchases
-        action (str): Type of activity (search/view/cart/purchase)
-        timestamp (datetime): When the activity occurred
     """
     __tablename__ = 'activity'
     
@@ -139,8 +125,8 @@ class Activity(Base):
     product_id = Column(Integer, ForeignKey('products.product_id', ondelete='CASCADE'), nullable=True)
     action = Column(Enum('viewed', 'added_to_cart', 'purchased'), nullable=False, default='viewed')    
     timestamp = Column(DateTime, default=datetime.utcnow)
-
-    user = relationship("User")
+    
+    user = relationship("User", back_populates="activities")
     product = relationship("Product")
 
     def __init__(self, user_id, action, product_id=None):
@@ -154,6 +140,9 @@ class Activity(Base):
 
 # ======================= ORDER TABLE ========================== #
 class Order(Base):
+    """
+    Tracks customer orders for AI analysis.
+    """
     __tablename__ = 'orders'
     
     order_id = Column(Integer, primary_key=True)
@@ -162,7 +151,8 @@ class Order(Base):
     order_date = Column(DateTime, default=datetime.utcnow)
     status = Column(Enum('processing', 'completed', 'cancelled'), nullable=False, default='processing')
 
-    user = relationship("User")
+    user = relationship("User", back_populates="orders")
+    order_items = relationship("OrderItem", back_populates="order")
 
     def __init__(self, user_id, total_amount, status):
         self.user_id = user_id
@@ -183,7 +173,8 @@ class OrderItem(Base):
     quantity = Column(Integer, nullable=False)
     price = Column(Float, nullable=False)
 
-    order = relationship("Order")
+    order = relationship("Order", back_populates="order_items")
+    product = relationship("Product")
 
     def __init__(self, order_id, product_id, quantity, price):
         self.order_id = order_id
@@ -195,31 +186,29 @@ class OrderItem(Base):
         return (f"OrderItem(order_id={self.order_id}, product_id={self.product_id}, "
                 f"quantity={self.quantity}, price={self.price})")
 
-# ================== DATABASE SETUP ======================= #
-# Setup the database engine and session
-engine = create_engine(DATABASE_URI)
+# ================== DATABASE SETUP ===================== #
+engine = create_engine(DATABASE_URI, echo=True)
+
 Base.metadata.create_all(engine)
+
+# ===================== DATABASE SESSION ================= #
 Session = sessionmaker(bind=engine)
 session = Session()
 
-# ==================== DUMMY INFO ADDED ======================== #
+# Seed sample data
 def seed_data(session):
-    # Example: Add dummy products and users
+    """Seed sample user and product data for testing"""
     sample_user = User(username="sampleuser", password="password123", email="user@example.com")
-    sample_product = Product(title="Sample Product", tags="sample, product", category="General", description="A sample product", brand="SampleBrand", popularity=100, ratings=4.5)
-
     session.add(sample_user)
+    session.commit()
+
+    sample_product = Product(title="Sample Product", tags="electronics, gadgets", 
+                             category="Gadgets", description="An example product", brand="BrandX",
+                             popularity=500, ratings=4.5)
     session.add(sample_product)
     session.commit()
-# Uncomment to seed the database
-# seed_data(session)
-=======
-        return f"OrderItem(order_id={self.order_id}, product_id={self.product_id}, quantity={self.quantity}, price={self.price})"
 
-# ================== DATABASE SETUP ======================= #
-# Set up MySQL database connection
-DATABASE_URI = "mysql+pymysql://jbart:root99@localhost/ASCdb"
-engine = create_engine(DATABASE_URI)
-Base.metadata.create_all(engine)
-Session = sessionmaker(bind=engine)
-session = Session()
+    print("Dummy data has been added.")
+
+# Run the seed function to add sample data
+seed_data(session)
