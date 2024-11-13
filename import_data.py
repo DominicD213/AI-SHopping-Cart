@@ -1,3 +1,7 @@
+"""
+AI-Powered Shopping Tool - Data Import
+Handles importing CSV files into database tables.
+"""
 import os
 import pandas as pd
 from sqlalchemy import create_engine
@@ -18,8 +22,9 @@ password = os.getenv('DB_PASSWORD')
 host = os.getenv('DB_HOST')
 database = os.getenv('DB_NAME')
 
-# Create database connection
-engine = create_engine(f"mysql+pymysql://{user}:{password}@{host}/{database}")
+# Initialize database connection
+DATABASE_URI = os.getenv('DATABASE_URI')
+engine = create_engine(DATABASE_URI)
 
 # Directory where CSV files are stored
 directory = os.getenv('CSV_DATA_DIRECTORY', 'C:/Users/JMBar/Desktop/SHOPPING/data')
@@ -100,6 +105,36 @@ def import_activities(file_path, session):
         session.rollback()
         logging.error(f"Error importing activities from {file_path}: {e}")
 
+def import_csv_to_table(csv_path, table_name, session):
+    """
+    Import data from a CSV file into the specified database table.
+    
+    Args:
+        csv_path (str): Path to the CSV file
+        table_name (str): Name of the target database table
+        session (Session): The SQLAlchemy session object
+    """
+    try:
+        # Read CSV file
+        df = pd.read_csv(csv_path)
+        
+        # Import to database based on table name
+        if table_name == 'products':
+            import_products(csv_path, session)
+        elif table_name == 'users':
+            import_users(csv_path, session)
+        elif table_name == 'activity':
+            import_activities(csv_path, session)
+        else:
+            logging.error(f"Unknown table: {table_name}")
+        
+        logging.info(f"Successfully imported {csv_path} to {table_name}")
+        
+    except Exception as e:
+        logging.error(f"Error importing {csv_path} to {table_name}: {str(e)}")
+        session.rollback()
+        raise
+
 def main():
     """Main function to process all CSV files in the data directory"""
     # Create database session
@@ -109,19 +144,12 @@ def main():
             for filename in os.listdir(directory):
                 if filename.endswith('.csv'):
                     file_path = os.path.join(directory, filename)
-                    table_name = filename.replace('.csv', '')
+                    table_name = filename.replace('.csv', '').lower()  # Normalize to lowercase
                     
                     logging.info(f"\nProcessing {filename}...")
                     
                     # Import data based on table name
-                    if table_name == 'products':
-                        import_products(file_path, session)
-                    elif table_name == 'user':
-                        import_users(file_path, session)
-                    elif table_name == 'activity':
-                        import_activities(file_path, session)
-                    else:
-                        logging.error(f"Unknown table: {table_name}")
+                    import_csv_to_table(file_path, table_name, session)
         
         except Exception as e:
             logging.error(f"An error occurred: {e}")
@@ -129,4 +157,7 @@ def main():
         logging.info("\nImport process completed.")
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except Exception as e:
+        logging.error(f"Error in main execution: {str(e)}")
