@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { mobile } from "../responsive";
+import { useState } from "react";
 
 const Container = styled.div`
   width: 100vw;
@@ -55,22 +56,100 @@ const Button = styled.button`
 `;
 
 const Register = () => {
+  const [userData, setUserData] = useState({
+    name: "",
+    lastName: "",
+    username: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+
+  const [error, setError] = useState(null);
+
+  const handleInputChange = (e) => {
+    setUserData({ ...userData, [e.target.name]: e.target.value });
+  };
+
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    
+    if (userData.password !== userData.confirmPassword) {
+      setError("Passwords do not match");
+      return;
+    }
+
+    try {
+      const response = await fetch("http://localhost:3000/api/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userData),
+      });
+      
+      const result = await response.json();
+
+      if (response.ok) {
+        // Redirect to login page after successful registration
+        window.location.href = "/login";
+      } else {
+        setError(result.error);
+      }
+    } catch (error) {
+      setError("An error occurred during registration");
+    }
+  };
+
   return (
     <Container>
       <Wrapper>
         <Title>CREATE AN ACCOUNT</Title>
-        <Form>
-          <Input placeholder="name" />
-          <Input placeholder="last name" />
-          <Input placeholder="username" />
-          <Input placeholder="email" />
-          <Input placeholder="password" />
-          <Input placeholder="confirm password" />
+        <Form onSubmit={handleRegister}>
+          <Input
+            name="name"
+            placeholder="name"
+            value={userData.name}
+            onChange={handleInputChange}
+          />
+          <Input
+            name="lastName"
+            placeholder="last name"
+            value={userData.lastName}
+            onChange={handleInputChange}
+          />
+          <Input
+            name="username"
+            placeholder="username"
+            value={userData.username}
+            onChange={handleInputChange}
+          />
+          <Input
+            name="email"
+            placeholder="email"
+            value={userData.email}
+            onChange={handleInputChange}
+          />
+          <Input
+            name="password"
+            type="password"
+            placeholder="password"
+            value={userData.password}
+            onChange={handleInputChange}
+          />
+          <Input
+            name="confirmPassword"
+            type="password"
+            placeholder="confirm password"
+            value={userData.confirmPassword}
+            onChange={handleInputChange}
+          />
           <Agreement>
             By creating an account, I consent to the processing of my personal
             data in accordance with the <b>PRIVACY POLICY</b>
           </Agreement>
-          <Button>CREATE</Button>
+          <Button type="submit">CREATE</Button>
+          {error && <p>{error}</p>}
         </Form>
       </Wrapper>
     </Container>

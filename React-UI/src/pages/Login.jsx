@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import {mobile} from "../responsive";
+import { useState } from "react";
 
 const Container = styled.div`
   width: 100vw;
@@ -58,14 +59,55 @@ const Link = styled.a`
 `;
 
 const Login = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    
+    try {
+      const response = await fetch("http://localhost:5000/api/login", { // Ensure this matches Flask server port
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include", // Allows sending/receiving cookies for session management
+        body: JSON.stringify({ username, password }),
+      });
+      
+      const result = await response.json();
+      
+      if (response.ok) {
+        // Handle successful login (e.g., redirect to homepage or update global user state)
+        window.location.href = "/";
+      } else {
+        setError(result.error);
+      }
+    } catch (error) {
+      setError("An error occurred during login");
+    }
+  };
+
   return (
     <Container>
       <Wrapper>
         <Title>SIGN IN</Title>
-        <Form>
-          <Input placeholder="username" />
-          <Input placeholder="password" />
-          <Button>LOGIN</Button>
+        <Form onSubmit={handleLogin}>
+          <Input
+            type="text"
+            placeholder="username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <Input
+            type="password"
+            placeholder="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <Button type="submit">LOGIN</Button>
+          {error && <p>{error}</p>}
           <Link>DO NOT YOU REMEMBER THE PASSWORD?</Link>
           <Link>CREATE A NEW ACCOUNT</Link>
         </Form>

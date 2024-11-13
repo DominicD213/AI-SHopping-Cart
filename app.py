@@ -261,7 +261,7 @@ def get_cart(user):
                 latest_item.product_id,
                 user.user_id
             )
-            
+        
         return jsonify({
             'cart_items': output,
             'recommendations': recommendations
@@ -271,89 +271,71 @@ def get_cart(user):
         session.rollback()
         return jsonify({'error': 'Internal server error'}), 500
 
-@app.route('/api/search', methods=['POST'])
+@app.route('/api/checkout', methods=['POST'])
 @token_required
-def search(user):
-    """AI-powered product search endpoint"""
+def checkout(user):
+    """Handle checkout process"""
     try:
-        data = request.get_json()
-        query = data.get('query')
-        if not query:
-            return jsonify({'error': 'No search query provided'}), 400
-            
-        activity = Activity(
+        cart_items = session.query(CartItem).filter_by(user_id=user.user_id).all()
+        if not cart_items:
+            return jsonify({'message': 'Your cart is empty'}), 400
+        
+        total = 0
+        for item in cart_items:
+            product = session.query(Product).get(item.product_id)
+            if product:
+                total += product.price * item.quantity
+        
+        order = Order(
             user_id=user.user_id,
-            activity_type='search',
-            search_query=query
+            total=total,
+            order_date=datetime.utcnow()
         )
-        session.add(activity)
+        session.add(order)
         session.commit()
         
-        results = search_products(
-            query,
-            min_price=data.get('min_price'),
-            max_price=data.get('max_price'),
-            brand=data.get('brand'),
-            min_rating=data.get('min_rating')
-        )
+        # Create order items
+        for item in cart_items:
+            product = session.query(Product).get(item.product_id)
+            if product:
+                order_item = OrderItem(
+                    order_id=order.order_id,
+                    product_id=item.product_id,
+                    quantity=item.quantity,
+                    price=product.price
+                )
+                session.add(order_item)
         
-        return jsonify({'results': results})
+        # Clear the cart
+        session.query(CartItem).filter_by(user_id=user.user_id).delete()
+        session.commit()
+        
+        return jsonify({'message': 'Order placed successfully!', 'order_id': order.order_id}), 201
     except SQLAlchemyError as e:
-        logger.error(f"Search error: {str(e)}")
+        logger.error(f"Error during checkout: {str(e)}")
         session.rollback()
+        return jsonify({'error': 'Internal server error'}), 500
+
+@app.route('/api/search', methods=['GET'])
+def search():
+    """Search for products by title or category"""
+    query = request.args.get('query')
+    if not query:
+        return jsonify({'message': 'Search query missing'}), 400
+    
+    try:
+        results = search_products(query)
+        return jsonify(results)
+    except Exception as e:
+        logger.error(f"Search error: {str(e)}")
         return jsonify({'error': 'Internal server error'}), 500
 
 @app.route('/api/trending', methods=['GET'])
-@token_required
-def trending_products(user):
-    """Get AI-identified trending products"""
+def get_trending():
+    """Get trending products"""
     try:
-        days = request.args.get('days', default=7, type=int)
-        limit = request.args.get('limit', default=5, type=int)
-        
-        trending = get_trending_products(days=days, limit=limit)
-        return jsonify({'trending_products': trending})
-    except SQLAlchemyError as e:
-        logger.error(f"Error fetching trending products: {str(e)}")
-        session.rollback()
+        trending_products = get_trending_products()
+        return jsonify(trending_products)
+    except Exception as e:
+        logger.error(f"Trending error: {str(e)}")
         return jsonify({'error': 'Internal server error'}), 500
-
-@app.route('/api/recommendations', methods=['GET'])
-@token_required
-def get_recommendations(user):
-    """Get personalized AI recommendations"""
-    try:
-        recent_activity = session.query(Activity).filter(
-            Activity.user_id == user.user_id,
-            Activity.product_id.isnot(None)
-        ).order_by(
-            Activity.timestamp.desc()
-        ).first()
-        
-        if recent_activity:
-            recommendations = suggest_products_for_item(
-                recent_activity.product_id,
-                user.user_id
-            )
-        else:
-            recommendations = get_trending_products(limit=5)
-            
-        return jsonify({'recommendations': recommendations})
-    except SQLAlchemyError as e:
-        logger.error(f"Error generating recommendations: {str(e)}")
-        session.rollback()
-        return jsonify({'error': 'Internal server error'}), 500
-
-@app.errorhandler(404)
-def not_found(error):
-    """Handle 404 errors"""
-    return jsonify({'error': 'Resource not found'}), 404
-
-@app.errorhandler(500)
-def internal_error(error):
-    """Handle 500 errors"""
-    logger.error(f"Internal server error: {str(error)}")
-    return jsonify({'error': 'Internal server error'}), 500
-
-if __name__ == "__main__":
-    app.run(debug=True)
