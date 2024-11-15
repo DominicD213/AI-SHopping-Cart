@@ -18,35 +18,53 @@ const Home = () => {
   const [activeSignin, setActiveSignin] = useState(false);
   const [pageName, setPageName] = useState('Home');
 
+  // Function to reset to Home
+  const goToHome = () => {
+    setPageName('Home');
+    setActiveShoppingCart(false);
+    setactiveProductsPage(false);
+    setActiveRegistration(false);
+    setActiveSignin(false);
+  };
+
   // Function to toggle the registration modal
   const changeRegState = () => {
     setActiveRegistration(!activeRegistration);
-    if(activeSignin){
-      setActiveSignin(!activeSignin)
+    if (!activeRegistration) {
+      setActiveSignin(false);
+      setActiveShoppingCart(false);
+      setactiveProductsPage(false);
     }
   };
 
   // Function to toggle the shopping cart modal
   const toggleShoppingCart = () => {
     setActiveShoppingCart(!activeShoppingCart);
+    if (!activeShoppingCart) {
+      setActiveRegistration(false);
+      setActiveSignin(false);
+      setactiveProductsPage(false);
+    }
   };
 
   // Function to toggle the products page modal
   const toggleProductsPage = () => {
     setactiveProductsPage(!activeProductsPage);
+    if (!activeProductsPage) {
+      setActiveRegistration(false);
+      setActiveSignin(false);
+      setActiveShoppingCart(false);
+    }
   };
-
 
   // Function to toggle the sign-in modal
   const toggleSignin = () => {
     setActiveSignin(!activeSignin);
-    if(activeRegistration){
-      setActiveRegistration(!activeRegistration);
+    if (!activeSignin) {
+      setActiveRegistration(false);
+      setActiveShoppingCart(false);
+      setactiveProductsPage(false);
     }
-  };
-  // Function to toggle the sign-in modal
-  const togglePageName = (item) => {
-    setPageName = item;
   };
 
   return (
@@ -56,31 +74,33 @@ const Home = () => {
         changeRegState={changeRegState}
         toggleShoppingCart={toggleShoppingCart}
         toggleSignin={toggleSignin}
-        toggleProductsPage ={toggleProductsPage}
-        togglePageName ={togglePageName}
+        toggleProductsPage={toggleProductsPage}
+        goToHome={goToHome} // pass the function to Navbar
       />
-     {(!activeShoppingCart && !activeRegistration && !activeSignin && !activeProductsPage) ? (
-      <>
-      <Slider />
-      <Categories />
-      <Products />
-      <Newsletter />
-      <Footer />
-      </>
-    ) : 
-    (!activeShoppingCart && !activeRegistration && !activeProductsPage && activeSignin)? (
-      <Login/>
-    ):
-    (!activeShoppingCart && activeRegistration && !activeProductsPage && !activeSignin)? (
-      <Register/>
-    ):
-    (activeShoppingCart && !activeRegistration && !activeProductsPage && !activeSignin)? (
-      <Cart/>
-    ): (!activeShoppingCart && !activeRegistration && activeProductsPage && !activeSignin)? (
-      <ProductList/>
-    ):
-    null
-    }
+      
+      {/* Home Button - will trigger the goToHome function */}
+      <button onClick={goToHome} style={{ position: 'fixed', top: '20px', left: '20px' }}>
+        Home
+      </button>
+
+      {/* Display different content based on the active state */}
+      {(!activeShoppingCart && !activeRegistration && !activeSignin && !activeProductsPage) ? (
+        <>
+          <Slider />
+          <Categories />
+          <Products />
+          <Newsletter />
+          <Footer />
+        </>
+      ) : (!activeShoppingCart && !activeRegistration && !activeProductsPage && activeSignin) ? (
+        <Login/>
+      ) : (!activeShoppingCart && activeRegistration && !activeProductsPage && !activeSignin) ? (
+        <Register/>
+      ) : (activeShoppingCart && !activeRegistration && !activeProductsPage && !activeSignin) ? (
+        <Cart/>
+      ) : (!activeShoppingCart && !activeRegistration && activeProductsPage && !activeSignin) ? (
+        <ProductList/>
+      ) : null}
     </div>
   );
 };
