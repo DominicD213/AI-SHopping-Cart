@@ -66,6 +66,7 @@ const MenuItem = styled.div`
   margin-left: 25px;
   ${mobile({ fontSize: "12px", marginLeft: "10px" })}
 `;
+
 const Button = styled.button`
   background: none;
   border: none;
@@ -73,7 +74,7 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
-const Navbar = ({ changeRegState, toggleSignin, toggleShoppingCart,toggleProductsPage }) => {
+const Navbar = ({ goToHome, changeRegState, toggleSignin, toggleShoppingCart, toggleProductsPage }) => {
   return (
     <Container>
       <Wrapper>
@@ -88,7 +89,13 @@ const Navbar = ({ changeRegState, toggleSignin, toggleShoppingCart,toggleProduct
           <Logo>ShopSmart</Logo>
         </Center>
         <Right>
-        <Button onClick={toggleProductsPage}>
+          {/* Home Button */}
+          <Button onClick={goToHome}>
+            <MenuItem>HOME</MenuItem>
+          </Button>
+
+          {/* Other buttons */}
+          <Button onClick={toggleProductsPage}>
             <MenuItem>PRODUCTS</MenuItem>
           </Button>
           <Button onClick={changeRegState}>
