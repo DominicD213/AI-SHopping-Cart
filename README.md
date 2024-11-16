@@ -1,70 +1,95 @@
-# Getting Started with Create React App
+<<<<<<< HEAD
+=======
+<h1 align="center">AI-Shopping-Cart</h1>
+>>>>>>> main
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<h1 align="center"><strong>AI-Shopping-Cart Project</strong></h1>
 
-## Available Scripts
+<p align="center">
+    The <strong>AI-Integrated Shopping Management System</strong> is an AI-powered software solution designed to enhance the online shopping experience. It provides users with dynamically tailored search results and product recommendations, considering product popularity, ratings, and an improved shopping cart and checkout experience.
+</p>
 
-In the project directory, you can run:
+<h2><strong>Table of Contents</strong></h2>
+<ol>
+    <li><a href="#contributors"><strong>Contributors</strong></a></li>
+    <li><a href="#installation-requirements-and-steps"><strong>Installation Requirements and Steps</strong></a></li>
+    <li><a href="#usage"><strong>Usage</strong></a></li>
+</ol>
 
-### `yarn start`
+<h2 id="contributors"><strong>1. Contributors</strong></h2>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<h3><strong>By Name</strong></h3>
+<ul>
+    <li><strong>Dominic</strong> - Scrum Master & General Engineer</li>
+    <li><strong>Navya</strong> - Front-End Engineer</li>
+    <li><strong>Mariam</strong> - Product Owner & Primary Database Engineer</li>
+    <li><strong>Talon</strong> - Back-End Engineer & Secondary Front-End Engineer</li>
+    <li><strong>Nya</strong> - Back-End Engineer & Secondary Database Engineer</li>
+    <li><strong>Jakub</strong> - ML/AI Engineer & Integration [backend-database-AI/ML] Engineer</li>
+</ul>
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+<h3><strong>By Role</strong></h3>
 
-### `yarn test`
+<h4><strong>Database Engineering</strong></h4>
+<ul>
+    <li><strong>Mariam</strong> - Lead Database Engineer</li>
+    <li><strong>Nya</strong> - Assistant Database Engineer</li>
+    <li><strong>Jakub</strong> - Backend-Database-AI/ML Integration Engineer</li>
+</ul>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<h4><strong>Front-End Engineering</strong></h4>
+<ul>
+    <li><strong>Navya</strong> - Lead Front-End Engineer</li>
+    <li><strong>Talon</strong> - Assistant Front-End Engineer</li>
+</ul>
 
-### `yarn build`
+<h4><strong>Back-End Engineering</strong></h4>
+<ul>
+    <li><strong>Talon</strong> - Lead Back-End Engineer</li>
+    <li><strong>Nya</strong> - Assistant Back-End Engineer</li>
+    <li><strong>Jakub</strong> - Backend-Database-AI/ML Integration Engineer</li>
+</ul>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<h4><strong>Machine Learning / AI</strong></h4>
+<ul>
+    <li><strong>Jakub</strong> - Lead ML/AI Engineer</li>
+</ul>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<h4><strong>General Engineering</strong></h4>
+<ul>
+    <li><strong>Dominic</strong> - General Engineer</li>
+</ul>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<h4><strong>Administration</strong></h4>
+<ul>
+    <li><strong>Dominic</strong> - Scrum Master</li>
+    <li><strong>Mariam</strong> - Product Owner</li>
+</ul>
 
-### `yarn eject`
+<h2 id="installation-requirements-and-steps"><strong>2. Installation Requirements and Steps</strong></h2>
+<p>To install the project, follow these steps:</p>
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+<h4><strong>Cloning the Repository</strong></h4>
+<p>Using your terminal or CLI, clone the repository to your local machine:</p>
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+git clone https://github.com/DominicD213/AI-SHopping-Cart.git
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+<h4><strong>Installing Dependencies</strong></h4>
+<p>Navigate to the project directory and install the necessary dependencies:</p>
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```bash
+pip install -r requirements.txt
+```
 
-## Learn More
+<h2 id="usage"><strong>3. Usage</strong></h2>
+<p>To start the application, use either of the following commands:</p>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+Flask run
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```bash
+python app.py
+```
