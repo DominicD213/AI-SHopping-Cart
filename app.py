@@ -3,45 +3,48 @@ AI-Powered Shopping Tool - Backend API
 -----------------------------------------------------------------------------
 Tracks version history for the Flask backend API used in the e-commerce system.
 -----------------------------------------------------------------------------
-# [please add your name and version number if you change stuff - even if using github]
 
 Version History:
 ---------------
-v0.1 - 9-28-24 - Jakub Bartkowiak
-    - Initial implementation with basic product and user endpoints
+[please please remember to add your name, date, and version number if you change anything, even when using Github  - thanks, JB]
+---------------
+
+100%, 6/8
+
+
+v0.1 - 9-22-24 - Jakub Bartkowiak
+    - Basic Flask application setup
+    - User login, logout, and registration functionality
 
 v0.2 - 10-05-24 - Nya James & Mariam Lafi
-    - Added authentication routes for login and registration
-    - User roles (user/admin) were added to restrict access
+    - Added password hashing and session management
+    - User registration and login updates
 
-v0.3 - 10-15-24 - Jakub Bartkowiak
-    - Migrated from SQLite to MySQL
-    - Integrated token-based authentication
+v0.3 - 10-14-24 - Jakub Bartkowiak
+    - Migrated to MySQL database
+    - Enhanced security with werkzeug
+    - Improved session handling
 
-v0.4 - 10-30-24 - Talon Jasper
-    - Added activity tracking routes for viewing, cart addition, and purchase
-    - Implemented detailed logging for user activities
+v0.4 - 10-28-24 - Jakub Bartkowiak
+    - Added CORS support for React frontend
+    - Implemented activity tracking system
+    - Added weighted importance for different activities
+    - Introduced API versioning with `/api` prefix
 
-v0.5 - 11-08-24 - Jakub Bartkowiak
-    - Refined activity endpoints to include importance weights for tracking
-    - Introduced error handling and custom exception classes
+v0.5 - 11-08-24 - Talon Jasper
+    - Added admin role support to User model with role-based access checks
 
-v0.6 - 11-10-24 - Jakub Bartkowiak
+v0.6-v0.8 - 11-10 to 11-12-24 - Jakub Bartkowiak
     - Added CartItem and OrderItem endpoints
-    - Implemented product recommendations based on user activity
     - Introduced role-based access control for admin operations
-    - Added consistent documentation headers and extensive comments
-
-v0.7 - 11-11-24 - Jakub Bartkowiak
     - Enhanced error handling and logging
-    - Added token expiry validation
-    - Improved cart management endpoints
-
-v0.8 - 11-12-24 - Jakub Bartkowiak
+    - Improved token expiry validation
     - Added trending products endpoint
     - Enhanced recommendation system
     - Improved search functionality with filters
+    - Updated cart management endpoints
     - Added comprehensive error logging
+
 '''
 
 from flask import Flask, jsonify, request, abort
