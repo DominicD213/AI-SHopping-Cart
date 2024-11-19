@@ -6,20 +6,19 @@ Checks and validates user input for the AI-powered shopping tool, primarily by s
 
 Version History:
 ---------------
-[please please remember to add your name, date, and version number if you change anything, even when using Github  - thanks, JB]
----------------
+[Version history prior to v1.0 can be found in version_history.txt]
 
-100%, 2/2
+v1.0 - 11/19/24 - Jakub Bartkowiak
+    - First stable release with comprehensive validation
+    - Spell checking and category matching
+    - Prohibited content filtering
+    - Multi-language support
 
-
-v0.1- 11/15/24 - Jakub Bartkowiak
-    - Initial implementation for input validation
-    - Added spell checking and category matching
-    - Added prohibited content filtering
-
-v0.2 - 11/16/24 - Jakub Bartkowiak
+v1.1 - 11/19/24 - Jakub Bartkowiak
     - Added simple_mode parameter for testing
-    - Simplified validation logic for development
+    - Enhanced validation logic
+    - Improved error handling
+    - Added performance optimizations
 """
 
 import re

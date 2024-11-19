@@ -6,53 +6,19 @@ Tracks version history for the Flask backend API used in the e-commerce system.
 
 Version History:
 ---------------
-[please please remember to add your name, date, and version number if you change anything, even when using Github  - thanks, JB]
----------------
+[Version history prior to v1.0 can be found in version_history.txt]
 
-100%, 6/8
+v1.0 - 11/19/24 - Jakub Bartkowiak
+    - First stable release with complete API functionality
+    - Secure authentication and session management
+    - Role-based access control
+    - Comprehensive error handling
 
-
-v0.1 - 9-22-24 - Jakub Bartkowiak
-    - Basic Flask application setup
-    - User login, logout, and registration functionality
-
-v0.2 - 10-05-24 - Nya James & Mariam Lafi
-    - Added password hashing and session management
-    - User registration and login updates
-
-v0.3 - 10-14-24 - Jakub Bartkowiak
-    - Migrated to MySQL database
-    - Enhanced security with werkzeug
-    - Improved session handling
-
-v0.4 - 10-28-24 - Jakub Bartkowiak
-    - Added CORS support for React frontend
-    - Implemented activity tracking system
-    - Added weighted importance for different activities
-    - Introduced API versioning with `/api` prefix
-
-v0.5 - 11-08-24 - Talon Jasper
-    - Added admin role support to User model with role-based access checks
-
-v0.6-v0.8 - 11-10 to 11-12-24 - Jakub Bartkowiak
-    - Added CartItem and OrderItem endpoints
-    - Introduced role-based access control for admin operations
-    - Enhanced error handling and logging
-    - Improved token expiry validation
-    - Added trending products endpoint
-    - Enhanced recommendation system
-    - Improved search functionality with filters
-    - Updated cart management endpoints
-    - Added comprehensive error logging
-
-v0.9 - 11-19-24 - Jakub Bartkowiak
+v1.1 - 11/19/24 - Jakub Bartkowiak
     - Updated to use centralized database configuration
     - Improved session management
     - Enhanced error handling for database operations
-
-v1.0 - 11/19/24 - Jakub Bartkowiak
-    - Added ML/AI documentation markers
-    - Enhanced endpoint documentation for ML features
+    - Added detailed logging
 """
 
 from flask import Flask, jsonify, request, abort
@@ -80,6 +46,7 @@ DATABASE_URI = initialize_database_config()
 app = Flask(__name__)
 app.secret_key = os.getenv('SECRET_KEY')
 
+# Session management
 @contextmanager
 def get_session():
     """Context manager for handling database sessions"""
@@ -199,10 +166,10 @@ def get_products(user):
         logger.error(f"Error fetching products: {str(e)}")
         return jsonify({'error': 'Internal server error'}), 500
 
-@app.route('/api/cart/add/<int:product_id>', methods=['POST'])  # [MODEL-002-100]
+@app.route('/api/cart/add/<int:product_id>', methods=['POST'])
 @token_required
 def add_to_cart(user, product_id):
-    """Add item to cart and track for ML-based recommendations"""
+    """Add item to cart and track for recommendations"""
     if user.role != 'user':
         return jsonify({'message': 'Admin users cannot add items to cart'}), 403
     
@@ -259,10 +226,10 @@ def remove_from_cart(user, product_id):
         logger.error(f"Error removing from cart: {str(e)}")
         return jsonify({'error': 'Internal server error'}), 500
 
-@app.route('/api/cart', methods=['GET'])  # [SEARC-005-450]
+@app.route('/api/cart', methods=['GET'])
 @token_required
 def get_cart(user):
-    """Get user's cart with ML-based recommendations"""
+    """Get user's cart with recommendations"""
     try:
         with get_session() as session:
             cart_items = session.query(CartItem).filter_by(user_id=user.user_id).all()
@@ -339,9 +306,9 @@ def checkout(user):
         logger.error(f"Error during checkout: {str(e)}")
         return jsonify({'error': 'Internal server error'}), 500
 
-@app.route('/api/search', methods=['GET'])  # [SEARC-007-180]
+@app.route('/api/search', methods=['GET'])
 def search():
-    """Search for products using semantic similarity and ML ranking"""
+    """Search for products by title or category"""
     query = request.args.get('query')
     if not query:
         return jsonify({'message': 'Search query missing'}), 400
@@ -353,9 +320,9 @@ def search():
         logger.error(f"Search error: {str(e)}")
         return jsonify({'error': 'Internal server error'}), 500
 
-@app.route('/api/trending', methods=['GET'])  # [SEARC-008-650]
+@app.route('/api/trending', methods=['GET'])
 def get_trending():
-    """Get trending products using ML-based analysis"""
+    """Get trending products"""
     try:
         trending_products = get_trending_products()
         return jsonify(trending_products)

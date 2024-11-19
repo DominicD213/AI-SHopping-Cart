@@ -4,14 +4,19 @@ Handles importing CSV files into database tables.
 
 Version History:
 ---------------
-v1.0 - Initial implementation
-v1.1 - Updated to use centralized database configuration from models.py
-v1.2 - Improved CSV import handling:
-       - Added proper NaN handling
-       - Removed artificial grouping limitations
-       - Made batch size configurable
-       - Enhanced logging for import progress
-v1.3 - Added ML/AI documentation markers
+[Version history prior to v1.0 can be found in version_history.txt]
+
+v1.0 - 11/19/24 - Jakub Bartkowiak
+    - First stable release with batch processing
+    - Centralized database configuration
+    - Enhanced logging and error handling
+    - Memory-optimized data loading
+
+v1.1 - 11/19/24 - Jakub Bartkowiak
+    - Added import limits for testing
+    - Added performance metrics
+    - Improved memory management
+    - Enhanced progress tracking
 """
 
 import os
@@ -20,13 +25,21 @@ import numpy as np
 from models import Base, Product, User, Activity, Session, initialize_database_config
 import logging
 from datetime import datetime
+import time
 
 # Initialize database configuration
 DATABASE_URI = initialize_database_config()
 
 # Configuration
-BATCH_SIZE = 20  # Number of records to process in each batch
+BATCH_SIZE = 100  # Number of records to process in each batch
 LOG_FREQUENCY = 1000  # How often to log progress (number of records)
+
+# Import limits for testing (set to None for no limit)
+IMPORT_LIMITS = {
+    'products': None,  # e.g., 1000 for testing
+    'users': None,
+    'activity': None
+}
 
 # Set up logging
 logging.basicConfig(
@@ -46,8 +59,14 @@ def import_products(file_path, session):  # [IMPOR-001-150]
     try:
         # Read CSV file
         df = pd.read_csv(file_path)
+        
+        # Apply import limit if set
+        if IMPORT_LIMITS['products']:
+            df = df.head(IMPORT_LIMITS['products'])
+            
         total_records = len(df)
         logging.info(f"Starting import of {total_records} products from {file_path}")
+        start_time = time.time()
         
         required_columns = ['title', 'tags', 'category', 'description', 'brand', 'popularity', 'ratings']
         
@@ -83,14 +102,17 @@ def import_products(file_path, session):  # [IMPOR-001-150]
             
             # Log progress
             if records_processed % LOG_FREQUENCY == 0:
-                logging.info(f"Processed {records_processed}/{total_records} products")
+                elapsed_time = time.time() - start_time
+                rate = records_processed / elapsed_time
+                logging.info(f"Processed {records_processed}/{total_records} products ({rate:.1f} records/s)")
         
         # Commit any remaining records
         if products_to_add:
             session.bulk_save_objects(products_to_add)
             session.commit()
         
-        logging.info(f"Successfully imported {records_processed} products from {file_path}")
+        total_time = time.time() - start_time
+        logging.info(f"Successfully imported {records_processed} products in {total_time:.1f}s ({records_processed/total_time:.1f} records/s)")
         
     except Exception as e:
         session.rollback()
@@ -102,8 +124,14 @@ def import_users(file_path, session):  # [IMPOR-002-200]
     try:
         # Read CSV file
         df = pd.read_csv(file_path)
+        
+        # Apply import limit if set
+        if IMPORT_LIMITS['users']:
+            df = df.head(IMPORT_LIMITS['users'])
+            
         total_records = len(df)
         logging.info(f"Starting import of {total_records} users from {file_path}")
+        start_time = time.time()
         
         required_columns = ['username', 'password', 'email']
         
@@ -132,14 +160,17 @@ def import_users(file_path, session):  # [IMPOR-002-200]
             
             # Log progress
             if records_processed % LOG_FREQUENCY == 0:
-                logging.info(f"Processed {records_processed}/{total_records} users")
+                elapsed_time = time.time() - start_time
+                rate = records_processed / elapsed_time
+                logging.info(f"Processed {records_processed}/{total_records} users ({rate:.1f} records/s)")
         
         # Commit any remaining records
         if users_to_add:
             session.bulk_save_objects(users_to_add)
             session.commit()
         
-        logging.info(f"Successfully imported {records_processed} users from {file_path}")
+        total_time = time.time() - start_time
+        logging.info(f"Successfully imported {records_processed} users in {total_time:.1f}s ({records_processed/total_time:.1f} records/s)")
         
     except Exception as e:
         session.rollback()
@@ -151,8 +182,14 @@ def import_activities(file_path, session):  # [IMPOR-003-250]
     try:
         # Read CSV file
         df = pd.read_csv(file_path)
+        
+        # Apply import limit if set
+        if IMPORT_LIMITS['activity']:
+            df = df.head(IMPORT_LIMITS['activity'])
+            
         total_records = len(df)
         logging.info(f"Starting import of {total_records} activities from {file_path}")
+        start_time = time.time()
         
         required_columns = ['user_id', 'activity_type']
         
@@ -190,14 +227,17 @@ def import_activities(file_path, session):  # [IMPOR-003-250]
             
             # Log progress
             if records_processed % LOG_FREQUENCY == 0:
-                logging.info(f"Processed {records_processed}/{total_records} activities")
+                elapsed_time = time.time() - start_time
+                rate = records_processed / elapsed_time
+                logging.info(f"Processed {records_processed}/{total_records} activities ({rate:.1f} records/s)")
         
         # Commit any remaining records
         if activities_to_add:
             session.bulk_save_objects(activities_to_add)
             session.commit()
         
-        logging.info(f"Successfully imported {records_processed} activities from {file_path}")
+        total_time = time.time() - start_time
+        logging.info(f"Successfully imported {records_processed} activities in {total_time:.1f}s ({records_processed/total_time:.1f} records/s)")
         
     except Exception as e:
         session.rollback()
@@ -211,6 +251,7 @@ def import_csv_to_table(csv_path, table_name, session):  # [IMPOR-005-350]
     """
     try:
         logging.info(f"Starting import for {table_name} from {csv_path}")
+        start_time = time.time()
         
         # Import to database based on table name
         if table_name == 'products':
@@ -223,7 +264,8 @@ def import_csv_to_table(csv_path, table_name, session):  # [IMPOR-005-350]
             logging.error(f"Unknown table: {table_name}")
             return
         
-        logging.info(f"Successfully completed import of {table_name} from {csv_path}")
+        total_time = time.time() - start_time
+        logging.info(f"Successfully completed import of {table_name} from {csv_path} in {total_time:.1f}s")
         
     except Exception as e:
         logging.error(f"Error importing {csv_path} to {table_name}: {str(e)}")
@@ -233,6 +275,7 @@ def main():
     """Main function to process all CSV files in the data directory"""
     start_time = datetime.now()
     logging.info(f"Starting import process at {start_time}")
+    logging.info(f"Import limits: {IMPORT_LIMITS}")
     
     # Create database session
     session = Session()

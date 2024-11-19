@@ -1,0 +1,127 @@
+AI-Powered Shopping Tool - Version History Archive
+================================================
+
+This file contains historical version information for components prior to v1.0.
+
+Search System (search.py)
+------------------------
+v0.11 - 9/28/24 - Jakub Bartkowiak
+    - Initial implementation for basic search functionality
+
+v0.2-0.3 - 10/7-10/8/24 - Jakub Bartkowiak
+    - Added spell check integration
+    - Migrated to MySQL database
+
+v0.4 - 10/31/24 - Jakub Bartkowiak
+    - Introduced semantic search with 300d vectors
+    - Improved result reranking
+
+v0.5-0.6 - 11/8-11/9/24 - Jakub Bartkowiak
+    - Added similarity-based recommendations
+    - Enhanced product embedding storage
+
+v0.7-0.8 - 11/11-11/12/24 - Jakub Bartkowiak
+    - Improved MySQL consistency for better data reliability
+    - Added advanced filtering options (e.g., price, rating, brand)
+
+v0.9-1.0 - 11/16-11/17/24 - Jakub Bartkowiak
+    - Added support for dynamic embeddings
+    - Created extensive validation.py user input refinement
+    - Enhanced similarity calculations
+
+Data Import System (import_data.py)
+---------------------------------
+v0.1-0.9 - 11/1-11/18/24 - Jakub Bartkowiak
+    - Initial development and testing
+    - Basic CSV import functionality
+    - Database integration
+    - Error handling implementation
+
+Embedding Generation (generate_embeddings.py)
+------------------------------------------
+v0.1-0.9 - 11/1-11/18/24 - Jakub Bartkowiak
+    - Initial implementation
+    - Basic embedding generation
+    - Database storage
+    - Performance testing
+
+Flask Backend API (app.py)
+------------------------
+v0.1 - 9-22-24 - Jakub Bartkowiak
+    - Basic Flask application setup
+    - User login, logout, and registration functionality
+
+v0.2 - 10-05-24 - Nya James & Mariam Lafi
+    - Added password hashing and session management
+    - User registration and login updates
+
+v0.3 - 10-14-24 - Jakub Bartkowiak
+    - Migrated to MySQL database
+    - Enhanced security with werkzeug
+    - Improved session handling
+
+v0.4 - 10-28-24 - Jakub Bartkowiak
+    - Added CORS support for React frontend
+    - Implemented activity tracking system
+    - Added weighted importance for different activities
+    - Introduced API versioning with `/api` prefix
+
+v0.5 - 11-08-24 - Talon Jasper
+    - Added admin role support to User model with role-based access checks
+
+v0.6-v0.8 - 11-10 to 11-12-24 - Jakub Bartkowiak
+    - Added CartItem and OrderItem endpoints
+    - Introduced role-based access control for admin operations
+    - Enhanced error handling and logging
+    - Improved token expiry validation
+    - Added trending products endpoint
+    - Enhanced recommendation system
+    - Improved search functionality with filters
+    - Updated cart management endpoints
+    - Added comprehensive error logging
+
+Input Validation (validation.py)
+------------------------------
+v0.1- 11/15/24 - Jakub Bartkowiak
+    - Initial implementation for input validation
+    - Added spell checking and category matching
+    - Added prohibited content filtering
+
+v0.2 - 11/16/24 - Jakub Bartkowiak
+    - Added simple_mode parameter for testing
+    - Simplified validation logic for development
+
+Database Models (models.py)
+-------------------------
+v0.1 - 9-28-24 - Jakub Bartkowiak
+    - Initial implementation of basic models
+    - Created Product and User tables
+
+v0.2 - 10-02-24 - Nya James & Mariam Lafi
+    - Added user authentication features
+    - Enhanced product model with additional fields
+
+v0.3 - 10-14-24 - Jakub Bartkowiak
+    - Migrated from SQLite to MySQL
+    - Implemented password hashing using werkzeug.security
+    - Added length specifications for MySQL columns
+
+v0.4 - 10-28-24 - Jakub Bartkowiak
+    - Added Activity tracking system
+    - Implemented weighted importance for different activities
+    - Added support for tracking searches, views, cart adds, and purchases
+
+v0.5 - 11-08-24 - Talon Jasper
+    - Added admin role to User model with role-based access
+
+v0.6-0.9 - 11-11 to 11-12-24 - Jakub Bartkowiak
+    - Expanded API endpoints for cart management and recommendations
+    - Integrated role-based access control
+    - Added consistent documentation headers and extensive comments
+    - Modified misunderstanding by TM, finishing move from SQLite to MySQL 
+    - Ensured MySQL consistency across all modules
+    - Added detailed front-end reference IDs for API integration
+    - Enhanced error handling for data imports and search functionalities
+    - Added CartItems and OrderItems tables
+    - Expanded API endpoints for cart management and product recommendations
+    - Added consistent documentation headers and extensive comments

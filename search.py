@@ -6,9 +6,20 @@ collaborative filtering, and hybrid scoring approaches.
 ----------------------------------------------------------------------------- 
 
 Version History:
-v1.4 - 11/19/24 - Jakub Bartkowiak
-    - Standardized on 300-dimensional embeddings
-    - Updated ML/AI documentation references
+---------------
+[Version history prior to v1.0 can be found in version_history.txt]
+
+v1.0 - 11/19/24 - Jakub Bartkowiak
+    - First stable release with 300-dimensional embeddings
+    - Comprehensive semantic search implementation
+    - Hybrid recommendation system
+    - Advanced filtering and ranking
+
+v1.1 - 11/19/24 - Jakub Bartkowiak
+    - Removed artificial result limits
+    - Added similarity threshold for recommendations
+    - Improved performance for large result sets
+    - Enhanced memory management
 """
 
 import numpy as np
@@ -131,7 +142,7 @@ def search_products(query, min_price=None, max_price=None, brand=None, min_ratin
                     'discount': product.discount,
                     'similarity_score': 1.0  # Default score for basic search
                 }
-                for product in matched_products[:15]
+                for product in matched_products  # Return all matched products
             ]
         
         # Calculate similarity scores
@@ -140,7 +151,7 @@ def search_products(query, min_price=None, max_price=None, brand=None, min_ratin
         # Sort products by score
         product_scores.sort(key=lambda x: x[1], reverse=True)
         
-        # Return top results with price information
+        # Return all results with price information
         return [
             {
                 'product_id': product.product_id,
@@ -151,7 +162,7 @@ def search_products(query, min_price=None, max_price=None, brand=None, min_ratin
                 'discount': product.discount,
                 'similarity_score': round(score, 3)
             }
-            for product, score in product_scores[:15]
+            for product, score in product_scores  # Return all scored products
         ]
 
 def suggest_products_for_item(item_id, user_id=None):  # [SEARC-005-450]
@@ -193,10 +204,16 @@ def suggest_products_for_item(item_id, user_id=None):  # [SEARC-005-450]
         else:
             final_scores = content_scores
         
-        top_indices = np.argsort(final_scores)[::-1][:5]
+        # Sort all products by score
+        indices = np.argsort(final_scores)[::-1]
         recommendations = []
         
-        for i in top_indices:
+        # Return all recommendations above similarity threshold
+        min_score = 0.1  # Minimum similarity score threshold
+        for i in indices:
+            if final_scores[i] < min_score:
+                break
+                
             product = session.query(Product).get(other_product_ids[i])
             if product:
                 recommendations.append({

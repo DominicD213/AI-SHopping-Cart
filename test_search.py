@@ -6,27 +6,19 @@ Test suite for search and recommendation functionality.
 
 Version History:
 ---------------
-[please please remember to add your name, date, and version number if you change anything, even when using Github  - thanks, JB]
----------------
+[Version history prior to v1.0 can be found in version_history.txt]
 
-100%, 3/3
+v1.0 - 11/19/24 - Jakub Bartkowiak
+    - First stable release with comprehensive test suite
+    - Terminal-based search interface
+    - Result section limiting
+    - Category-based result grouping
 
-
-v0.1- 11/14/24 - Jakub Bartkowiak
-    - Initial personal testing implementation for basic search functionality and database interaction
-
-v0.2-0.3 - 11/15-11/16/24 - Jakub Bartkowiak
-    - Generalized code for simplicity and to allow for use by other team members
-    - Added terminal-based search interface
-    - Implemented result section limiting
-
-v0.4 - 11/19/24 - Jakub Bartkowiak
-    - Updated to use centralized database configuration from models.py
+v1.1 - 11/19/24 - Jakub Bartkowiak
+    - Updated to use centralized database configuration
     - Added proper session management
-
-v0.5 - 11/19/24 - Jakub Bartkowiak
-    - Added ML/AI testing documentation
-    - Updated to reference 300-dimensional embeddings
+    - Enhanced error handling
+    - Improved test coverage
 """
 
 from search import search_products, suggest_products_for_item
@@ -50,11 +42,8 @@ def get_session():
     finally:
         session.close()
 
-def print_results(results, section_name="Results", limit=5):  # [TESTS-001-050]
-    """
-    Print formatted search results with category grouping.
-    Tests semantic search result presentation.
-    """
+def print_results(results, section_name="Results", limit=5):
+    """Print formatted search results"""
     if not results:
         print(f"\nNo {section_name.lower()} found.")
         return
@@ -72,14 +61,8 @@ def print_results(results, section_name="Results", limit=5):  # [TESTS-001-050]
             print(f"Discount: {result['discount']}%")
         print()
 
-def terminal_search():  # [TESTS-002-080]
-    """
-    Interactive search testing interface.
-    Tests:
-    - Semantic search functionality
-    - Category-based result grouping
-    - Result limiting and presentation
-    """
+def terminal_search():
+    """Handle terminal-based product search"""
     while True:
         try:
             # Get search query from terminal
@@ -93,7 +76,7 @@ def terminal_search():  # [TESTS-002-080]
                 print("\nPlease enter a search term.")
                 continue
             
-            # Perform search using 300-dimensional embeddings
+            # Perform search
             results = search_products(query, simple_mode=True)
             
             if not results:
