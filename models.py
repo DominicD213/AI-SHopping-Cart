@@ -53,8 +53,17 @@ v1.0-v1.3 - 11-15 to 11-17-24 - Jakub Bartkowiak
     - Enhanced embedding storage with proper dimension tracking
     - Added dimensions field to ProductEmbedding for dynamic size support
     - Added price field to Product model for compatibility with import_data
-    - Added was_price and discount fields for full product data supporu
+    - Added was_price and discount fields for full product data support
     - TBD 11-17
+
+v1.4 - 11-17-24 - Jakub Bartkowiak
+    - Added automatic DATABASE_URI construction and .env file update
+    - Simplified database configuration management
+    - Improved initialization to ensure DATABASE_URI exists before first run
+
+v1.5 - 11/19/24 - Jakub Bartkowiak
+    - Added ML/AI documentation markers
+    - Enhanced model documentation for ML features
 """
 
 from sqlalchemy import create_engine, Column, Integer, String, Float, LargeBinary, ForeignKey, Enum, DateTime, JSON, Boolean, Index
@@ -63,17 +72,53 @@ from sqlalchemy.orm import sessionmaker, relationship
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime, timedelta
 import os
+from pathlib import Path
+from dotenv import load_dotenv
 
-# Database configuration - Now with fallbacks
-DATABASE_URI = os.getenv('DATABASE_URI', f"mysql+pymysql://{os.getenv('MYSQL_USER', 'jbart')}:{os.getenv('MYSQL_PASSWORD', 'root99')}@{os.getenv('MYSQL_HOST', 'localhost')}/{os.getenv('MYSQL_DB', 'ASCdb')}")
+def initialize_database_config():
+    """Initialize database configuration and ensure DATABASE_URI exists in .env"""
+    # Load existing environment variables
+    load_dotenv()
+    
+    # Construct DATABASE_URI from individual variables
+    uri = f"mysql+pymysql://{os.getenv('MYSQL_USER', 'jbart')}:{os.getenv('MYSQL_PASSWORD', 'root99')}@{os.getenv('MYSQL_HOST', 'localhost')}/{os.getenv('MYSQL_DB', 'ASCdb')}"
+    
+    env_path = Path('.env')
+    
+    # Read existing .env content
+    if env_path.exists():
+        with open(env_path, 'r') as f:
+            lines = f.readlines()
+    else:
+        lines = []
+    
+    # Check if DATABASE_URI already exists
+    uri_exists = any(line.startswith('DATABASE_URI=') for line in lines)
+    
+    if not uri_exists:
+        # Add DATABASE_URI if it doesn't exist
+        lines.append(f'DATABASE_URI={uri}\n')
+        
+        # Write back to .env
+        with open(env_path, 'w') as f:
+            f.writelines(lines)
+        
+        # Reload environment variables to include the new DATABASE_URI
+        load_dotenv()
+    
+    return uri
+
+# Initialize database configuration when module is imported
+DATABASE_URI = initialize_database_config()
 
 Base = declarative_base()
 
-class Product(Base):
+class Product(Base):  # [MODEL-001-050]
     """
     Product Model
     ------------
     Represents products in the e-commerce system.
+    Core entity for ML-based search and recommendations.
     """
     __tablename__ = 'products'
     
@@ -107,27 +152,28 @@ class Product(Base):
                 f"ratings={self.ratings}, price={self.price}, was_price={self.was_price}, "
                 f"discount={self.discount})")
 
-class ProductEmbedding(Base):
+class ProductEmbedding(Base):  # [MODEL-001-050]
     """
     Product Embedding Model
     ---------------------
-    Stores dynamic-dimensional embeddings for products to enable semantic search and recommendations.
-    Supports both testing (50-dimensional) and production (300-dimensional) environments.
+    Stores 300-dimensional embeddings for products to enable semantic search and recommendations.
+    Optimized for ML operations with binary storage and dimension tracking.
     """
     __tablename__ = 'product_embeddings'
     
     product_id = Column(Integer, ForeignKey('products.product_id', ondelete='CASCADE'), primary_key=True)
     embedding = Column(LargeBinary, nullable=False)  # Stores vector as binary
-    dimensions = Column(Integer, nullable=False)  # Stores the number of dimensions (50 or 300)
+    dimensions = Column(Integer, nullable=False)  # Stores the number of dimensions (300)
     
     product = relationship("Product")
 
     def __repr__(self):
         return f"ProductEmbedding(product_id={self.product_id}, dimensions={self.dimensions})"
 
-class User(Base):
+class User(Base):  # [MODEL-002-100]
     """
     Represents system users with authentication capabilities and role-based access.
+    Tracks user behavior for ML-based recommendations.
     """
     __tablename__ = 'users'
     
@@ -157,9 +203,10 @@ class User(Base):
     def __repr__(self):
         return f"User(username={self.username}, email={self.email}, role={self.role})"
 
-class Activity(Base):
+class Activity(Base):  # [MODEL-002-100]
     """
-    Tracks user interactions with the system for analytics and recommendations.
+    Tracks user interactions for ML analysis and recommendations.
+    Provides temporal data for collaborative filtering.
     """
     __tablename__ = 'activity'
     
@@ -181,9 +228,10 @@ class Activity(Base):
         return (f"Activity(user_id={self.user_id}, product_id={self.product_id}, "
                 f"action={self.action}, timestamp={self.timestamp})")
 
-class Order(Base):
+class Order(Base):  # [MODEL-003-150]
     """
     Tracks customer orders for AI analysis.
+    Provides purchase patterns for recommendation engine.
     """
     __tablename__ = 'orders'
     
@@ -205,7 +253,11 @@ class Order(Base):
         return (f"Order(user_id={self.user_id}, total_amount={self.total_amount}, "
                 f"order_date={self.order_date}, status={self.status})")
 
-class OrderItem(Base):
+class OrderItem(Base):  # [MODEL-003-150]
+    """
+    Order details for ML analysis.
+    Captures product relationships through purchase patterns.
+    """
     __tablename__ = 'orderitems'
     
     orderitem_id = Column(Integer, primary_key=True)

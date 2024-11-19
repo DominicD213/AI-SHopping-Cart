@@ -1,0 +1,221 @@
+AI/ML Component Documentation
+===========================
+
+#[SEARC-001-050] Embedding System Overview
+The system uses 300-dimensional embeddings for product vectors, representing:
+- Semantic features of product descriptions
+- Category relationships
+- Brand and attribute associations
+This dimensionality provides rich semantic representation while maintaining computational efficiency.
+
+#[SEARC-002-065] Query Vector Generation
+Search queries are converted to embedding vectors using:
+- Deterministic random seed based on query hash
+- Normalization for consistent similarity calculations
+- 300-dimensional space matching product embeddings
+This ensures reproducible and comparable query representations.
+
+#[SEARC-003-110] Similarity Scoring
+Product relevance uses a weighted combination:
+- 60% Cosine similarity between query and product embeddings
+- 20% Product popularity (normalized to 0-1 range)
+- 20% Product ratings (normalized to 0-1 range)
+This balances semantic relevance with social proof and quality signals.
+
+#[SEARC-004-185] Embedding Storage
+Product embeddings are stored efficiently using:
+- Binary format for vector data
+- Dimension metadata for validation
+- Product ID linkage for fast retrieval
+Ensures scalable and performant embedding operations.
+
+#[SEARC-005-450] Hybrid Recommendation System
+Recommendation engine combines:
+- Content-based filtering using product embeddings
+- Collaborative filtering based on user interactions
+- Weighted combination (60/40 split)
+Provides personalized recommendations while handling cold-start cases.
+
+#[SEARC-006-550] Temporal User Modeling
+User activity vectors incorporate:
+- Exponential time decay: 1.0 / (1.0 + days_old)
+- 30-day sliding window for relevance
+- Activity type weighting
+Ensures recommendations adapt to changing preferences.
+
+#[SEARC-007-180] Search Pipeline Architecture
+Multi-stage search process:
+1. Query validation and term extraction
+2. Filter application (price, brand, rating)
+3. Text-based candidate selection
+4. Semantic similarity calculation
+5. Hybrid score computation
+6. Result ranking and formatting
+
+#[SEARC-008-650] User Similarity Calculation
+Collaborative filtering approach using:
+- Activity pattern matching
+- Temporal alignment of behaviors
+- Cosine similarity between user vectors
+- Minimum similarity threshold: 0.2
+Identifies meaningful user relationships for recommendations.
+
+#[VALID-001-040] Input Processing Pipeline
+Comprehensive validation including:
+- Spell checking and correction
+- Category matching
+- Synonym expansion
+- Term normalization
+Ensures high-quality search inputs.
+
+#[VALID-002-075] Category Recognition
+Multi-stage category detection:
+- Direct database matching
+- Synonym mapping
+- Historical assignments
+- Clothing-specific corrections
+Enables flexible product categorization.
+
+#[VALID-003-100] Query Safety
+Content filtering system:
+- Extensive keyword blacklist
+- Multi-language support
+- Context-aware filtering
+- Regular expression patterns
+Maintains safe search environment.
+
+#[VALID-004-150] Query Enhancement
+Query processing includes:
+- ML-based spell correction
+- Brand name preservation
+- Category-specific adjustments
+- Clothing domain expertise
+Improves search accuracy.
+
+#[GENER-001-020] Transformer Model Selection
+Uses all-MiniLM-L6-v2 model for embedding generation:
+- Efficient and lightweight transformer architecture
+- Pre-trained on diverse text data
+- Optimized for semantic similarity tasks
+- Produces 300-dimensional embeddings
+Balances performance and computational efficiency.
+
+#[GENER-002-045] Embedding Management
+Efficient embedding existence checking:
+- Database-level verification
+- Prevents redundant generation
+- Transaction-safe operations
+- Error handling and logging
+Ensures reliable embedding state management.
+
+#[GENER-003-065] Embedding Generation Process
+Product embedding generation pipeline:
+- Concatenates product title, category, and tags
+- Applies sentence transformer encoding
+- Converts to binary format for storage
+- Maintains dimension consistency
+Provides robust semantic representations of products.
+
+#[GENER-004-120] Embedding Validation
+Automatic embedding validation system:
+- Checks for missing embeddings
+- Triggers generation as needed
+- Maintains data consistency
+- Handles edge cases
+Ensures complete embedding coverage for all products.
+
+#[IMPOR-001-150] Embedding File Management
+Automatic embedding file handling:
+- Dynamic file selection based on creation time
+- Support for 300-dimensional embeddings
+- Efficient binary storage format
+- Automatic dimension validation
+Ensures proper embedding data management.
+
+#[IMPOR-002-200] Chunked Data Processing
+Memory-efficient data loading:
+- Configurable chunk sizes for different tables
+- Dynamic chunk size adjustment based on limits
+- Batch processing for large datasets
+- Progress tracking and logging
+Enables scalable data operations.
+
+#[IMPOR-003-250] Database Integration
+Robust database operations:
+- Foreign key dependency handling
+- Referential integrity maintenance
+- Transaction management with rollback
+- Error handling and logging
+Maintains data consistency.
+
+#[IMPOR-004-300] Data Validation
+Comprehensive data validation:
+- Type conversion and normalization
+- Null value handling
+- Price format standardization
+- Field mapping verification
+Ensures data quality.
+
+#[IMPOR-005-350] Import Orchestration
+Coordinated import process:
+- Table creation and cleanup
+- Import order management
+- ID tracking across related tables
+- Progress monitoring and reporting
+Maintains data integrity.
+
+#[TESTS-001-050] Search Result Presentation
+Test framework for search results:
+- Category-based grouping
+- Semantic relevance verification
+- Price and metadata display
+- Result limiting per category
+Ensures proper presentation of ML-driven search results.
+
+#[TESTS-002-080] Interactive Testing Interface
+Terminal-based testing system for:
+- Real-time semantic search validation
+- Category grouping verification
+- Result limiting functionality
+- Error handling and edge cases
+Provides interactive validation of ML search components.
+
+#[TESTS-003-150] Test Suite Organization
+Comprehensive test coverage:
+- Unit tests for embedding generation
+- Integration tests for search pipeline
+- End-to-end recommendation testing
+- Performance benchmarking
+Ensures reliability of ML/AI components.
+
+#[TESTS-004-200] Testing Configurations
+Test environment setup:
+- Simple mode for rapid testing
+- Full validation mode for production
+- Configurable result limits
+- Category-based verification
+Enables thorough testing of ML features.
+
+#[MODEL-001-050] Product Embedding Model
+Database model for product embeddings:
+- 300-dimensional vector storage
+- Binary format optimization
+- Dimension tracking
+- Product relationship mapping
+Provides efficient storage for ML features.
+
+#[MODEL-002-100] Activity Tracking Model
+User activity modeling for ML:
+- Temporal data capture
+- Interaction type classification
+- Weight assignment
+- Relationship tracking
+Enables collaborative filtering and recommendations.
+
+#[MODEL-003-150] Database Schema Design
+ML-optimized schema design:
+- Efficient embedding queries
+- Fast similarity calculations
+- Activity pattern analysis
+- Recommendation generation
+Supports ML operations at scale.
