@@ -132,7 +132,7 @@ python app.py
 
 ---
 
-## Recent Major Changes
+## Recent Major Changes <OUT OF DATE - need to update for 11/19>
 
 ### app.py
 
