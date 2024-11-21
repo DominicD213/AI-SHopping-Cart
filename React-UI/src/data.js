@@ -1,7 +1,7 @@
 export const sliderItems = [
     {
       id: 1,
-      img: "https://www.coolfashiontrend.com/wp-content/uploads/2015/07/image-1.jpg",
+      img: "https://miro.medium.com/v2/resize:fit:1280/format:webp/1*Lfp7xDuND10bgsTO_TaIvg.jpeg",
       title: "SUMMER SALE",
       desc: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.",
       bg: "f5fafd",
@@ -30,7 +30,7 @@ export const sliderItems = [
     },
     {
       id: 2,
-      img: "https://www.hiscraves.com/blog/wp-content/uploads/2023/07/Sports-Brands-in-India-4.jpg",
+      img: "https://i.pinimg.com/736x/ef/d8/23/efd8234e03509038d6f21fafcfdb7f73.jpg",
       title: "SPORTSWEAR",
     },
     {
