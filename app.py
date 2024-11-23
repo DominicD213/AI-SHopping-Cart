@@ -59,15 +59,44 @@ import os
 import jwt
 import logging
 from functools import wraps
+from dotenv import load_dotenv
+from flask_cors import CORS 
+
+load_dotenv()
+
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 app = Flask(__name__)
+
+# Enable CORS for all routes, allowing all origins (you can restrict this later)
+CORS(app, resources={r"/api/*": {"origins": "*"}}, supports_credentials=True)
+
+
 app.secret_key = os.getenv('SECRET_KEY')
-Session = sessionmaker(bind=create_engine(os.getenv('DATABASE_URI')))
-session = Session()
+mysql_user = os.getenv('MYSQL_USER')
+mysql_password = os.getenv('MYSQL_PASSWORD')
+mysql_host = os.getenv('MYSQL_HOST')
+mysql_db = os.getenv('MYSQL_DB')
+
+
+
+
+# Check if environment variables are loaded correctly (for debugging)
+print(f"Loaded variables - User: {mysql_user}, Host: {mysql_host}, DB: {mysql_db}")
+
+DATABASE_URI = f"mysql+pymysql://{mysql_user}:{mysql_password}@{mysql_host}/{mysql_db}"
+
+# Create the engine
+try:
+    engine = create_engine(DATABASE_URI, echo=True)
+    Session = sessionmaker(bind=engine)
+    session = Session()
+    print("Database connection established successfully!")
+except Exception as e:
+    print(f"Error establishing database connection: {e}")
 
 def generate_token(user_id):
     """Generate JWT token with 24-hour expiry"""

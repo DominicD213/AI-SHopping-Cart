@@ -91,7 +91,7 @@ pip install -r requirements.txt
 
    ```sql
    CREATE DATABASE shopping_cart;
-   CREATE USER 'shop_admin'@'localhost' IDENTIFIED BY 'secure_password';
+   CREATE USER 'shop_admin'@'localhost' IDENTIFIED BY '';
    GRANT ALL PRIVILEGES ON shopping_cart.* TO 'shop_admin'@'localhost';
    FLUSH PRIVILEGES;
    ```
