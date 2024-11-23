@@ -74,7 +74,15 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
-const Navbar = ({ goToHome, changeRegState, toggleSignin, toggleShoppingCart, toggleProductsPage }) => {
+const Navbar = ({
+  goToHome,
+  changeRegState,
+  toggleSignin,
+  toggleShoppingCart,
+  toggleProductsPage,
+  activeUser,
+  handleLogout, // Added logout handler prop
+}) => {
   return (
     <Container>
       <Wrapper>
@@ -94,16 +102,31 @@ const Navbar = ({ goToHome, changeRegState, toggleSignin, toggleShoppingCart, to
             <MenuItem>HOME</MenuItem>
           </Button>
 
-          {/* Other buttons */}
+          {/* Products Button */}
           <Button onClick={toggleProductsPage}>
             <MenuItem>PRODUCTS</MenuItem>
           </Button>
-          <Button onClick={changeRegState}>
-            <MenuItem>REGISTER</MenuItem>
-          </Button>
-          <Button onClick={toggleSignin}>
-            <MenuItem>SIGN IN</MenuItem>
-          </Button>
+
+          {/* Conditional rendering for activeUser */}
+          {activeUser ? (
+            <>
+              <MenuItem>Welcome, {activeUser}</MenuItem>
+              <Button onClick={handleLogout}>
+                <MenuItem>LOGOUT</MenuItem>
+              </Button>
+            </>
+          ) : (
+            <>
+              <Button onClick={changeRegState}>
+                <MenuItem>REGISTER</MenuItem>
+              </Button>
+              <Button onClick={toggleSignin}>
+                <MenuItem>SIGN IN</MenuItem>
+              </Button>
+            </>
+          )}
+
+          {/* Shopping Cart */}
           <MenuItem onClick={toggleShoppingCart}>
             <Badge badgeContent={0} color="primary">
               <ShoppingCartOutlined />

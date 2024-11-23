@@ -58,7 +58,7 @@ const Link = styled.a`
   cursor: pointer;
 `;
 
-const Login = () => {
+const Login = ({setActiveUser}) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
@@ -67,7 +67,7 @@ const Login = () => {
     e.preventDefault();
     
     try {
-      const response = await fetch("http://localhost:5000/api/login", { // Ensure this matches Flask server port
+      const response = await fetch("http://127.0.0.1:5000/api/auth/login", { // Ensure this matches Flask server port
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -80,6 +80,8 @@ const Login = () => {
       
       if (response.ok) {
         // Handle successful login (e.g., redirect to homepage or update global user state)
+        localStorage.setItem("activeUser", username);
+        setActiveUser(username);
         window.location.href = "/";
       } else {
         setError(result.error);

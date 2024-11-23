@@ -39,6 +39,9 @@ v0.9-1.0 - 11/16-11/17/24 - Jakub Bartkowiak
 v1.1-1.2 - 11/18/24 - Jakub Bartkowiak
     - Added price handling in search
     - Updated product filtering
+
+v1.1-1.3 - 11/22/24 - Dominc Digiacomo
+    - Added the get_trending_products function
 """
 
 import os
@@ -58,8 +61,8 @@ from operator import attrgetter
 load_dotenv()
 
 # Get MySQL configuration from environment variables
-mysql_user = os.getenv('MYSQL_USER', 'jbart')
-mysql_password = os.getenv('MYSQL_PASSWORD', 'root99')
+mysql_user = os.getenv('MYSQL_USER', 'dominic')
+mysql_password = os.getenv('MYSQL_PASSWORD', '1234')
 mysql_host = os.getenv('MYSQL_HOST', 'localhost')
 mysql_db = os.getenv('MYSQL_DB', 'ASCdb')
 
@@ -299,3 +302,20 @@ def get_similar_users(user_id, min_similarity=0.2):  # [SEARC-005-310]
                     similar_users.append((other_id, similarity))
     
     return sorted(similar_users, key=lambda x: x[1], reverse=True)
+
+def get_trending_products(limit=10):
+    """Fetch trending products based on recent activity or popularity"""
+    # Example: Retrieve products based on recent activity or highest ratings
+    trending_products = session.query(Product).order_by(Product.popularity.desc()).limit(limit).all()
+    
+    # Return a list of trending products with details
+    return [{
+        'product_id': product.product_id,
+        'title': product.title,
+        'category': product.category,
+        'price': product.price,
+        'was_price': product.was_price,
+        'discount': product.discount,
+        'popularity': product.popularity,
+        'similarity_score': 1.0  # Can be calculated differently if needed
+    } for product in trending_products]

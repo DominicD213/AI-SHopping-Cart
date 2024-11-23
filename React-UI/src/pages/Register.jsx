@@ -78,29 +78,32 @@ const Register = () => {
       setError("Passwords do not match");
       return;
     }
-
+  
     try {
-      const response = await fetch("http://localhost:3000/api/register", {
+      const response = await fetch("http://127.0.0.1:5000/api/auth/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(userData),
       });
-      
+  
       const result = await response.json();
-
+      
+      console.log("Response:", result);  // Log the response for debugging
+  
       if (response.ok) {
         // Redirect to login page after successful registration
         window.location.href = "/login";
       } else {
-        setError(result.error);
+        setError(result.error || "An unknown error occurred");
       }
     } catch (error) {
+      console.error("Error during registration:", error);  // Log detailed error
       setError("An error occurred during registration");
     }
   };
-
+  
   return (
     <Container>
       <Wrapper>

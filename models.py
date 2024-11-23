@@ -55,6 +55,9 @@ v1.0-v1.3 - 11-15 to 11-17-24 - Jakub Bartkowiak
     - Added price field to Product model for compatibility with import_data
     - Added was_price and discount fields for full product data supporu
     - TBD 11-17
+
+v1.0-v1.4 Dominic Digiacomo
+    - Added the Cartitem class
 """
 
 from sqlalchemy import create_engine, Column, Integer, String, Float, LargeBinary, ForeignKey, Enum, DateTime, JSON, Boolean, Index
@@ -63,10 +66,15 @@ from sqlalchemy.orm import sessionmaker, relationship
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime, timedelta
 import os
+import jwt
 
-# Database configuration - Now with fallbacks
-DATABASE_URI = os.getenv('DATABASE_URI', f"mysql+pymysql://{os.getenv('MYSQL_USER', 'jbart')}:{os.getenv('MYSQL_PASSWORD', 'root99')}@{os.getenv('MYSQL_HOST', 'localhost')}/{os.getenv('MYSQL_DB', 'ASCdb')}")
+mysql_user = os.getenv('MYSQL_USER')
+mysql_password = os.getenv('MYSQL_PASSWORD')
+mysql_host = os.getenv('MYSQL_HOST')
+mysql_db = os.getenv('MYSQL_DB')
+secret_key  = os.getenv('SECRET_KEY')
 
+DATABASE_URI = f"mysql+pymysql://{mysql_user}:{mysql_password}@{mysql_host}/{mysql_db}"
 Base = declarative_base()
 
 class Product(Base):
@@ -140,6 +148,8 @@ class User(Base):
     activities = relationship("Activity", back_populates="user")
     orders = relationship("Order", back_populates="user")
 
+    cartitems = relationship("CartItem", back_populates="user") 
+
     def __init__(self, username, password, email, role='user'):
         self.username = username
         self.password_hash = generate_password_hash(password)
@@ -156,6 +166,19 @@ class User(Base):
 
     def __repr__(self):
         return f"User(username={self.username}, email={self.email}, role={self.role})"
+
+    def refresh_token(self):
+        """
+        Generate a new refresh token (e.g., JWT) for the user.
+        """
+        expiration_time = datetime.utcnow() + timedelta(days=30)  # Set token expiry as needed
+        refresh_token = jwt.encode(
+            {"user_id": self.user_id, "exp": expiration_time},
+            secret_key,  # Use your actual secret key here
+            algorithm="HS256"
+        )
+        return refresh_token
+
 
 class Activity(Base):
     """
@@ -258,3 +281,29 @@ def seed_data(session):
     except Exception as e:
         session.rollback()
         print(f"Error seeding data: {str(e)}")
+
+class CartItem(Base):
+    """
+    Cart Item Model
+    ---------------
+    Represents items in a user's shopping cart.
+    Tracks the product and quantity of each item added to the cart.
+    """
+    __tablename__ = 'cartitems'
+
+    cartitem_id = Column(Integer, primary_key=True)
+    user_id = Column(Integer, ForeignKey('users.user_id', ondelete='CASCADE'))
+    product_id = Column(Integer, ForeignKey('products.product_id', ondelete='CASCADE'))
+    quantity = Column(Integer, nullable=False)
+
+    user = relationship("User", back_populates="cartitems")
+    product = relationship("Product")
+
+    def __init__(self, user_id, product_id, quantity):
+        self.user_id = user_id
+        self.product_id = product_id
+        self.quantity = quantity
+
+    def __repr__(self):
+        return (f"CartItem(user_id={self.user_id}, product_id={self.product_id}, "
+                f"quantity={self.quantity})")

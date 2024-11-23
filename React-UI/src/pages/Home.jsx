@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Announcement from "../components/Announcement";
 import Categories from "../components/Categories";
 import Footer from "../components/Footer";
@@ -16,11 +16,23 @@ const Home = () => {
   const [activeProductsPage, setactiveProductsPage] = useState(false);
   const [activeRegistration, setActiveRegistration] = useState(false);
   const [activeSignin, setActiveSignin] = useState(false);
-  const [pageName, setPageName] = useState('Home');
+  const [activeUser, setActiveUser] = useState("");
+
+  // Load the saved user from localStorage on app mount
+  useEffect(() => {
+    const savedUser = localStorage.getItem("activeUser");
+    if (savedUser) setActiveUser(savedUser);
+  }, []);
+
+  // Function to handle user logout
+  const handleLogout = () => {
+    localStorage.removeItem("activeUser");
+    setActiveUser("");
+    goToHome();
+  };
 
   // Function to reset to Home
   const goToHome = () => {
-    setPageName('Home');
     setActiveShoppingCart(false);
     setactiveProductsPage(false);
     setActiveRegistration(false);
@@ -70,21 +82,21 @@ const Home = () => {
   return (
     <div>
       <Announcement />
-      <Navbar 
+      <Navbar
         changeRegState={changeRegState}
         toggleShoppingCart={toggleShoppingCart}
         toggleSignin={toggleSignin}
         toggleProductsPage={toggleProductsPage}
         goToHome={goToHome} // pass the function to Navbar
+        activeUser={activeUser}
+        handleLogout={handleLogout} // pass logout function to Navbar
       />
-      
-      {/* Home Button - will trigger the goToHome function */}
-      <button onClick={goToHome} style={{ position: 'fixed', top: '20px', left: '20px' }}>
-        Home
-      </button>
 
       {/* Display different content based on the active state */}
-      {(!activeShoppingCart && !activeRegistration && !activeSignin && !activeProductsPage) ? (
+      {(!activeShoppingCart &&
+      !activeRegistration &&
+      !activeSignin &&
+      !activeProductsPage) ? (
         <>
           <Slider />
           <Categories />
@@ -92,14 +104,29 @@ const Home = () => {
           <Newsletter />
           <Footer />
         </>
-      ) : (!activeShoppingCart && !activeRegistration && !activeProductsPage && activeSignin) ? (
-        <Login/>
-      ) : (!activeShoppingCart && activeRegistration && !activeProductsPage && !activeSignin) ? (
-        <Register/>
-      ) : (activeShoppingCart && !activeRegistration && !activeProductsPage && !activeSignin) ? (
-        <Cart/>
-      ) : (!activeShoppingCart && !activeRegistration && activeProductsPage && !activeSignin) ? (
-        <ProductList/>
+      ) : !activeShoppingCart &&
+        !activeRegistration &&
+        !activeProductsPage &&
+        activeSignin ? (
+        <Login setActiveUser={(user) => {
+          setActiveUser(user);
+          localStorage.setItem("activeUser", user); // Save user to localStorage
+        }} />
+      ) : !activeShoppingCart &&
+        activeRegistration &&
+        !activeProductsPage &&
+        !activeSignin ? (
+        <Register />
+      ) : activeShoppingCart &&
+        !activeRegistration &&
+        !activeProductsPage &&
+        !activeSignin ? (
+        <Cart />
+      ) : !activeShoppingCart &&
+        !activeRegistration &&
+        activeProductsPage &&
+        !activeSignin ? (
+        <ProductList />
       ) : null}
     </div>
   );
