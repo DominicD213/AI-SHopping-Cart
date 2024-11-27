@@ -17,6 +17,7 @@ const Home = () => {
   const [activeRegistration, setActiveRegistration] = useState(false);
   const [activeSignin, setActiveSignin] = useState(false);
   const [activeUser, setActiveUser] = useState("");
+  const [userToken ,  setUserToken] = useState("");
 
   // Load the saved user from localStorage on app mount
   useEffect(() => {
@@ -110,8 +111,9 @@ const Home = () => {
         activeSignin ? (
         <Login setActiveUser={(user) => {
           setActiveUser(user);
-          localStorage.setItem("activeUser", user); // Save user to localStorage
-        }} />
+          localStorage.setItem("activeUser", user); 
+          
+        }} setUserToken = {setUserToken} />
       ) : !activeShoppingCart &&
         activeRegistration &&
         !activeProductsPage &&

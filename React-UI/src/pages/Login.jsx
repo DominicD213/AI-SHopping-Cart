@@ -58,10 +58,11 @@ const Link = styled.a`
   cursor: pointer;
 `;
 
-const Login = ({setActiveUser}) => {
+const Login = ({setActiveUser , setUserToken}) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
+
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -79,13 +80,21 @@ const Login = ({setActiveUser}) => {
       const result = await response.json();
       
       if (response.ok) {
-        // Handle successful login (e.g., redirect to homepage or update global user state)
-        localStorage.setItem("activeUser", username);
+        // Extract user_id and token from the response
+        const { user_id, token } = result;
+
+        // Store token and user_id securely
+        localStorage.setItem("userToken", token); // Store the token in localStorage
+        localStorage.setItem("userId", user_id);  // Optionally store the user_id
+        localStorage.setItem("activeUser", username); // Store username as well (optional)
+
+        // Update application state or perform redirection
         setActiveUser(username);
-        window.location.href = "/";
+        setUserToken(token); // Ensure `setUserToken` is updated to accept the token
+        window.location.href = "/"; // Redirect to homepage or another route
       } else {
-        setError(result.error);
-      }
+        setError(result.message || "Login failed"); // Handle specific or default error message
+    }
     } catch (error) {
       setError("An error occurred during login");
     }
