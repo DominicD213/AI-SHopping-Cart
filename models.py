@@ -53,11 +53,14 @@ v1.0-v1.3 - 11-15 to 11-17-24 - Jakub Bartkowiak
     - Enhanced embedding storage with proper dimension tracking
     - Added dimensions field to ProductEmbedding for dynamic size support
     - Added price field to Product model for compatibility with import_data
-    - Added was_price and discount fields for full product data supporu
+    - Added was_price and discount fields for full product data support
     - TBD 11-17
 
 v1.0-v1.4 Dominic Digiacomo
     - Added the Cartitem class
+
+v1.0-v1.5 - 11-29-24 - Assistant
+    - Updated Activity model action enum to support 'view', 'search', 'cart', 'purchase'
 """
 
 from sqlalchemy import create_engine, Column, Integer, String, Float, LargeBinary, ForeignKey, Enum, DateTime, JSON, Boolean, Index
@@ -66,15 +69,20 @@ from sqlalchemy.orm import sessionmaker, relationship
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime, timedelta
 import os
+from dotenv import load_dotenv
 import jwt
 
-mysql_user = os.getenv('MYSQL_USER')
-mysql_password = os.getenv('MYSQL_PASSWORD')
-mysql_host = os.getenv('MYSQL_HOST')
-mysql_db = os.getenv('MYSQL_DB')
-secret_key  = os.getenv('SECRET_KEY')
+# Load environment variables
+load_dotenv()
 
-DATABASE_URI = f"mysql+pymysql://{mysql_user}:{mysql_password}@{mysql_host}/{mysql_db}"
+# Database connection configuration
+user = os.getenv('DB_USER')
+password = os.getenv('DB_PASSWORD')
+host = os.getenv('DB_HOST')
+database = os.getenv('DB_NAME')
+secret_key = os.getenv('SECRET_KEY')
+
+DATABASE_URI = f"mysql+pymysql://{user}:{password}@{host}/{database}"
 Base = declarative_base()
 
 class Product(Base):
@@ -189,7 +197,7 @@ class Activity(Base):
     activity_id = Column(Integer, primary_key=True)
     user_id = Column(Integer, ForeignKey('users.user_id', ondelete='CASCADE'), nullable=False)
     product_id = Column(Integer, ForeignKey('products.product_id', ondelete='CASCADE'), nullable=True)
-    action = Column(Enum('viewed', 'added_to_cart', 'purchased'), nullable=False, default='viewed')    
+    action = Column(Enum('view', 'search', 'cart', 'purchase'), nullable=False)    
     timestamp = Column(DateTime, default=datetime.utcnow)
     
     user = relationship("User", back_populates="activities")
@@ -250,6 +258,32 @@ class OrderItem(Base):
         return (f"OrderItem(order_id={self.order_id}, product_id={self.product_id}, "
                 f"quantity={self.quantity}, price={self.price})")
 
+class CartItem(Base):
+    """
+    Cart Item Model
+    ---------------
+    Represents items in a user's shopping cart.
+    Tracks the product and quantity of each item added to the cart.
+    """
+    __tablename__ = 'cartitems'
+
+    cartitem_id = Column(Integer, primary_key=True)
+    user_id = Column(Integer, ForeignKey('users.user_id', ondelete='CASCADE'))
+    product_id = Column(Integer, ForeignKey('products.product_id', ondelete='CASCADE'))
+    quantity = Column(Integer, nullable=False)
+
+    user = relationship("User", back_populates="cartitems")
+    product = relationship("Product")
+
+    def __init__(self, user_id, product_id, quantity):
+        self.user_id = user_id
+        self.product_id = product_id
+        self.quantity = quantity
+
+    def __repr__(self):
+        return (f"CartItem(user_id={self.user_id}, product_id={self.product_id}, "
+                f"quantity={self.quantity})")
+
 # Database setup
 engine = create_engine(DATABASE_URI, echo=True)
 Base.metadata.create_all(engine)
@@ -281,29 +315,3 @@ def seed_data(session):
     except Exception as e:
         session.rollback()
         print(f"Error seeding data: {str(e)}")
-
-class CartItem(Base):
-    """
-    Cart Item Model
-    ---------------
-    Represents items in a user's shopping cart.
-    Tracks the product and quantity of each item added to the cart.
-    """
-    __tablename__ = 'cartitems'
-
-    cartitem_id = Column(Integer, primary_key=True)
-    user_id = Column(Integer, ForeignKey('users.user_id', ondelete='CASCADE'))
-    product_id = Column(Integer, ForeignKey('products.product_id', ondelete='CASCADE'))
-    quantity = Column(Integer, nullable=False)
-
-    user = relationship("User", back_populates="cartitems")
-    product = relationship("Product")
-
-    def __init__(self, user_id, product_id, quantity):
-        self.user_id = user_id
-        self.product_id = product_id
-        self.quantity = quantity
-
-    def __repr__(self):
-        return (f"CartItem(user_id={self.user_id}, product_id={self.product_id}, "
-                f"quantity={self.quantity})")

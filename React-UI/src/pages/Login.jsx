@@ -110,7 +110,7 @@ const Login = ({setActiveUser}) => {
           />
           <Button type="submit">LOGIN</Button>
           {error && <p>{error}</p>}
-          <Link>DO NOT YOU REMEMBER THE PASSWORD?</Link>
+          <Link>DO YOU NOT REMEMBER YOUR PASSWORD?</Link>
           <Link>CREATE A NEW ACCOUNT</Link>
         </Form>
       </Wrapper>
