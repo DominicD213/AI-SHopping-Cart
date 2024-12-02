@@ -1,0 +1,1000 @@
+activity_id,user_id,activity_type,search_query,product_id,timestamp,importance_weight,queries,action
+1,97,search,gift ideas for book lovers,289.0,2024-01-24T22:41:57.245444,0.4,Book,view
+1,97,search,popular gadgets for teens,289.0,2024-01-24T22:41:57.245444,0.4,General,view
+2,36,view,unique gifts for nature lovers,,2024-01-28T22:41:57.245461,0.4,General,view
+2,36,view,fitness gear for home workouts,,2024-01-28T22:41:57.245461,0.4,General,view
+2,36,view,home decor under $50,,2024-01-28T22:41:57.245461,0.4,General,view
+3,52,view,pet accessories for dog owners,287.0,2024-01-04T22:41:57.245469,1.0,General,view
+3,52,view,gift ideas for tech enthusiasts,287.0,2024-01-04T22:41:57.245469,1.0,General,view
+3,52,view,holiday gifts for parents,287.0,2024-01-04T22:41:57.245469,1.0,General,view
+4,33,purchase,science fiction thrillers like Blade Runner,202.0,2024-06-02T22:41:57.245497,1.0,Book,view
+5,69,cart,king-size beds with memory foam mattresses,52.0,2024-07-07T22:41:57.245504,1.0,Furniture,view
+5,69,cart,minimalist desks for home offices,52.0,2024-07-07T22:41:57.245504,1.0,Furniture,view
+6,66,search,popular gadgets for teens,250.0,2023-12-01T22:41:57.245517,0.7,General,view
+6,66,search,holiday gifts for parents,250.0,2023-12-01T22:41:57.245517,0.7,General,view
+8,43,search,gift ideas for tech enthusiasts,171.0,2023-11-27T22:41:57.245533,0.7,General,view
+8,43,search,home decor under $50,171.0,2023-11-27T22:41:57.245533,0.7,General,view
+8,43,search,trendy office supplies,171.0,2023-11-27T22:41:57.245533,0.7,General,view
+9,24,cart,bookshelves for small spaces,191.0,2024-01-15T22:41:57.245546,0.4,Book,view
+10,55,cart,popular gadgets for teens,,2024-04-28T22:41:57.245557,0.4,General,view
+10,55,cart,gift ideas for tech enthusiasts,,2024-04-28T22:41:57.245557,0.4,General,view
+10,55,cart,affordable kitchen appliances,,2024-04-28T22:41:57.245557,0.4,General,view
+11,60,cart,fitness gear for home workouts,338.0,2024-02-10T22:41:57.245564,0.4,General,view
+11,60,cart,unique gifts for nature lovers,338.0,2024-02-10T22:41:57.245564,0.4,General,view
+11,60,cart,pet accessories for dog owners,338.0,2024-02-10T22:41:57.245564,0.4,General,view
+12,28,purchase,dark chocolate gift boxes,,2023-12-06T22:41:57.245570,0.7,Food,view
+13,4,purchase,historical fiction like The Nightingale,382.0,2024-04-27T22:41:57.245576,0.4,Book,view
+14,6,view,trendy office supplies,183.0,2023-12-19T22:41:57.245713,0.2,General,view
+14,6,view,unique gifts for nature lovers,183.0,2023-12-19T22:41:57.245713,0.2,General,view
+14,6,view,pet accessories for dog owners,183.0,2023-12-19T22:41:57.245713,0.2,General,view
+15,88,view,"Dune by Frank Herbert, The Left Hand of Darkness by Ursula K. Le Guin, Hyperion by Dan Simmons",220.0,2024-03-27T22:41:57.245739,0.2,Book,view
+15,88,view,"Dune by Frank Herbert, The Left Hand of Darkness by Ursula K. Le Guin, Hyperion by Dan Simmons",220.0,2024-03-27T22:41:57.245739,0.2,Book,view
+15,88,view,"Dune by Frank Herbert, The Left Hand of Darkness by Ursula K. Le Guin, Hyperion by Dan Simmons",220.0,2024-03-27T22:41:57.245739,0.2,Book,view
+17,62,view,recliner chairs for living rooms,87.0,2024-07-03T22:41:57.245753,0.2,Furniture,view
+17,62,view,modern glass coffee tables,87.0,2024-07-03T22:41:57.245753,0.2,Furniture,view
+18,41,purchase,gift ideas for tech enthusiasts,,2024-08-11T22:41:57.245764,1.0,General,view
+18,41,purchase,trendy office supplies,,2024-08-11T22:41:57.245764,1.0,General,view
+18,41,purchase,home decor under $50,,2024-08-11T22:41:57.245764,1.0,General,view
+19,31,view,"gift ideas for parents, gift ideas for teachers, thoughtful family gifts",272.0,2024-05-28T22:41:57.245771,0.7,General,view
+19,31,view,"gift ideas for parents, gift ideas for teachers, thoughtful family gifts",272.0,2024-05-28T22:41:57.245771,0.7,General,view
+19,31,view,"gift ideas for parents, gift ideas for teachers, thoughtful family gifts",272.0,2024-05-28T22:41:57.245771,0.7,General,view
+20,80,search,holiday gifts for parents,399.0,2024-10-27T22:41:57.245777,1.0,General,view
+22,58,view,science fiction thrillers like Blade Runner,21.0,2024-05-14T22:41:57.245795,0.4,Book,view
+23,56,search,ergonomic office chairs for work-from-home,11.0,2024-01-19T22:41:57.245801,1.0,Furniture,view
+23,56,search,modern glass coffee tables,11.0,2024-01-19T22:41:57.245801,1.0,Furniture,view
+24,60,purchase,affordable kitchen appliances,366.0,2024-02-16T22:41:57.245807,0.4,General,view
+24,60,purchase,home decor under $50,366.0,2024-02-16T22:41:57.245807,0.4,General,view
+24,60,purchase,holiday gifts for parents,366.0,2024-02-16T22:41:57.245807,0.4,General,view
+25,16,view,gift ideas for book lovers,231.0,2024-10-08T22:41:57.245813,0.2,Book,view
+26,71,view,home decor under $50,,2024-03-13T22:41:57.245818,0.7,General,view
+26,71,view,pet accessories for dog owners,,2024-03-13T22:41:57.245818,0.7,General,view
+26,71,view,popular gadgets for teens,,2024-03-13T22:41:57.245818,0.7,General,view
+27,41,view,affordable home decor like wall art and throw pillows,167.0,2023-12-22T22:41:57.245824,1.0,General,view
+27,41,view,affordable home decor like wall art and throw pillows,167.0,2023-12-22T22:41:57.245824,1.0,General,view
+27,41,view,affordable home decor like wall art and throw pillows,167.0,2023-12-22T22:41:57.245824,1.0,General,view
+28,30,purchase,modern classics like 1984 and Brave New World,318.0,2024-02-03T22:41:57.245836,0.4,General,view
+28,30,purchase,fantasy epics like The Lord of the Rings,318.0,2024-02-03T22:41:57.245836,0.4,General,view
+28,30,purchase,classic literature like Pride and Prejudice,318.0,2024-02-03T22:41:57.245836,0.4,Book,view
+29,13,view,modern glass coffee tables,259.0,2024-09-03T22:41:57.245846,0.7,Furniture,view
+29,13,view,king-size beds with memory foam mattresses,259.0,2024-09-03T22:41:57.245846,0.7,Furniture,view
+29,13,view,L-shaped sectional sofas,259.0,2024-09-03T22:41:57.245846,0.7,Furniture,view
+31,65,search,bookshelves for small spaces,145.0,2024-01-21T22:41:57.245863,0.4,Furniture,view
+32,58,purchase,gluten-free pasta and snacks,112.0,2024-03-26T22:41:57.245874,1.0,Food,view
+32,58,purchase,fresh berries and fruit baskets,112.0,2024-03-26T22:41:57.245874,1.0,Food,view
+33,50,cart,affordable kitchen appliances,376.0,2023-12-01T22:41:57.245881,0.2,General,view
+33,50,cart,unique gifts for nature lovers,376.0,2023-12-01T22:41:57.245881,0.2,General,view
+34,36,search,modern office supplies like standing desks and ergonomic chairs,30.0,2024-07-03T22:41:57.245887,0.4,General,view
+34,36,search,modern office supplies like standing desks and ergonomic chairs,30.0,2024-07-03T22:41:57.245887,0.4,General,view
+34,36,search,modern office supplies like standing desks and ergonomic chairs,30.0,2024-07-03T22:41:57.245887,0.4,General,view
+35,91,cart,holiday gifts for parents,22.0,2024-03-30T22:41:57.245893,0.2,General,view
+35,91,cart,gift ideas for tech enthusiasts,22.0,2024-03-30T22:41:57.245893,0.2,General,view
+35,91,cart,fitness gear for home workouts,22.0,2024-03-30T22:41:57.245893,0.2,General,view
+36,45,cart,gift ideas for book lovers,,2024-09-15T22:41:57.245898,0.7,Book,view
+37,31,cart,Levi's skinny jeans,,2023-11-13T22:41:57.245904,1.0,Clothing,view
+38,25,cart,L-shaped sectional sofas,396.0,2024-05-29T22:41:57.245909,0.4,Furniture,view
+38,25,cart,ergonomic office chairs for work-from-home,396.0,2024-05-29T22:41:57.245909,0.4,Furniture,view
+39,8,search,leather jackets by Harley-Davidson,277.0,2024-02-24T22:41:57.245915,1.0,Clothing,view
+39,8,search,black hoodies and casual t-shirts,277.0,2024-02-24T22:41:57.245915,1.0,Clothing,view
+40,63,view,L-shaped sectional sofas,339.0,2024-09-21T22:41:57.245921,0.7,Furniture,view
+40,63,view,dining tables for six people,339.0,2024-09-21T22:41:57.245921,0.7,Furniture,view
+41,10,purchase,holiday gifts for parents,285.0,2024-04-11T22:41:57.245927,0.4,General,view
+41,10,purchase,pet accessories for dog owners,285.0,2024-04-11T22:41:57.245927,0.4,General,view
+41,10,purchase,unique gifts for nature lovers,285.0,2024-04-11T22:41:57.245927,0.4,General,view
+42,37,view,trendy office supplies,109.0,2024-08-21T22:41:57.245933,0.2,General,view
+42,37,view,home decor under $50,109.0,2024-08-21T22:41:57.245933,0.2,General,view
+42,37,view,gift ideas for tech enthusiasts,109.0,2024-08-21T22:41:57.245933,0.2,General,view
+43,74,view,Canon digital cameras for photography,,2024-09-24T22:41:57.245939,1.0,Electronics,view
+44,40,search,holiday gifts for parents,,2024-10-07T22:41:57.245944,1.0,General,view
+44,40,search,affordable kitchen appliances,,2024-10-07T22:41:57.245944,1.0,General,view
+44,40,search,home decor under $50,,2024-10-07T22:41:57.245944,1.0,General,view
+46,41,purchase,popular gadgets for teens,395.0,2024-10-02T22:41:57.245955,0.2,General,view
+46,41,purchase,affordable kitchen appliances,395.0,2024-10-02T22:41:57.245955,0.2,General,view
+47,97,view,"Dune by Frank Herbert, The Left Hand of Darkness by Ursula K. Le Guin, Hyperion by Dan Simmons",88.0,2024-04-27T22:41:57.245961,0.4,Book,view
+47,97,view,"Dune by Frank Herbert, The Left Hand of Darkness by Ursula K. Le Guin, Hyperion by Dan Simmons",88.0,2024-04-27T22:41:57.245961,0.4,Book,view
+48,86,purchase,black hoodies and casual t-shirts,283.0,2024-09-29T22:41:57.245967,1.0,Clothing,view
+49,79,view,fitness gear for home workouts,57.0,2023-11-14T22:41:57.245973,0.4,General,view
+49,79,view,unique gifts for nature lovers,57.0,2023-11-14T22:41:57.245973,0.4,General,view
+49,79,view,pet accessories for dog owners,57.0,2023-11-14T22:41:57.245973,0.4,General,view
+50,57,purchase,"Percy Jackson series, Heroes of Olympus series, Trials of Apollo series",197.0,2024-07-11T22:41:57.245979,1.0,Book,view
+51,36,search,unique gifts for nature lovers,345.0,2023-11-21T22:41:57.245984,1.0,General,view
+51,36,search,popular gadgets for teens,345.0,2023-11-21T22:41:57.245984,1.0,General,view
+52,72,search,science fiction thrillers like Blade Runner,366.0,2024-04-26T22:41:57.245995,0.4,Book,view
+53,29,search,holiday gifts for parents,219.0,2024-11-06T22:41:57.246005,0.4,General,view
+53,29,search,fitness gear for home workouts,219.0,2024-11-06T22:41:57.246005,0.4,General,view
+53,29,search,pet accessories for dog owners,219.0,2024-11-06T22:41:57.246005,0.4,General,view
+54,27,cart,smartwatches for fitness tracking,64.0,2024-10-08T22:41:57.246016,0.4,Electronics,view
+54,27,cart,4K OLED TVs by LG,64.0,2024-10-08T22:41:57.246016,0.4,Electronics,view
+54,27,cart,Sony noise-cancelling headphones,64.0,2024-10-08T22:41:57.246016,0.4,Electronics,view
+55,8,purchase,popular gadgets for teens,230.0,2024-05-28T22:41:57.246023,0.2,General,view
+55,8,purchase,pet accessories for dog owners,230.0,2024-05-28T22:41:57.246023,0.2,General,view
+55,8,purchase,unique gifts for nature lovers,230.0,2024-05-28T22:41:57.246023,0.2,General,view
+56,61,purchase,gaming monitors by ASUS,231.0,2024-06-10T22:41:57.246028,0.2,Electronics,view
+56,61,purchase,gaming monitors by ASUS,231.0,2024-06-10T22:41:57.246028,0.2,Electronics,view
+56,61,purchase,gaming monitors by ASUS,231.0,2024-06-10T22:41:57.246028,0.2,Electronics,view
+57,29,search,popular gadgets for teens,,2024-10-22T22:41:57.246038,0.7,General,view
+57,29,search,pet accessories for dog owners,,2024-10-22T22:41:57.246038,0.7,General,view
+57,29,search,trendy office supplies,,2024-10-22T22:41:57.246038,0.7,General,view
+58,39,view,home decor under $50,274.0,2023-11-20T22:41:57.246045,0.4,General,view
+58,39,view,trendy office supplies,274.0,2023-11-20T22:41:57.246045,0.4,General,view
+58,39,view,pet accessories for dog owners,274.0,2023-11-20T22:41:57.246045,0.4,General,view
+59,11,search,gift ideas for book lovers,178.0,2024-08-10T22:41:57.246050,0.2,Book,view
+61,38,view,fantasy epics like The Lord of the Rings,113.0,2023-12-17T22:41:57.246066,1.0,General,view
+61,38,view,bestsellers of the year,113.0,2023-12-17T22:41:57.246066,1.0,General,view
+61,38,view,classic literature like Pride and Prejudice,113.0,2023-12-17T22:41:57.246066,1.0,Book,view
+62,93,cart,unique gifts for nature lovers,,2024-09-16T22:41:57.246076,0.2,General,view
+62,93,cart,holiday gifts for parents,,2024-09-16T22:41:57.246076,0.2,General,view
+62,93,cart,pet accessories for dog owners,,2024-09-16T22:41:57.246076,0.2,General,view
+63,97,cart,popular gadgets for teens,14.0,2023-12-13T22:41:57.246086,0.7,General,view
+63,97,cart,affordable kitchen appliances,14.0,2023-12-13T22:41:57.246086,0.7,General,view
+63,97,cart,unique gifts for nature lovers,14.0,2023-12-13T22:41:57.246086,0.7,General,view
+64,9,purchase,gift ideas for book lovers,43.0,2024-06-11T22:41:57.246092,0.7,Book,view
+65,94,cart,leather jackets by Harley-Davidson,46.0,2024-03-13T22:41:57.246098,1.0,Clothing,view
+67,80,purchase,black hoodies and casual t-shirts,354.0,2023-11-17T22:41:57.246118,0.7,Clothing,view
+68,9,purchase,holiday gifts for parents,273.0,2024-03-22T22:41:57.246128,0.2,General,view
+68,9,purchase,gift ideas for tech enthusiasts,273.0,2024-03-22T22:41:57.246128,0.2,General,view
+68,9,purchase,pet accessories for dog owners,273.0,2024-03-22T22:41:57.246128,0.2,General,view
+69,27,purchase,Studio Ghibli masterpieces,245.0,2024-05-25T22:41:57.246134,0.4,General,view
+69,27,purchase,Oscar-winning dramas from the past decade,245.0,2024-05-25T22:41:57.246134,0.4,General,view
+69,27,purchase,biographical films about musicians,245.0,2024-05-25T22:41:57.246134,0.4,Movie,view
+70,5,view,artisanal cheese for wine pairing,393.0,2024-10-06T22:41:57.246144,0.2,Food,view
+71,85,purchase,Apple MacBook Pro laptops,198.0,2024-11-08T22:41:57.246150,0.4,Electronics,view
+71,85,purchase,Apple MacBook Pro laptops,198.0,2024-11-08T22:41:57.246150,0.4,Electronics,view
+72,51,purchase,gift ideas for book lovers,353.0,2024-09-14T22:41:57.246160,0.2,Book,view
+73,93,purchase,dark chocolate gift boxes,350.0,2024-03-29T22:41:57.246166,0.2,Food,view
+74,14,cart,pet accessories for dog owners,211.0,2024-10-23T22:41:57.246176,0.4,General,view
+74,14,cart,trendy office supplies,211.0,2024-10-23T22:41:57.246176,0.4,General,view
+74,14,cart,home decor under $50,211.0,2024-10-23T22:41:57.246176,0.4,General,view
+75,93,view,unique gifts for nature lovers,244.0,2024-02-12T22:41:57.246182,0.7,General,view
+75,93,view,holiday gifts for parents,244.0,2024-02-12T22:41:57.246182,0.7,General,view
+75,93,view,fitness gear for home workouts,244.0,2024-02-12T22:41:57.246182,0.7,General,view
+76,38,view,affordable kitchen appliances,,2024-02-19T22:41:57.246187,0.4,General,view
+76,38,view,pet accessories for dog owners,,2024-02-19T22:41:57.246187,0.4,General,view
+76,38,view,gift ideas for tech enthusiasts,,2024-02-19T22:41:57.246187,0.4,General,view
+77,99,view,bookshelves for small spaces,128.0,2024-08-10T22:41:57.246196,1.0,Book,view
+78,73,search,affordable kitchen appliances,293.0,2024-04-17T22:41:57.246202,0.7,General,view
+78,73,search,popular gadgets for teens,293.0,2024-04-17T22:41:57.246202,0.7,General,view
+78,73,search,gift ideas for tech enthusiasts,293.0,2024-04-17T22:41:57.246202,0.7,General,view
+79,45,purchase,modern glass coffee tables,385.0,2023-11-22T22:41:57.246208,1.0,Furniture,view
+79,45,purchase,dining tables for six people,385.0,2023-11-22T22:41:57.246208,1.0,Furniture,view
+79,45,purchase,recliner chairs for living rooms,385.0,2023-11-22T22:41:57.246208,1.0,Furniture,view
+80,7,cart,fitness gear for home workouts,57.0,2024-01-09T22:41:57.246214,0.2,General,view
+80,7,cart,gift ideas for tech enthusiasts,57.0,2024-01-09T22:41:57.246214,0.2,General,view
+80,7,cart,pet accessories for dog owners,57.0,2024-01-09T22:41:57.246214,0.2,General,view
+81,84,view,young adult series like Harry Potter,317.0,2024-07-14T22:41:57.246220,0.2,Book,view
+82,59,cart,popular gadgets for teens,235.0,2024-01-28T22:41:57.246231,0.4,General,view
+82,59,cart,pet accessories for dog owners,235.0,2024-01-28T22:41:57.246231,0.4,General,view
+82,59,cart,home decor under $50,235.0,2024-01-28T22:41:57.246231,0.4,General,view
+83,93,purchase,dining tables for six people,218.0,2024-02-07T22:41:57.246241,0.4,Furniture,view
+83,93,purchase,L-shaped sectional sofas,218.0,2024-02-07T22:41:57.246241,0.4,Furniture,view
+83,93,purchase,minimalist desks for home offices,218.0,2024-02-07T22:41:57.246241,0.4,Furniture,view
+84,83,purchase,science fiction thrillers like Blade Runner,101.0,2024-03-14T22:41:57.246251,1.0,Book,view
+85,21,view,ergonomic office chairs for work-from-home,35.0,2024-06-21T22:41:57.246262,0.7,Furniture,view
+85,21,view,recliner chairs for living rooms,35.0,2024-06-21T22:41:57.246262,0.7,Furniture,view
+85,21,view,modern glass coffee tables,35.0,2024-06-21T22:41:57.246262,0.7,Furniture,view
+86,83,purchase,home decor under $50,114.0,2023-12-27T22:41:57.246272,1.0,General,view
+86,83,purchase,popular gadgets for teens,114.0,2023-12-27T22:41:57.246272,1.0,General,view
+86,83,purchase,fitness gear for home workouts,114.0,2023-12-27T22:41:57.246272,1.0,General,view
+87,10,purchase,artisanal cheese for wine pairing,121.0,2024-09-18T22:41:57.246278,0.4,Food,view
+87,10,purchase,gluten-free pasta and snacks,121.0,2024-09-18T22:41:57.246278,0.4,Food,view
+88,66,search,historical fiction like The Nightingale,66.0,2024-06-04T22:41:57.246284,0.4,Book,view
+89,13,purchase,Bose Bluetooth speakers,286.0,2024-01-30T22:41:57.246290,1.0,Electronics,view
+90,39,view,holiday gifts for parents,308.0,2024-07-25T22:41:57.246295,0.7,General,view
+90,39,view,trendy office supplies,308.0,2024-07-25T22:41:57.246295,0.7,General,view
+90,39,view,unique gifts for nature lovers,308.0,2024-07-25T22:41:57.246295,0.7,General,view
+91,27,search,dark chocolate gift boxes,,2024-05-12T22:41:57.246305,1.0,Food,view
+91,27,search,artisanal cheese for wine pairing,,2024-05-12T22:41:57.246305,1.0,Food,view
+91,27,search,gluten-free pasta and snacks,,2024-05-12T22:41:57.246305,1.0,Food,view
+92,46,purchase,young adult series like Harry Potter,250.0,2024-06-26T22:41:57.246317,1.0,Book,view
+93,75,cart,home decor under $50,296.0,2024-02-02T22:41:57.246326,0.2,General,view
+93,75,cart,gift ideas for tech enthusiasts,296.0,2024-02-02T22:41:57.246326,0.2,General,view
+93,75,cart,trendy office supplies,296.0,2024-02-02T22:41:57.246326,0.2,General,view
+94,100,search,gift ideas for tech enthusiasts,,2024-11-06T22:41:57.246336,1.0,General,view
+94,100,search,holiday gifts for parents,,2024-11-06T22:41:57.246336,1.0,General,view
+94,100,search,pet accessories for dog owners,,2024-11-06T22:41:57.246336,1.0,General,view
+95,20,cart,affordable kitchen appliances,13.0,2024-09-18T22:41:57.246342,1.0,General,view
+95,20,cart,popular gadgets for teens,13.0,2024-09-18T22:41:57.246342,1.0,General,view
+95,20,cart,fitness gear for home workouts,13.0,2024-09-18T22:41:57.246342,1.0,General,view
+96,85,view,Levi's skinny jeans,25.0,2024-09-03T22:41:57.246348,0.7,Clothing,view
+97,50,view,affordable kitchen appliances,50.0,2024-03-02T22:41:57.246358,1.0,General,view
+97,50,view,gift ideas for tech enthusiasts,50.0,2024-03-02T22:41:57.246358,1.0,General,view
+97,50,view,fitness gear for home workouts,50.0,2024-03-02T22:41:57.246358,1.0,General,view
+98,16,cart,mystery novels by Agatha Christie,359.0,2024-01-17T22:41:57.246364,0.2,Book,view
+99,24,search,affordable kitchen appliances,157.0,2024-07-21T22:41:57.246370,1.0,General,view
+100,49,view,Italian cooking essentials like olive oil and balsamic vinegar,,2024-08-23T22:41:57.246375,1.0,General,view
+100,49,view,Italian cooking essentials like olive oil and balsamic vinegar,,2024-08-23T22:41:57.246375,1.0,General,view
+100,49,view,Italian cooking essentials like olive oil and balsamic vinegar,,2024-08-23T22:41:57.246375,1.0,General,view
+101,79,cart,gift ideas for tech enthusiasts,126.0,2024-02-20T22:41:57.246385,1.0,General,view
+101,79,cart,popular gadgets for teens,126.0,2024-02-20T22:41:57.246385,1.0,General,view
+101,79,cart,home decor under $50,126.0,2024-02-20T22:41:57.246385,1.0,General,view
+102,96,view,gift ideas for book lovers,295.0,2024-08-19T22:41:57.246392,0.4,Book,view
+103,12,purchase,holiday gifts for parents,191.0,2024-04-08T22:41:57.246398,0.7,General,view
+103,12,purchase,pet accessories for dog owners,191.0,2024-04-08T22:41:57.246398,0.7,General,view
+103,12,purchase,fitness gear for home workouts,191.0,2024-04-08T22:41:57.246398,0.7,General,view
+104,23,view,gift ideas for book lovers,,2024-08-15T22:41:57.246403,1.0,Book,view
+105,92,view,fresh berries and fruit baskets,,2023-11-15T22:41:57.246408,0.4,Food,view
+105,92,view,gluten-free pasta and snacks,,2023-11-15T22:41:57.246408,0.4,Food,view
+106,64,purchase,GoPro Hero cameras for adventure videos,212.0,2024-09-29T22:41:57.246414,0.7,Electronics,view
+106,64,purchase,gaming monitors by ASUS,212.0,2024-09-29T22:41:57.246414,0.7,General,view
+106,64,purchase,Samsung Galaxy S23 smartphones,212.0,2024-09-29T22:41:57.246414,0.7,Electronics,view
+107,49,search,gift ideas for book lovers,14.0,2024-02-28T22:41:57.246420,1.0,Book,view
+109,38,search,affordable kitchen appliances,301.0,2024-07-09T22:41:57.246441,0.4,General,view
+109,38,search,unique gifts for nature lovers,301.0,2024-07-09T22:41:57.246441,0.4,General,view
+109,38,search,fitness gear for home workouts,301.0,2024-07-09T22:41:57.246441,0.4,General,view
+110,33,cart,mystery novels by Agatha Christie,222.0,2024-03-13T22:41:57.246447,0.4,Book,view
+110,33,cart,historical fiction like The Nightingale,222.0,2024-03-13T22:41:57.246447,0.4,Book,view
+111,9,view,leather jackets by Harley-Davidson,380.0,2024-04-03T22:41:57.246458,1.0,Clothing,view
+112,41,purchase,gift ideas for book lovers,78.0,2024-04-04T22:41:57.246463,0.4,Book,view
+113,34,search,science fiction thrillers like Blade Runner,204.0,2024-06-08T22:41:57.246469,0.2,Book,view
+114,51,purchase,home decor under $50,107.0,2024-02-02T22:41:57.246474,0.7,General,view
+114,51,purchase,popular gadgets for teens,107.0,2024-02-02T22:41:57.246474,0.7,General,view
+115,22,purchase,Samsung Galaxy S23 smartphones,360.0,2024-08-17T22:41:57.246480,1.0,Electronics,view
+115,22,purchase,GoPro Hero cameras for adventure videos,360.0,2024-08-17T22:41:57.246480,1.0,Electronics,view
+116,27,purchase,gluten-free pasta and snacks,42.0,2024-03-08T22:41:57.246491,0.7,Food,view
+117,84,purchase,popular gadgets for teens,,2023-11-19T22:41:57.246499,1.0,General,view
+118,51,search,Samsung Galaxy S23 smartphones,201.0,2024-02-03T22:41:57.246508,0.2,Electronics,view
+119,70,purchase,Samsung Galaxy S23 smartphones,157.0,2024-05-03T22:41:57.246518,0.4,Electronics,view
+120,54,search,unique gifts for nature lovers,368.0,2024-04-21T22:41:57.246524,0.4,General,view
+120,54,search,gift ideas for book lovers,368.0,2024-04-21T22:41:57.246524,0.4,Book,view
+120,54,search,holiday gifts for parents,368.0,2024-04-21T22:41:57.246524,0.4,General,view
+121,17,purchase,Bose Bluetooth speakers,3.0,2024-03-22T22:41:57.246530,0.4,Electronics,view
+122,58,view,gift ideas for tech enthusiasts,7.0,2024-09-22T22:41:57.246536,1.0,General,view
+122,58,view,holiday gifts for parents,7.0,2024-09-22T22:41:57.246536,1.0,General,view
+123,74,search,trendy office supplies,,2024-09-26T22:41:57.246541,0.2,General,view
+123,74,search,fitness gear for home workouts,,2024-09-26T22:41:57.246541,0.2,General,view
+123,74,search,holiday gifts for parents,,2024-09-26T22:41:57.246541,0.2,General,view
+124,43,view,GoPro Hero cameras for adventure videos,124.0,2024-07-15T22:41:57.246546,1.0,Electronics,view
+125,95,purchase,unique gifts for nature lovers,54.0,2024-04-26T22:41:57.246552,1.0,General,view
+125,95,purchase,affordable kitchen appliances,54.0,2024-04-26T22:41:57.246552,1.0,General,view
+125,95,purchase,gift ideas for tech enthusiasts,54.0,2024-04-26T22:41:57.246552,1.0,General,view
+126,77,cart,science fiction thrillers like Blade Runner,,2024-06-06T22:41:57.246562,0.7,Book,view
+127,71,search,popular gadgets for teens,135.0,2024-05-10T22:41:57.246568,1.0,General,view
+127,71,search,unique gifts for nature lovers,135.0,2024-05-10T22:41:57.246568,1.0,General,view
+127,71,search,pet accessories for dog owners,135.0,2024-05-10T22:41:57.246568,1.0,General,view
+129,79,view,science fiction thrillers like Blade Runner,179.0,2024-02-04T22:41:57.246580,0.4,Book,view
+130,16,cart,gift ideas for book lovers,315.0,2023-11-19T22:41:57.246586,0.7,Book,view
+131,2,cart,bookshelves for small spaces,224.0,2024-09-08T22:41:57.246592,0.7,Book,view
+132,31,search,home decor under $50,76.0,2024-01-18T22:41:57.246597,1.0,General,view
+132,31,search,unique gifts for nature lovers,76.0,2024-01-18T22:41:57.246597,1.0,General,view
+132,31,search,gift ideas for tech enthusiasts,76.0,2024-01-18T22:41:57.246597,1.0,General,view
+133,7,purchase,gift ideas for tech enthusiasts,7.0,2024-07-29T22:41:57.246603,0.2,General,view
+133,7,purchase,home decor under $50,7.0,2024-07-29T22:41:57.246603,0.2,General,view
+133,7,purchase,holiday gifts for parents,7.0,2024-07-29T22:41:57.246603,0.2,General,view
+134,55,search,minimalist desks for home offices,62.0,2024-02-11T22:41:57.246609,0.7,Furniture,view
+134,55,search,recliner chairs for living rooms,62.0,2024-02-11T22:41:57.246609,0.7,Furniture,view
+135,14,purchase,gift ideas for book lovers,334.0,2023-11-13T22:41:57.246615,0.7,Book,view
+136,11,purchase,gluten-free pasta and snacks,,2024-03-22T22:41:57.246625,0.7,Food,view
+137,77,view,holiday gifts for parents,267.0,2024-04-03T22:41:57.246632,0.4,General,view
+137,77,view,affordable kitchen appliances,267.0,2024-04-03T22:41:57.246632,0.4,General,view
+140,10,purchase,pet accessories for dog owners,77.0,2024-04-27T22:41:57.246657,1.0,General,view
+140,10,purchase,unique gifts for nature lovers,77.0,2024-04-27T22:41:57.246657,1.0,General,view
+140,10,purchase,popular gadgets for teens,77.0,2024-04-27T22:41:57.246657,1.0,General,view
+141,65,purchase,cold brew coffee packs,285.0,2024-02-22T22:41:57.246663,0.2,Food,view
+142,88,view,fitness gear for home workouts,241.0,2024-03-05T22:41:57.246673,0.2,General,view
+142,88,view,affordable kitchen appliances,241.0,2024-03-05T22:41:57.246673,0.2,General,view
+142,88,view,gift ideas for tech enthusiasts,241.0,2024-03-05T22:41:57.246673,0.2,General,view
+143,68,view,science fiction thrillers like Blade Runner,6.0,2024-03-13T22:41:57.246678,0.2,Book,view
+144,38,search,gift ideas for tech enthusiasts,180.0,2024-01-02T22:41:57.246684,0.4,General,view
+144,38,search,affordable kitchen appliances,180.0,2024-01-02T22:41:57.246684,0.4,General,view
+144,38,search,holiday gifts for parents,180.0,2024-01-02T22:41:57.246684,0.4,General,view
+145,91,view,mystery novels by Agatha Christie,,2023-12-16T22:41:57.246690,1.0,Book,view
+145,91,view,historical fiction like The Nightingale,,2023-12-16T22:41:57.246690,1.0,Book,view
+146,54,search,gift ideas for book lovers,61.0,2024-08-21T22:41:57.246695,0.2,Book,view
+147,75,purchase,home decor under $50,20.0,2023-12-07T22:41:57.246701,0.4,General,view
+147,75,purchase,trendy office supplies,20.0,2023-12-07T22:41:57.246701,0.4,General,view
+147,75,purchase,pet accessories for dog owners,20.0,2023-12-07T22:41:57.246701,0.4,General,view
+148,24,purchase,cold brew coffee packs,107.0,2024-07-08T22:41:57.246707,0.2,Food,view
+149,95,view,home decor under $50,182.0,2024-04-20T22:41:57.246713,0.2,General,view
+149,95,view,trendy office supplies,182.0,2024-04-20T22:41:57.246713,0.2,General,view
+149,95,view,unique gifts for nature lovers,182.0,2024-04-20T22:41:57.246713,0.2,General,view
+150,78,cart,artisanal cheese for wine pairing,308.0,2023-11-15T22:41:57.246719,1.0,Food,view
+150,78,cart,cold brew coffee packs,308.0,2023-11-15T22:41:57.246719,1.0,Food,view
+151,15,cart,epic fantasy films like The Hobbit trilogy,,2023-12-25T22:41:57.246725,0.2,Movie,view
+151,15,cart,nature documentaries narrated by David Attenborough,,2023-12-25T22:41:57.246725,0.2,General,view
+151,15,cart,romantic comedies like Notting Hill,,2023-12-25T22:41:57.246725,0.2,General,view
+152,84,cart,ergonomic office chairs for work-from-home,,2024-06-01T22:41:57.246730,0.7,Furniture,view
+152,84,cart,L-shaped sectional sofas,,2024-06-01T22:41:57.246730,0.7,Furniture,view
+153,8,search,Bose Bluetooth speakers,301.0,2024-10-07T22:41:57.246740,0.4,Electronics,view
+153,8,search,Sony noise-cancelling headphones,301.0,2024-10-07T22:41:57.246740,0.4,Electronics,view
+153,8,search,Apple MacBook Pro laptops,301.0,2024-10-07T22:41:57.246740,0.4,Book,view
+154,15,cart,bookshelves for small spaces,276.0,2023-12-25T22:41:57.246747,0.4,Book,view
+155,86,view,gift ideas for book lovers,46.0,2024-01-13T22:41:57.246752,1.0,Book,view
+156,31,view,gift ideas for book lovers,151.0,2024-02-02T22:41:57.246758,0.2,Book,view
+157,53,search,bookshelves for small spaces,,2024-08-15T22:41:57.246764,0.4,Book,view
+158,79,cart,GoPro Hero cameras for adventure videos,,2024-06-03T22:41:57.246772,0.7,Electronics,view
+158,79,cart,Samsung Galaxy S23 smartphones,,2024-06-03T22:41:57.246772,0.7,Electronics,view
+160,22,view,Marvel superhero sagas,273.0,2024-10-01T22:41:57.246799,0.7,General,view
+160,22,view,animated movies for family nights,273.0,2024-10-01T22:41:57.246799,0.7,Movie,view
+160,22,view,nature documentaries narrated by David Attenborough,273.0,2024-10-01T22:41:57.246799,0.7,General,view
+162,73,view,black hoodies and casual t-shirts,194.0,2024-01-12T22:41:57.246823,0.2,Clothing,view
+163,71,search,Apple MacBook Pro laptops,296.0,2024-04-02T22:41:57.246833,0.2,Book,view
+163,71,search,Samsung Galaxy S23 smartphones,296.0,2024-04-02T22:41:57.246833,0.2,Electronics,view
+164,13,view,home decor under $50,223.0,2024-03-28T22:41:57.246839,0.2,General,view
+164,13,view,unique gifts for nature lovers,223.0,2024-03-28T22:41:57.246839,0.2,General,view
+164,13,view,fitness gear for home workouts,223.0,2024-03-28T22:41:57.246839,0.2,General,view
+165,64,cart,affordable kitchen appliances,74.0,2024-06-08T22:41:57.246845,0.2,General,view
+165,64,cart,popular gadgets for teens,74.0,2024-06-08T22:41:57.246845,0.2,General,view
+166,82,view,affordable kitchen appliances,,2024-08-18T22:41:57.246850,0.2,General,view
+166,82,view,home decor under $50,,2024-08-18T22:41:57.246850,0.2,General,view
+166,82,view,trendy office supplies,,2024-08-18T22:41:57.246850,0.2,General,view
+167,70,cart,gift ideas for book lovers,300.0,2024-02-08T22:41:57.246856,0.4,Book,view
+168,30,cart,popular gadgets for teens,,2024-08-20T22:41:57.246861,0.4,General,view
+168,30,cart,holiday gifts for parents,,2024-08-20T22:41:57.246861,0.4,General,view
+168,30,cart,home decor under $50,,2024-08-20T22:41:57.246861,0.4,General,view
+170,32,search,popular gadgets for teens,,2024-09-14T22:41:57.246872,1.0,General,view
+170,32,search,holiday gifts for parents,,2024-09-14T22:41:57.246872,1.0,General,view
+170,32,search,fitness gear for home workouts,,2024-09-14T22:41:57.246872,1.0,General,view
+171,53,cart,holiday gifts for parents,299.0,2024-07-01T22:41:57.246882,1.0,General,view
+171,53,cart,unique gifts for nature lovers,299.0,2024-07-01T22:41:57.246882,1.0,General,view
+171,53,cart,affordable kitchen appliances,299.0,2024-07-01T22:41:57.246882,1.0,General,view
+172,86,view,leather jackets by Harley-Davidson,373.0,2024-09-17T22:41:57.246892,1.0,Clothing,view
+172,86,view,Levi's skinny jeans,373.0,2024-09-17T22:41:57.246892,1.0,Clothing,view
+173,76,purchase,modern glass coffee tables,116.0,2024-08-21T22:41:57.246908,0.2,Furniture,view
+173,76,purchase,minimalist desks for home offices,116.0,2024-08-21T22:41:57.246908,0.2,Furniture,view
+173,76,purchase,dining tables for six people,116.0,2024-08-21T22:41:57.246908,0.2,Furniture,view
+174,67,view,gift ideas for book lovers,270.0,2024-05-13T22:41:57.246915,1.0,Book,view
+175,45,view,leather jackets by Harley-Davidson,157.0,2024-02-14T22:41:57.246921,1.0,Clothing,view
+176,89,cart,science fiction books like Dune,253.0,2024-02-02T22:41:57.246927,0.7,Book,view
+177,99,view,young adult series like Harry Potter,248.0,2024-09-24T22:41:57.246933,0.7,Book,view
+177,99,view,thrillers like Gone Girl,248.0,2024-09-24T22:41:57.246933,0.7,Movie,view
+177,99,view,science fiction books like Dune,248.0,2024-09-24T22:41:57.246933,0.7,Book,view
+178,10,view,classic horror movies by Hitchcock,337.0,2024-06-30T22:41:57.246939,1.0,Movie,view
+178,10,view,Studio Ghibli masterpieces,337.0,2024-06-30T22:41:57.246939,1.0,General,view
+178,10,view,Marvel superhero sagas,337.0,2024-06-30T22:41:57.246939,1.0,General,view
+179,44,view,affordable kitchen appliances,292.0,2024-02-28T22:41:57.246944,0.2,General,view
+179,44,view,gift ideas for tech enthusiasts,292.0,2024-02-28T22:41:57.246944,0.2,General,view
+180,79,cart,historical fiction like The Nightingale,105.0,2024-09-29T22:41:57.246950,0.2,Book,view
+180,79,cart,young adult series like Harry Potter,105.0,2024-09-29T22:41:57.246950,0.2,Book,view
+181,87,cart,fitness gear for home workouts,121.0,2023-12-05T22:41:57.246955,1.0,General,view
+181,87,cart,gift ideas for tech enthusiasts,121.0,2023-12-05T22:41:57.246955,1.0,General,view
+181,87,cart,trendy office supplies,121.0,2023-12-05T22:41:57.246955,1.0,General,view
+183,71,cart,fresh berries and fruit baskets,219.0,2024-02-26T22:41:57.246967,1.0,Food,view
+183,71,cart,gluten-free pasta and snacks,219.0,2024-02-26T22:41:57.246967,1.0,Food,view
+183,71,cart,artisanal cheese for wine pairing,219.0,2024-02-26T22:41:57.246967,1.0,Food,view
+184,57,cart,gift ideas for book lovers,172.0,2023-11-28T22:41:57.246973,0.7,Book,view
+186,65,search,science fiction thrillers like Blade Runner,99.0,2024-09-10T22:41:57.246989,1.0,Movie,view
+187,74,search,gift ideas for tech enthusiasts,286.0,2024-05-08T22:41:57.246995,1.0,General,view
+187,74,search,popular gadgets for teens,286.0,2024-05-08T22:41:57.246995,1.0,General,view
+187,74,search,trendy office supplies,286.0,2024-05-08T22:41:57.246995,1.0,General,view
+188,49,search,holiday gifts for parents,148.0,2024-09-21T22:41:57.247005,0.2,General,view
+188,49,search,affordable kitchen appliances,148.0,2024-09-21T22:41:57.247005,0.2,General,view
+188,49,search,pet accessories for dog owners,148.0,2024-09-21T22:41:57.247005,0.2,General,view
+189,59,purchase,home decor under $50,132.0,2024-01-01T22:41:57.247011,0.2,General,view
+189,59,purchase,gift ideas for tech enthusiasts,132.0,2024-01-01T22:41:57.247011,0.2,General,view
+189,59,purchase,popular gadgets for teens,132.0,2024-01-01T22:41:57.247011,0.2,General,view
+190,32,search,bookshelves for small spaces,26.0,2023-12-07T22:41:57.247021,0.7,Book,view
+191,19,purchase,gift ideas for book lovers,281.0,2023-12-22T22:41:57.247031,0.2,Book,view
+192,59,view,cold brew coffee packs,357.0,2024-01-21T22:41:57.247040,0.7,Food,view
+192,59,view,artisanal cheese for wine pairing,357.0,2024-01-21T22:41:57.247040,0.7,Food,view
+193,82,purchase,fresh berries and fruit baskets,80.0,2024-09-24T22:41:57.247047,1.0,Food,view
+194,56,search,gift ideas for book lovers,12.0,2024-01-19T22:41:57.247052,1.0,Book,view
+195,41,purchase,historical fiction like The Nightingale,,2024-05-17T22:41:57.247058,1.0,Book,view
+195,41,purchase,mystery novels by Agatha Christie,,2024-05-17T22:41:57.247058,1.0,Book,view
+196,65,purchase,gaming monitors by ASUS,386.0,2024-08-03T22:41:57.247064,0.4,General,view
+196,65,purchase,Samsung Galaxy S23 smartphones,386.0,2024-08-03T22:41:57.247064,0.4,Electronics,view
+197,98,view,Studio Ghibli masterpieces,292.0,2024-07-04T22:41:57.247071,0.4,Movie,view
+197,98,view,Studio Ghibli masterpieces,292.0,2024-07-04T22:41:57.247071,0.4,Movie,view
+197,98,view,Studio Ghibli masterpieces,292.0,2024-07-04T22:41:57.247071,0.4,Movie,view
+198,44,purchase,black hoodies and casual t-shirts,238.0,2024-07-31T22:41:57.247076,1.0,Clothing,view
+199,49,purchase,fitness gear for home workouts,225.0,2024-03-09T22:41:57.247082,0.2,General,view
+199,49,purchase,home decor under $50,225.0,2024-03-09T22:41:57.247082,0.2,General,view
+199,49,purchase,popular gadgets for teens,225.0,2024-03-09T22:41:57.247082,0.2,General,view
+200,49,cart,home decor under $50,,2024-02-10T22:41:57.247088,0.4,General,view
+200,49,cart,unique gifts for nature lovers,,2024-02-10T22:41:57.247088,0.4,General,view
+200,49,cart,popular gadgets for teens,,2024-02-10T22:41:57.247088,0.4,General,view
+201,36,view,popular gadgets for teens,156.0,2024-05-09T22:41:57.247093,0.4,General,view
+201,36,view,pet accessories for dog owners,156.0,2024-05-09T22:41:57.247093,0.4,General,view
+201,36,view,gift ideas for tech enthusiasts,156.0,2024-05-09T22:41:57.247093,0.4,General,view
+202,90,purchase,affordable kitchen appliances like air fryers and blenders,299.0,2024-03-08T22:41:57.247102,0.2,General,view
+202,90,purchase,affordable kitchen appliances like air fryers and blenders,299.0,2024-03-08T22:41:57.247102,0.2,General,view
+202,90,purchase,affordable kitchen appliances like air fryers and blenders,299.0,2024-03-08T22:41:57.247102,0.2,General,view
+203,49,purchase,unique gifts for nature lovers,117.0,2024-09-23T22:41:57.247107,0.2,General,view
+203,49,purchase,affordable kitchen appliances,117.0,2024-09-23T22:41:57.247107,0.2,General,view
+203,49,purchase,trendy office supplies,117.0,2024-09-23T22:41:57.247107,0.2,General,view
+204,25,purchase,leather jackets by Harley-Davidson,312.0,2024-10-05T22:41:57.247113,0.7,Clothing,view
+205,16,purchase,ergonomic office chairs for work-from-home,22.0,2024-08-02T22:41:57.247119,0.7,Furniture,view
+205,16,purchase,recliner chairs for living rooms,22.0,2024-08-02T22:41:57.247119,0.7,Furniture,view
+206,20,cart,historical fiction like The Nightingale,143.0,2023-12-26T22:41:57.247124,0.4,Book,view
+206,20,cart,science fiction books like Dune,143.0,2023-12-26T22:41:57.247124,0.4,Book,view
+206,20,cart,thrillers like Gone Girl,143.0,2023-12-26T22:41:57.247124,0.4,Movie,view
+207,47,search,popular gadgets for teens,27.0,2024-05-08T22:41:57.247130,0.4,General,view
+207,47,search,pet accessories for dog owners,27.0,2024-05-08T22:41:57.247130,0.4,General,view
+207,47,search,gift ideas for tech enthusiasts,27.0,2024-05-08T22:41:57.247130,0.4,General,view
+208,54,view,home decor under $50,341.0,2024-04-14T22:41:57.247136,0.4,General,view
+208,54,view,pet accessories for dog owners,341.0,2024-04-14T22:41:57.247136,0.4,General,view
+208,54,view,holiday gifts for parents,341.0,2024-04-14T22:41:57.247136,0.4,General,view
+209,54,purchase,black hoodies and casual t-shirts,27.0,2024-09-18T22:41:57.247141,0.2,Clothing,view
+210,27,purchase,pet accessories for dog owners,345.0,2024-10-09T22:41:57.247147,1.0,General,view
+210,27,purchase,unique gifts for nature lovers,345.0,2024-10-09T22:41:57.247147,1.0,General,view
+210,27,purchase,trendy office supplies,345.0,2024-10-09T22:41:57.247147,1.0,General,view
+211,44,cart,gift ideas for tech enthusiasts,115.0,2024-01-08T22:41:57.247152,0.7,General,view
+211,44,cart,home decor under $50,115.0,2024-01-08T22:41:57.247152,0.7,General,view
+211,44,cart,unique gifts for nature lovers,115.0,2024-01-08T22:41:57.247152,0.7,General,view
+212,92,purchase,unique gifts for nature lovers,83.0,2024-04-09T22:41:57.247162,1.0,General,view
+212,92,purchase,holiday gifts for parents,83.0,2024-04-09T22:41:57.247162,1.0,General,view
+212,92,purchase,gift ideas for book lovers,83.0,2024-04-09T22:41:57.247162,1.0,Book,view
+213,70,search,popular gadgets for teens,,2024-01-25T22:41:57.247168,0.4,General,view
+213,70,search,unique gifts for nature lovers,,2024-01-25T22:41:57.247168,0.4,General,view
+213,70,search,affordable kitchen appliances,,2024-01-25T22:41:57.247168,0.4,General,view
+214,27,cart,mystery novels by Agatha Christie,32.0,2024-10-24T22:41:57.247174,0.2,Book,view
+215,46,cart,affordable kitchen appliances,13.0,2023-12-11T22:41:57.247180,0.2,General,view
+215,46,cart,fitness gear for home workouts,13.0,2023-12-11T22:41:57.247180,0.2,General,view
+215,46,cart,popular gadgets for teens,13.0,2023-12-11T22:41:57.247180,0.2,General,view
+216,80,purchase,gift ideas for book lovers,260.0,2024-01-22T22:41:57.247186,0.7,Book,view
+217,79,view,black hoodies and casual t-shirts,280.0,2024-11-05T22:41:57.247192,1.0,Clothing,view
+218,44,purchase,recliner chairs for living rooms,201.0,2023-12-02T22:41:57.247198,1.0,Furniture,view
+218,44,purchase,king-size beds with memory foam mattresses,201.0,2023-12-02T22:41:57.247198,1.0,Furniture,view
+218,44,purchase,dining tables for six people,201.0,2023-12-02T22:41:57.247198,1.0,Furniture,view
+220,54,purchase,holiday gifts for parents,271.0,2024-11-06T22:41:57.247210,1.0,General,view
+220,54,purchase,gift ideas for tech enthusiasts,271.0,2024-11-06T22:41:57.247210,1.0,General,view
+220,54,purchase,home decor under $50,271.0,2024-11-06T22:41:57.247210,1.0,General,view
+221,76,search,popular gadgets for teens,216.0,2024-03-25T22:41:57.247216,0.4,General,view
+221,76,search,pet accessories for dog owners,216.0,2024-03-25T22:41:57.247216,0.4,General,view
+221,76,search,trendy office supplies,216.0,2024-03-25T22:41:57.247216,0.4,General,view
+222,99,cart,science fiction books like Dune,324.0,2023-12-29T22:41:57.247227,0.2,Book,view
+224,75,view,home decor under $50,297.0,2024-06-15T22:41:57.247242,1.0,General,view
+224,75,view,fitness gear for home workouts,297.0,2024-06-15T22:41:57.247242,1.0,General,view
+224,75,view,affordable kitchen appliances,297.0,2024-06-15T22:41:57.247242,1.0,General,view
+225,2,cart,popular gadgets for teens,341.0,2024-01-19T22:41:57.247252,1.0,General,view
+225,2,cart,affordable kitchen appliances,341.0,2024-01-19T22:41:57.247252,1.0,General,view
+225,2,cart,gift ideas for book lovers,341.0,2024-01-19T22:41:57.247252,1.0,Book,view
+226,27,purchase,L-shaped sectional sofas,33.0,2024-09-20T22:41:57.247258,1.0,Furniture,view
+226,27,purchase,modern glass coffee tables,33.0,2024-09-20T22:41:57.247258,1.0,Furniture,view
+227,39,view,classic horror movies by Hitchcock,281.0,2023-12-18T22:41:57.247268,0.4,Movie,view
+227,39,view,epic fantasy films like The Hobbit trilogy,281.0,2023-12-18T22:41:57.247268,0.4,Movie,view
+227,39,view,biographical films about musicians,281.0,2023-12-18T22:41:57.247268,0.4,Movie,view
+228,25,purchase,gift ideas for book lovers,,2024-06-15T22:41:57.247274,0.7,Book,view
+229,62,search,gift ideas for tech enthusiasts,224.0,2024-07-11T22:41:57.247280,1.0,General,view
+229,62,search,fitness gear for home workouts,224.0,2024-07-11T22:41:57.247280,1.0,General,view
+229,62,search,popular gadgets for teens,224.0,2024-07-11T22:41:57.247280,1.0,General,view
+230,38,cart,affordable kitchen appliances,,2024-02-23T22:41:57.247284,0.4,General,view
+230,38,cart,fitness gear for home workouts,,2024-02-23T22:41:57.247284,0.4,General,view
+230,38,cart,home decor under $50,,2024-02-23T22:41:57.247284,0.4,General,view
+231,76,purchase,Marvel superhero sagas,47.0,2024-06-22T22:41:57.247290,0.2,General,view
+231,76,purchase,classic horror movies by Hitchcock,47.0,2024-06-22T22:41:57.247290,0.2,Movie,view
+231,76,purchase,romantic comedies like Notting Hill,47.0,2024-06-22T22:41:57.247290,0.2,General,view
+232,47,cart,artisanal cheese for wine pairing,,2024-01-24T22:41:57.247295,0.4,Food,view
+233,76,search,home decor under $50,,2024-05-17T22:41:57.247300,1.0,General,view
+233,76,search,gift ideas for tech enthusiasts,,2024-05-17T22:41:57.247300,1.0,General,view
+234,35,search,classic horror movies by Hitchcock,210.0,2024-10-06T22:41:57.247307,0.4,Movie,view
+234,35,search,biographical films about musicians,210.0,2024-10-06T22:41:57.247307,0.4,Movie,view
+234,35,search,Studio Ghibli masterpieces,210.0,2024-10-06T22:41:57.247307,0.4,General,view
+235,49,view,animated movies for family nights,21.0,2024-10-04T22:41:57.247313,0.4,Movie,view
+235,49,view,classic horror movies by Hitchcock,21.0,2024-10-04T22:41:57.247313,0.4,Movie,view
+235,49,view,Oscar-winning dramas from the past decade,21.0,2024-10-04T22:41:57.247313,0.4,General,view
+236,38,search,gift ideas for book lovers,123.0,2024-06-10T22:41:57.247318,1.0,Book,view
+237,8,purchase,black hoodies and casual t-shirts,104.0,2024-04-30T22:41:57.247324,1.0,Clothing,view
+238,18,purchase,ergonomic office chairs for work-from-home,358.0,2024-07-22T22:41:57.247330,1.0,Furniture,view
+238,18,purchase,modern glass coffee tables,358.0,2024-07-22T22:41:57.247330,1.0,Furniture,view
+239,90,purchase,black hoodies and casual t-shirts,166.0,2023-12-26T22:41:57.247339,0.7,Clothing,view
+240,84,view,bookshelves for small spaces,,2024-08-16T22:41:57.247345,0.7,Book,view
+241,52,view,holiday gifts for parents,190.0,2024-06-05T22:41:57.247350,0.2,General,view
+241,52,view,home decor under $50,190.0,2024-06-05T22:41:57.247350,0.2,General,view
+241,52,view,affordable kitchen appliances,190.0,2024-06-05T22:41:57.247350,0.2,General,view
+242,91,purchase,artisanal cheese for wine pairing,356.0,2024-01-27T22:41:57.247360,0.4,Food,view
+242,91,purchase,fresh berries and fruit baskets,356.0,2024-01-27T22:41:57.247360,0.4,Food,view
+242,91,purchase,cold brew coffee packs,356.0,2024-01-27T22:41:57.247360,0.4,Food,view
+243,96,purchase,fitness gear for home workouts,190.0,2024-01-29T22:41:57.247366,0.4,General,view
+243,96,purchase,affordable kitchen appliances,190.0,2024-01-29T22:41:57.247366,0.4,General,view
+243,96,purchase,popular gadgets for teens,190.0,2024-01-29T22:41:57.247366,0.4,General,view
+244,25,search,holiday gifts for parents,,2024-05-23T22:41:57.247371,0.2,General,view
+244,25,search,fitness gear for home workouts,,2024-05-23T22:41:57.247371,0.2,General,view
+244,25,search,affordable kitchen appliances,,2024-05-23T22:41:57.247371,0.2,General,view
+245,39,view,dining tables for six people,,2024-03-09T22:41:57.247376,0.2,Furniture,view
+245,39,view,modern glass coffee tables,,2024-03-09T22:41:57.247376,0.2,Furniture,view
+245,39,view,ergonomic office chairs for work-from-home,,2024-03-09T22:41:57.247376,0.2,Furniture,view
+246,21,purchase,gift ideas for tech enthusiasts,154.0,2024-05-10T22:41:57.247382,1.0,General,view
+246,21,purchase,fitness gear for home workouts,154.0,2024-05-10T22:41:57.247382,1.0,General,view
+246,21,purchase,trendy office supplies,154.0,2024-05-10T22:41:57.247382,1.0,General,view
+247,84,cart,GoPro Hero cameras for adventure videos,198.0,2024-09-06T22:41:57.249438,0.4,Electronics,view
+247,84,cart,gaming monitors by ASUS,198.0,2024-09-06T22:41:57.249438,0.4,General,view
+247,84,cart,Samsung Galaxy S23 smartphones,198.0,2024-09-06T22:41:57.249438,0.4,Electronics,view
+248,72,view,pet accessories for dog owners,192.0,2024-07-02T22:41:57.249456,0.7,General,view
+248,72,view,unique gifts for nature lovers,192.0,2024-07-02T22:41:57.249456,0.7,General,view
+248,72,view,holiday gifts for parents,192.0,2024-07-02T22:41:57.249456,0.7,General,view
+250,91,purchase,trendy office supplies,147.0,2024-04-28T22:41:57.249469,0.2,General,view
+250,91,purchase,popular gadgets for teens,147.0,2024-04-28T22:41:57.249469,0.2,General,view
+250,91,purchase,gift ideas for tech enthusiasts,147.0,2024-04-28T22:41:57.249469,0.2,General,view
+251,3,search,gift ideas for book lovers,310.0,2024-05-21T22:41:57.249475,0.2,Book,view
+252,57,purchase,science fiction books like Dune,257.0,2024-09-27T22:41:57.249483,0.4,Book,view
+252,57,purchase,young adult series like Harry Potter,257.0,2024-09-27T22:41:57.249483,0.4,Book,view
+253,46,purchase,animated movies for family nights,142.0,2024-10-03T22:41:57.249489,0.4,Movie,view
+253,46,purchase,epic fantasy films like The Hobbit trilogy,142.0,2024-10-03T22:41:57.249489,0.4,Movie,view
+253,46,purchase,romantic comedies like Notting Hill,142.0,2024-10-03T22:41:57.249489,0.4,General,view
+254,82,search,gift ideas for tech enthusiasts,45.0,2024-04-27T22:41:57.249495,0.7,General,view
+254,82,search,unique gifts for nature lovers,45.0,2024-04-27T22:41:57.249495,0.7,General,view
+254,82,search,pet accessories for dog owners,45.0,2024-04-27T22:41:57.249495,0.7,General,view
+255,71,search,home decor under $50,,2024-04-22T22:41:57.249500,0.7,General,view
+255,71,search,trendy office supplies,,2024-04-22T22:41:57.249500,0.7,General,view
+255,71,search,pet accessories for dog owners,,2024-04-22T22:41:57.249500,0.7,General,view
+256,83,cart,Samsung Galaxy S23 smartphones,97.0,2024-06-15T22:41:57.249516,1.0,Electronics,view
+257,50,search,home decor under $50,346.0,2024-08-14T22:41:57.249525,0.2,General,view
+257,50,search,pet accessories for dog owners,346.0,2024-08-14T22:41:57.249525,0.2,General,view
+257,50,search,trendy office supplies,346.0,2024-08-14T22:41:57.249525,0.2,General,view
+258,90,purchase,leather jackets by Harley-Davidson,227.0,2024-05-24T22:41:57.249534,0.4,Clothing,view
+259,84,purchase,black hoodies and casual t-shirts,280.0,2024-10-08T22:41:57.249544,0.4,Clothing,view
+260,26,view,trendy office supplies,11.0,2024-09-13T22:41:57.249553,0.4,General,view
+260,26,view,unique gifts for nature lovers,11.0,2024-09-13T22:41:57.249553,0.4,General,view
+260,26,view,affordable kitchen appliances,11.0,2024-09-13T22:41:57.249553,0.4,General,view
+261,8,search,Sony noise-cancelling headphones,212.0,2024-06-21T22:41:57.249560,1.0,Electronics,view
+261,8,search,Apple MacBook Pro laptops,212.0,2024-06-21T22:41:57.249560,1.0,Book,view
+262,22,cart,gift ideas for book lovers,302.0,2024-02-03T22:41:57.249572,1.0,Book,view
+263,95,purchase,gift ideas for book lovers,,2024-04-26T22:41:57.249578,0.7,Book,view
+264,65,purchase,home decor under $50,373.0,2023-12-05T22:41:57.249588,0.2,General,view
+264,65,purchase,unique gifts for nature lovers,373.0,2023-12-05T22:41:57.249588,0.2,General,view
+264,65,purchase,popular gadgets for teens,373.0,2023-12-05T22:41:57.249588,0.2,General,view
+265,65,search,affordable kitchen appliances,286.0,2024-08-08T22:41:57.249618,1.0,General,view
+265,65,search,fitness gear for home workouts,286.0,2024-08-08T22:41:57.249618,1.0,General,view
+265,65,search,unique gifts for nature lovers,286.0,2024-08-08T22:41:57.249618,1.0,General,view
+266,46,cart,minimalist desks for home offices,25.0,2024-05-06T22:41:57.249627,0.2,Furniture,view
+266,46,cart,dining tables for six people,25.0,2024-05-06T22:41:57.249627,0.2,Furniture,view
+267,35,search,affordable kitchen appliances,324.0,2024-09-05T22:41:57.249639,0.2,General,view
+267,35,search,trendy office supplies,324.0,2024-09-05T22:41:57.249639,0.2,General,view
+267,35,search,home decor under $50,324.0,2024-09-05T22:41:57.249639,0.2,General,view
+268,81,view,gift ideas for book lovers,271.0,2024-01-02T22:41:57.249649,0.4,Book,view
+269,62,search,fitness gear for home workouts,335.0,2024-05-09T22:41:57.249658,1.0,General,view
+269,62,search,pet accessories for dog owners,335.0,2024-05-09T22:41:57.249658,1.0,General,view
+269,62,search,popular gadgets for teens,335.0,2024-05-09T22:41:57.249658,1.0,General,view
+270,5,cart,Bose Bluetooth speakers,,2024-09-07T22:41:57.249668,1.0,Electronics,view
+270,5,cart,Apple MacBook Pro laptops,,2024-09-07T22:41:57.249668,1.0,Book,view
+271,38,search,popular gadgets for teens,209.0,2024-05-16T22:41:57.249684,0.4,General,view
+271,38,search,fitness gear for home workouts,209.0,2024-05-16T22:41:57.249684,0.4,General,view
+271,38,search,affordable kitchen appliances,209.0,2024-05-16T22:41:57.249684,0.4,General,view
+272,18,search,trendy office supplies,169.0,2024-08-06T22:41:57.249690,1.0,General,view
+272,18,search,holiday gifts for parents,169.0,2024-08-06T22:41:57.249690,1.0,General,view
+272,18,search,unique gifts for nature lovers,169.0,2024-08-06T22:41:57.249690,1.0,General,view
+273,5,cart,gift ideas for book lovers,41.0,2024-01-29T22:41:57.249701,0.2,Book,view
+274,3,cart,gluten-free pasta and snacks,19.0,2024-09-14T22:41:57.249707,1.0,Food,view
+275,88,search,pet accessories for dog owners,357.0,2024-10-19T22:41:57.249715,0.7,General,view
+275,88,search,gift ideas for tech enthusiasts,357.0,2024-10-19T22:41:57.249715,0.7,General,view
+275,88,search,affordable kitchen appliances,357.0,2024-10-19T22:41:57.249715,0.7,General,view
+276,25,search,pet accessories for dog owners,387.0,2024-05-06T22:41:57.249724,0.2,General,view
+276,25,search,gift ideas for tech enthusiasts,387.0,2024-05-06T22:41:57.249724,0.2,General,view
+276,25,search,popular gadgets for teens,387.0,2024-05-06T22:41:57.249724,0.2,General,view
+277,16,purchase,Apple MacBook Pro laptops,293.0,2023-12-01T22:41:57.249741,0.2,Book,view
+278,74,purchase,classic horror movies by Hitchcock,227.0,2023-11-28T22:41:57.249752,0.4,Movie,view
+278,74,purchase,nature documentaries narrated by David Attenborough,227.0,2023-11-28T22:41:57.249752,0.4,General,view
+278,74,purchase,romantic comedies like Notting Hill,227.0,2023-11-28T22:41:57.249752,0.4,General,view
+279,9,purchase,L-shaped sectional sofas,161.0,2024-05-17T22:41:57.249758,1.0,Furniture,view
+279,9,purchase,king-size beds with memory foam mattresses,161.0,2024-05-17T22:41:57.249758,1.0,Furniture,view
+280,2,search,thrillers like Gone Girl,261.0,2024-04-28T22:41:57.249764,0.7,Movie,view
+280,2,search,mystery novels by Agatha Christie,261.0,2024-04-28T22:41:57.249764,0.7,Book,view
+281,37,search,holiday gifts for parents,229.0,2023-11-27T22:41:57.249770,0.2,General,view
+282,60,purchase,gluten-free pasta and snacks,75.0,2024-01-06T22:41:57.249775,1.0,Food,view
+282,60,purchase,dark chocolate gift boxes,75.0,2024-01-06T22:41:57.249775,1.0,Food,view
+283,32,view,mystery novels by Agatha Christie,131.0,2023-11-13T22:41:57.249781,0.2,Book,view
+283,32,view,science fiction books like Dune,131.0,2023-11-13T22:41:57.249781,0.2,Book,view
+283,32,view,thrillers like Gone Girl,131.0,2023-11-13T22:41:57.249781,0.2,Movie,view
+285,68,purchase,gluten-free pasta and snacks,40.0,2024-04-06T22:41:57.249794,0.2,Food,view
+286,92,purchase,gift ideas for tech enthusiasts,209.0,2024-06-20T22:41:57.249804,1.0,General,view
+286,92,purchase,fitness gear for home workouts,209.0,2024-06-20T22:41:57.249804,1.0,General,view
+286,92,purchase,home decor under $50,209.0,2024-06-20T22:41:57.249804,1.0,General,view
+287,48,purchase,affordable kitchen appliances,161.0,2024-04-13T22:41:57.249810,1.0,General,view
+287,48,purchase,unique gifts for nature lovers,161.0,2024-04-13T22:41:57.249810,1.0,General,view
+287,48,purchase,home decor under $50,161.0,2024-04-13T22:41:57.249810,1.0,General,view
+288,50,purchase,holiday gifts for parents,300.0,2024-10-09T22:41:57.249816,0.2,General,view
+288,50,purchase,popular gadgets for teens,300.0,2024-10-09T22:41:57.249816,0.2,General,view
+288,50,purchase,trendy office supplies,300.0,2024-10-09T22:41:57.249816,0.2,General,view
+289,2,purchase,unique gifts for nature lovers,393.0,2024-10-30T22:41:57.249827,0.2,General,view
+289,2,purchase,affordable kitchen appliances,393.0,2024-10-30T22:41:57.249827,0.2,General,view
+289,2,purchase,home decor under $50,393.0,2024-10-30T22:41:57.249827,0.2,General,view
+290,65,purchase,dark chocolate gift boxes,323.0,2024-05-25T22:41:57.249833,0.2,Food,view
+291,30,cart,popular gadgets for teens,,2024-05-28T22:41:57.249839,1.0,General,view
+291,30,cart,unique gifts for nature lovers,,2024-05-28T22:41:57.249839,1.0,General,view
+291,30,cart,holiday gifts for parents,,2024-05-28T22:41:57.249839,1.0,General,view
+292,92,cart,bookshelves for small spaces,132.0,2024-08-19T22:41:57.249844,0.2,Book,view
+293,4,cart,popular gadgets for teens,372.0,2024-05-16T22:41:57.249850,0.4,General,view
+294,55,view,gift ideas for book lovers,139.0,2024-04-22T22:41:57.249856,0.7,Book,view
+295,50,view,young adult series like Harry Potter,182.0,2024-10-13T22:41:57.249866,0.2,Book,view
+295,50,view,historical fiction like The Nightingale,182.0,2024-10-13T22:41:57.249866,0.2,Book,view
+295,50,view,mystery novels by Agatha Christie,182.0,2024-10-13T22:41:57.249866,0.2,Book,view
+296,26,view,gift ideas for book lovers,178.0,2024-07-04T22:41:57.249872,0.4,Book,view
+297,13,purchase,unique gifts for nature lovers,,2024-10-17T22:41:57.249877,0.7,General,view
+297,13,purchase,trendy office supplies,,2024-10-17T22:41:57.249877,0.7,General,view
+297,13,purchase,popular gadgets for teens,,2024-10-17T22:41:57.249877,0.7,General,view
+298,76,purchase,4K OLED TVs by LG,363.0,2024-06-30T22:41:57.249882,1.0,Electronics,view
+299,18,purchase,Marvel superhero sagas,254.0,2023-11-26T22:41:57.249892,0.4,Movie,view
+299,18,purchase,Marvel superhero sagas,254.0,2023-11-26T22:41:57.249892,0.4,Movie,view
+299,18,purchase,Marvel superhero sagas,254.0,2023-11-26T22:41:57.249892,0.4,Movie,view
+300,4,search,Levi's skinny jeans,275.0,2024-10-10T22:41:57.249898,1.0,Clothing,view
+300,4,search,black hoodies and casual t-shirts,275.0,2024-10-10T22:41:57.249898,1.0,Clothing,view
+301,42,view,young adult series like Harry Potter,,2024-07-12T22:41:57.249908,0.4,Book,view
+301,42,view,historical fiction like The Nightingale,,2024-07-12T22:41:57.249908,0.4,Book,view
+302,27,cart,mystery novels by Agatha Christie,222.0,2024-03-20T22:41:57.249914,0.4,Book,view
+303,36,purchase,holiday gifts for parents,244.0,2024-03-18T22:41:57.249920,0.7,General,view
+304,68,search,Apple MacBook Pro laptops,7.0,2024-08-09T22:41:57.249930,0.4,Book,view
+304,68,search,gaming monitors by ASUS,7.0,2024-08-09T22:41:57.249930,0.4,General,view
+305,53,cart,fitness gear for home workouts,,2024-08-27T22:41:57.249935,1.0,General,view
+305,53,cart,gift ideas for tech enthusiasts,,2024-08-27T22:41:57.249935,1.0,General,view
+305,53,cart,home decor under $50,,2024-08-27T22:41:57.249935,1.0,General,view
+307,57,search,biographical films about musicians,,2024-01-12T22:41:57.249955,0.2,Movie,view
+308,23,cart,science fiction books like Dune,280.0,2024-05-10T22:41:57.249962,0.2,Book,view
+308,23,cart,classic literature like Pride and Prejudice,280.0,2024-05-10T22:41:57.249962,0.2,Book,view
+309,29,view,thrillers like Gone Girl,34.0,2024-09-20T22:41:57.249967,0.7,Movie,view
+309,29,view,young adult series like Harry Potter,34.0,2024-09-20T22:41:57.249967,0.7,Book,view
+310,21,purchase,holiday gifts for parents,305.0,2024-10-12T22:41:57.249974,0.4,General,view
+310,21,purchase,unique gifts for nature lovers,305.0,2024-10-12T22:41:57.249974,0.4,General,view
+310,21,purchase,popular gadgets for teens,305.0,2024-10-12T22:41:57.249974,0.4,General,view
+311,92,search,Bose Bluetooth speakers,109.0,2024-05-27T22:41:57.249979,0.2,Electronics,view
+311,92,search,Apple MacBook Pro laptops,109.0,2024-05-27T22:41:57.249979,0.2,Book,view
+311,92,search,gaming monitors by ASUS,109.0,2024-05-27T22:41:57.249979,0.2,General,view
+312,42,purchase,gift ideas for book lovers,,2024-09-07T22:41:57.249989,0.4,Book,view
+313,76,cart,Apple MacBook Pro laptops,315.0,2024-08-13T22:41:57.249999,0.7,Book,view
+313,76,cart,Canon digital cameras for photography,315.0,2024-08-13T22:41:57.249999,0.7,Electronics,view
+314,26,view,gift ideas for book lovers,37.0,2024-02-28T22:41:57.250005,0.7,Book,view
+315,61,cart,science fiction thrillers like Blade Runner,,2024-04-28T22:41:57.250011,0.7,Book,view
+316,54,purchase,unique gifts for nature lovers,303.0,2024-04-10T22:41:57.250017,0.2,General,view
+316,54,purchase,holiday gifts for parents,303.0,2024-04-10T22:41:57.250017,0.2,General,view
+316,54,purchase,gift ideas for book lovers,303.0,2024-04-10T22:41:57.250017,0.2,Book,view
+317,43,search,gift ideas for book lovers,37.0,2024-07-13T22:41:57.250023,0.7,Book,view
+318,6,search,young adult series like Harry Potter,37.0,2024-09-23T22:41:57.250040,1.0,Book,view
+318,6,search,thrillers like Gone Girl,37.0,2024-09-23T22:41:57.250040,1.0,Movie,view
+318,6,search,historical fiction like The Nightingale,37.0,2024-09-23T22:41:57.250040,1.0,Book,view
+319,10,search,black hoodies and casual t-shirts,374.0,2024-02-16T22:41:57.250056,1.0,Clothing,view
+320,4,view,gift ideas for book lovers,228.0,2024-01-29T22:41:57.250066,0.2,Book,view
+321,1,cart,modern office supplies like ergonomic chairs and desk organizers,,2024-07-07T22:41:57.250078,1.0,General,view
+321,1,cart,modern office supplies like ergonomic chairs and desk organizers,,2024-07-07T22:41:57.250078,1.0,General,view
+321,1,cart,modern office supplies like ergonomic chairs and desk organizers,,2024-07-07T22:41:57.250078,1.0,General,view
+322,10,view,affordable kitchen appliances,309.0,2024-04-13T22:41:57.250089,0.4,General,view
+322,10,view,trendy office supplies,309.0,2024-04-13T22:41:57.250089,0.4,General,view
+322,10,view,popular gadgets for teens,309.0,2024-04-13T22:41:57.250089,0.4,General,view
+323,67,cart,historical fiction like The Nightingale,,2023-11-25T22:41:57.250099,0.2,Book,view
+323,67,cart,science fiction books like Dune,,2023-11-25T22:41:57.250099,0.2,Book,view
+324,94,search,popular gadgets for teens,,2023-11-30T22:41:57.250104,1.0,General,view
+324,94,search,affordable kitchen appliances,,2023-11-30T22:41:57.250104,1.0,General,view
+324,94,search,home decor under $50,,2023-11-30T22:41:57.250104,1.0,General,view
+325,28,purchase,holiday gifts for parents,19.0,2024-03-16T22:41:57.250116,0.2,General,view
+325,28,purchase,unique gifts for nature lovers,19.0,2024-03-16T22:41:57.250116,0.2,General,view
+325,28,purchase,fitness gear for home workouts,19.0,2024-03-16T22:41:57.250116,0.2,General,view
+326,26,view,young adult series like Harry Potter,357.0,2024-05-18T22:41:57.250122,0.7,Book,view
+326,26,view,historical fiction like The Nightingale,357.0,2024-05-18T22:41:57.250122,0.7,Book,view
+327,31,view,gift ideas for tech enthusiasts,341.0,2024-11-10T22:41:57.250131,0.7,General,view
+327,31,view,unique gifts for nature lovers,341.0,2024-11-10T22:41:57.250131,0.7,General,view
+327,31,view,fitness gear for home workouts,341.0,2024-11-10T22:41:57.250131,0.7,General,view
+328,52,purchase,science fiction thrillers like Blade Runner,321.0,2024-09-21T22:41:57.250136,0.2,Book,view
+329,81,purchase,unique gifts for nature lovers,,2024-03-19T22:41:57.250144,1.0,General,view
+329,81,purchase,home decor under $50,,2024-03-19T22:41:57.250144,1.0,General,view
+329,81,purchase,holiday gifts for parents,,2024-03-19T22:41:57.250144,1.0,General,view
+330,62,search,holiday gifts for parents,354.0,2024-08-08T22:41:57.250154,1.0,General,view
+330,62,search,trendy office supplies,354.0,2024-08-08T22:41:57.250154,1.0,General,view
+330,62,search,unique gifts for nature lovers,354.0,2024-08-08T22:41:57.250154,1.0,General,view
+331,63,search,gift ideas for book lovers,210.0,2024-04-28T22:41:57.250170,0.7,Book,view
+332,57,purchase,artisanal cheese for wine pairing,4.0,2024-05-22T22:41:57.250180,0.7,Food,view
+332,57,purchase,gluten-free pasta and snacks,4.0,2024-05-22T22:41:57.250180,0.7,Food,view
+333,90,purchase,home decor under $50,369.0,2023-12-02T22:41:57.250190,0.2,General,view
+333,90,purchase,affordable kitchen appliances,369.0,2023-12-02T22:41:57.250190,0.2,General,view
+333,90,purchase,pet accessories for dog owners,369.0,2023-12-02T22:41:57.250190,0.2,General,view
+334,83,cart,gift ideas for tech enthusiasts,294.0,2024-01-14T22:41:57.250197,0.2,General,view
+334,83,cart,holiday gifts for parents,294.0,2024-01-14T22:41:57.250197,0.2,General,view
+334,83,cart,fitness gear for home workouts,294.0,2024-01-14T22:41:57.250197,0.2,General,view
+336,56,purchase,affordable kitchen appliances,186.0,2024-02-08T22:41:57.250208,1.0,General,view
+336,56,purchase,gift ideas for tech enthusiasts,186.0,2024-02-08T22:41:57.250208,1.0,General,view
+337,80,search,fitness gear for home workouts,250.0,2024-08-19T22:41:57.250214,1.0,General,view
+337,80,search,holiday gifts for parents,250.0,2024-08-19T22:41:57.250214,1.0,General,view
+337,80,search,unique gifts for nature lovers,250.0,2024-08-19T22:41:57.250214,1.0,General,view
+338,43,search,gaming monitors by ASUS,390.0,2024-03-26T22:41:57.250219,0.7,General,view
+339,16,cart,bookshelves for small spaces,382.0,2024-11-05T22:41:57.250225,0.4,Book,view
+340,10,search,gift ideas for tech enthusiasts,320.0,2024-03-08T22:41:57.250231,1.0,General,view
+340,10,search,trendy office supplies,320.0,2024-03-08T22:41:57.250231,1.0,General,view
+340,10,search,popular gadgets for teens,320.0,2024-03-08T22:41:57.250231,1.0,General,view
+341,52,view,gift ideas for book lovers,366.0,2024-05-10T22:41:57.250237,0.2,Book,view
+342,53,purchase,gift ideas for book lovers,389.0,2023-12-02T22:41:57.250242,0.7,Book,view
+343,44,search,trendy office supplies,,2024-08-26T22:41:57.250248,1.0,General,view
+343,44,search,holiday gifts for parents,,2024-08-26T22:41:57.250248,1.0,General,view
+343,44,search,popular gadgets for teens,,2024-08-26T22:41:57.250248,1.0,General,view
+344,6,view,GoPro Hero cameras for adventure videos,,2024-07-29T22:41:57.250254,0.2,Electronics,view
+344,6,view,Samsung Galaxy S23 smartphones,,2024-07-29T22:41:57.250254,0.2,Electronics,view
+344,6,view,gaming monitors by ASUS,,2024-07-29T22:41:57.250254,0.2,General,view
+345,21,purchase,classic horror movies by Hitchcock,191.0,2024-01-07T22:41:57.250260,0.7,Movie,view
+345,21,purchase,nature documentaries narrated by David Attenborough,191.0,2024-01-07T22:41:57.250260,0.7,General,view
+345,21,purchase,romantic comedies like Notting Hill,191.0,2024-01-07T22:41:57.250260,0.7,General,view
+348,60,cart,holiday gifts for parents,246.0,2024-01-01T22:41:57.250281,1.0,General,view
+348,60,cart,trendy office supplies,246.0,2024-01-01T22:41:57.250281,1.0,General,view
+348,60,cart,home decor under $50,246.0,2024-01-01T22:41:57.250281,1.0,General,view
+349,80,search,unique gifts for nature lovers,277.0,2024-04-15T22:41:57.250287,1.0,General,view
+349,80,search,popular gadgets for teens,277.0,2024-04-15T22:41:57.250287,1.0,General,view
+349,80,search,trendy office supplies,277.0,2024-04-15T22:41:57.250287,1.0,General,view
+350,55,purchase,unique gifts for nature lovers,,2024-02-05T22:41:57.250292,0.4,General,view
+350,55,purchase,affordable kitchen appliances,,2024-02-05T22:41:57.250292,0.4,General,view
+350,55,purchase,home decor under $50,,2024-02-05T22:41:57.250292,0.4,General,view
+351,91,purchase,gift ideas for book lovers,399.0,2024-07-02T22:41:57.250303,0.4,Book,view
+352,32,cart,Levi's skinny jeans,221.0,2024-05-25T22:41:57.250314,1.0,Clothing,view
+353,81,search,recliner chairs for living rooms,189.0,2024-04-19T22:41:57.250320,1.0,Furniture,view
+354,32,view,pet accessories for dog owners,84.0,2024-05-12T22:41:57.250327,0.7,General,view
+354,32,view,popular gadgets for teens,84.0,2024-05-12T22:41:57.250327,0.7,General,view
+354,32,view,home decor under $50,84.0,2024-05-12T22:41:57.250327,0.7,General,view
+355,77,purchase,black hoodies and casual t-shirts,92.0,2024-01-27T22:41:57.250333,0.4,Clothing,view
+357,47,purchase,bookshelves for small spaces,92.0,2023-11-25T22:41:57.250344,1.0,Book,view
+358,24,cart,epic fantasy films like The Hobbit trilogy,390.0,2024-06-05T22:41:57.250350,0.2,Movie,view
+358,24,cart,animated movies for family nights,390.0,2024-06-05T22:41:57.250350,0.2,Movie,view
+358,24,cart,classic horror movies by Hitchcock,390.0,2024-06-05T22:41:57.250350,0.2,Movie,view
+359,52,cart,cold brew coffee packs,269.0,2024-04-01T22:41:57.250356,0.7,Food,view
+360,88,purchase,gluten-free pasta and snacks,,2023-12-15T22:41:57.250361,0.4,Food,view
+360,88,purchase,cold brew coffee packs,,2023-12-15T22:41:57.250361,0.4,Food,view
+361,88,view,trendy office supplies,,2024-01-03T22:41:57.250371,0.2,General,view
+361,88,view,popular gadgets for teens,,2024-01-03T22:41:57.250371,0.2,General,view
+361,88,view,affordable kitchen appliances,,2024-01-03T22:41:57.250371,0.2,General,view
+362,26,purchase,science fiction thrillers like Blade Runner,178.0,2024-10-01T22:41:57.250377,0.7,Book,view
+363,72,view,bookshelves for small spaces,,2024-04-03T22:41:57.250382,0.4,Book,view
+364,35,purchase,unique gifts for nature lovers,89.0,2024-09-23T22:41:57.250388,1.0,General,view
+364,35,purchase,gift ideas for tech enthusiasts,89.0,2024-09-23T22:41:57.250388,1.0,General,view
+364,35,purchase,fitness gear for home workouts,89.0,2024-09-23T22:41:57.250388,1.0,General,view
+365,30,purchase,gift ideas for book lovers,,2024-09-08T22:41:57.250394,0.4,Book,view
+366,73,cart,popular gadgets for teens,,2024-05-13T22:41:57.250399,0.4,General,view
+366,73,cart,holiday gifts for parents,,2024-05-13T22:41:57.250399,0.4,General,view
+366,73,cart,pet accessories for dog owners,,2024-05-13T22:41:57.250399,0.4,General,view
+367,1,purchase,gift ideas for tech enthusiasts,205.0,2024-07-30T22:41:57.250404,1.0,General,view
+367,1,purchase,popular gadgets for teens,205.0,2024-07-30T22:41:57.250404,1.0,General,view
+367,1,purchase,unique gifts for nature lovers,205.0,2024-07-30T22:41:57.250404,1.0,General,view
+368,83,cart,home decor under $50,224.0,2024-09-08T22:41:57.250410,0.2,General,view
+368,83,cart,holiday gifts for parents,224.0,2024-09-08T22:41:57.250410,0.2,General,view
+368,83,cart,unique gifts for nature lovers,224.0,2024-09-08T22:41:57.250410,0.2,General,view
+369,54,cart,science fiction thrillers like Blade Runner,261.0,2024-03-31T22:41:57.250415,0.4,Book,view
+370,13,search,Levi's skinny jeans,359.0,2024-03-28T22:41:57.250425,0.7,Clothing,view
+371,93,cart,pet accessories for dog owners,347.0,2024-07-21T22:41:57.250431,0.7,General,view
+371,93,cart,unique gifts for nature lovers,347.0,2024-07-21T22:41:57.250431,0.7,General,view
+371,93,cart,gift ideas for tech enthusiasts,347.0,2024-07-21T22:41:57.250431,0.7,General,view
+372,14,search,home decor under $50,58.0,2024-08-18T22:41:57.250438,0.2,General,view
+372,14,search,holiday gifts for parents,58.0,2024-08-18T22:41:57.250438,0.2,General,view
+372,14,search,affordable kitchen appliances,58.0,2024-08-18T22:41:57.250438,0.2,General,view
+373,45,search,Levi's skinny jeans,,2024-11-10T22:41:57.250443,0.2,Clothing,view
+374,51,cart,fresh berries and fruit baskets,,2024-03-16T22:41:57.250448,0.7,Food,view
+374,51,cart,cold brew coffee packs,,2024-03-16T22:41:57.250448,0.7,Food,view
+375,71,view,biographical films about musicians,128.0,2024-01-07T22:41:57.250458,1.0,Movie,view
+376,31,cart,mystery novels by Agatha Christie,281.0,2024-11-11T22:41:57.250464,0.2,Book,view
+377,3,cart,popular gadgets for teens,319.0,2024-09-20T22:41:57.250470,0.4,General,view
+377,3,cart,home decor under $50,319.0,2024-09-20T22:41:57.250470,0.4,General,view
+377,3,cart,gift ideas for tech enthusiasts,319.0,2024-09-20T22:41:57.250470,0.4,General,view
+378,53,search,gift ideas for book lovers,115.0,2024-02-02T22:41:57.250480,1.0,Book,view
+379,42,search,holiday gifts for parents,233.0,2024-02-11T22:41:57.250486,0.4,General,view
+379,42,search,fitness gear for home workouts,233.0,2024-02-11T22:41:57.250486,0.4,General,view
+379,42,search,popular gadgets for teens,233.0,2024-02-11T22:41:57.250486,0.4,General,view
+380,17,cart,home decor under $50,23.0,2024-03-09T22:41:57.250492,0.7,General,view
+380,17,cart,trendy office supplies,23.0,2024-03-09T22:41:57.250492,0.7,General,view
+380,17,cart,gift ideas for tech enthusiasts,23.0,2024-03-09T22:41:57.250492,0.7,General,view
+381,93,view,nature documentaries narrated by David Attenborough,,2024-06-06T22:41:57.250497,1.0,General,view
+381,93,view,romantic comedies like Notting Hill,,2024-06-06T22:41:57.250497,1.0,General,view
+381,93,view,animated movies for family nights,,2024-06-06T22:41:57.250497,1.0,Movie,view
+383,15,view,modern glass coffee tables,362.0,2024-07-02T22:41:57.250509,0.7,Furniture,view
+383,15,view,dining tables for six people,362.0,2024-07-02T22:41:57.250509,0.7,Furniture,view
+384,1,search,unique gifts for nature lovers,374.0,2024-01-11T22:41:57.250514,0.7,General,view
+384,1,search,home decor under $50,374.0,2024-01-11T22:41:57.250514,0.7,General,view
+384,1,search,holiday gifts for parents,374.0,2024-01-11T22:41:57.250514,0.7,General,view
+385,92,cart,home decor under $50,111.0,2024-08-16T22:41:57.250525,0.7,General,view
+385,92,cart,popular gadgets for teens,111.0,2024-08-16T22:41:57.250525,0.7,General,view
+385,92,cart,unique gifts for nature lovers,111.0,2024-08-16T22:41:57.250525,0.7,General,view
+386,31,view,GoPro Hero cameras for adventure videos,9.0,2024-04-17T22:41:57.250535,1.0,Electronics,view
+386,31,view,Samsung Galaxy S23 smartphones,9.0,2024-04-17T22:41:57.250535,1.0,Electronics,view
+386,31,view,gaming monitors by ASUS,9.0,2024-04-17T22:41:57.250535,1.0,General,view
+387,70,cart,fitness gear for home workouts,144.0,2024-03-01T22:41:57.250540,0.2,General,view
+387,70,cart,holiday gifts for parents,144.0,2024-03-01T22:41:57.250540,0.2,General,view
+387,70,cart,unique gifts for nature lovers,144.0,2024-03-01T22:41:57.250540,0.2,General,view
+388,62,purchase,fitness gear for home workouts,329.0,2024-10-26T22:41:57.250546,0.7,General,view
+388,62,purchase,home decor under $50,329.0,2024-10-26T22:41:57.250546,0.7,General,view
+388,62,purchase,holiday gifts for parents,329.0,2024-10-26T22:41:57.250546,0.7,General,view
+390,2,cart,Apple MacBook Pro laptops,376.0,2024-05-21T22:41:57.250557,0.4,Book,view
+390,2,cart,gaming monitors by ASUS,376.0,2024-05-21T22:41:57.250557,0.4,General,view
+391,47,view,popular gadgets for teens,361.0,2024-09-11T22:41:57.250563,0.2,General,view
+391,47,view,trendy office supplies,361.0,2024-09-11T22:41:57.250563,0.2,General,view
+391,47,view,fitness gear for home workouts,361.0,2024-09-11T22:41:57.250563,0.2,General,view
+392,90,purchase,affordable kitchen appliances,398.0,2024-02-02T22:41:57.250573,0.7,General,view
+392,90,purchase,trendy office supplies,398.0,2024-02-02T22:41:57.250573,0.7,General,view
+392,90,purchase,fitness gear for home workouts,398.0,2024-02-02T22:41:57.250573,0.7,General,view
+393,23,view,unique gifts for nature lovers,25.0,2024-08-18T22:41:57.250579,1.0,General,view
+393,23,view,gift ideas for tech enthusiasts,25.0,2024-08-18T22:41:57.250579,1.0,General,view
+393,23,view,holiday gifts for parents,25.0,2024-08-18T22:41:57.250579,1.0,General,view
+394,78,cart,leather jackets by Harley-Davidson,,2024-08-02T22:41:57.250588,0.4,Clothing,view
+395,68,view,mystery novels by Agatha Christie,189.0,2024-05-21T22:41:57.250597,0.2,Book,view
+395,68,view,thrillers like Gone Girl,189.0,2024-05-21T22:41:57.250597,0.2,Movie,view
+396,94,cart,gift ideas for tech enthusiasts,389.0,2024-04-30T22:41:57.250614,0.2,General,view
+396,94,cart,home decor under $50,389.0,2024-04-30T22:41:57.250614,0.2,General,view
+396,94,cart,trendy office supplies,389.0,2024-04-30T22:41:57.250614,0.2,General,view
+397,43,view,gift ideas for book lovers,224.0,2024-08-31T22:41:57.250623,0.2,Book,view
+398,76,purchase,bookshelves for small spaces,121.0,2023-12-05T22:41:57.250629,0.2,Book,view
+400,13,view,popular gadgets for teens,231.0,2023-11-14T22:41:57.250642,1.0,General,view
+400,13,view,fitness gear for home workouts,231.0,2023-11-14T22:41:57.250642,1.0,General,view
+400,13,view,holiday gifts for parents,231.0,2023-11-14T22:41:57.250642,1.0,General,view
+401,83,view,pet accessories for dog owners,282.0,2023-11-27T22:41:57.250652,0.4,General,view
+401,83,view,popular gadgets for teens,282.0,2023-11-27T22:41:57.250652,0.4,General,view
+401,83,view,fitness gear for home workouts,282.0,2023-11-27T22:41:57.250652,0.4,General,view
+402,1,search,gift ideas for book lovers,,2024-06-22T22:41:57.250664,1.0,Book,view
+403,29,cart,unique gifts for nature lovers,38.0,2024-03-18T22:41:57.250674,1.0,General,view
+403,29,cart,trendy office supplies,38.0,2024-03-18T22:41:57.250674,1.0,General,view
+403,29,cart,pet accessories for dog owners,38.0,2024-03-18T22:41:57.250674,1.0,General,view
+404,31,view,home decor under $50,,2024-01-24T22:41:57.250680,1.0,General,view
+404,31,view,trendy office supplies,,2024-01-24T22:41:57.250680,1.0,General,view
+404,31,view,pet accessories for dog owners,,2024-01-24T22:41:57.250680,1.0,General,view
+405,68,cart,Canon digital cameras for photography,64.0,2024-08-12T22:41:57.250685,1.0,Electronics,view
+406,23,view,holiday gifts for parents,228.0,2023-12-25T22:41:57.250691,0.7,General,view
+406,23,view,trendy office supplies,228.0,2023-12-25T22:41:57.250691,0.7,General,view
+406,23,view,unique gifts for nature lovers,228.0,2023-12-25T22:41:57.250691,0.7,General,view
+407,30,cart,home decor under $50,,2023-12-15T22:41:57.250697,1.0,General,view
+407,30,cart,fitness gear for home workouts,,2023-12-15T22:41:57.250697,1.0,General,view
+407,30,cart,holiday gifts for parents,,2023-12-15T22:41:57.250697,1.0,General,view
+409,80,view,gift ideas for book lovers,,2024-01-12T22:41:57.250708,0.7,Book,view
+410,92,purchase,gift ideas for book lovers,,2024-10-12T22:41:57.250718,1.0,Book,view
+411,2,view,affordable kitchen appliances,,2024-06-21T22:41:57.250723,1.0,General,view
+411,2,view,pet accessories for dog owners,,2024-06-21T22:41:57.250723,1.0,General,view
+411,2,view,gift ideas for tech enthusiasts,,2024-06-21T22:41:57.250723,1.0,General,view
+412,71,search,leather jackets by Harley-Davidson,348.0,2023-11-28T22:41:57.250728,0.4,Clothing,view
+413,33,view,gift ideas for book lovers,42.0,2024-02-14T22:41:57.250734,0.2,Book,view
+416,36,view,mystery novels by Agatha Christie,140.0,2024-03-21T22:41:57.250756,1.0,Book,view
+416,36,view,science fiction books like Dune,140.0,2024-03-21T22:41:57.250756,1.0,Book,view
+417,18,purchase,Levi's skinny jeans,,2024-08-16T22:41:57.250766,0.7,Clothing,view
+418,18,purchase,pet accessories for dog owners,232.0,2023-12-07T22:41:57.250776,0.7,General,view
+418,18,purchase,home decor under $50,232.0,2023-12-07T22:41:57.250776,0.7,General,view
+418,18,purchase,fitness gear for home workouts,232.0,2023-12-07T22:41:57.250776,0.7,General,view
+419,76,search,fitness gear for home workouts,27.0,2024-07-04T22:41:57.250782,0.2,General,view
+419,76,search,unique gifts for nature lovers,27.0,2024-07-04T22:41:57.250782,0.2,General,view
+419,76,search,home decor under $50,27.0,2024-07-04T22:41:57.250782,0.2,General,view
+421,43,cart,affordable kitchen appliances,218.0,2024-04-04T22:41:57.250798,0.7,General,view
+421,43,cart,unique gifts for nature lovers,218.0,2024-04-04T22:41:57.250798,0.7,General,view
+422,90,search,gift ideas for tech enthusiasts,,2024-03-02T22:41:57.250814,0.7,General,view
+422,90,search,home decor under $50,,2024-03-02T22:41:57.250814,0.7,General,view
+422,90,search,unique gifts for nature lovers,,2024-03-02T22:41:57.250814,0.7,General,view
+423,68,view,affordable kitchen appliances,397.0,2024-06-04T22:41:57.250820,0.7,General,view
+423,68,view,holiday gifts for parents,397.0,2024-06-04T22:41:57.250820,0.7,General,view
+423,68,view,fitness gear for home workouts,397.0,2024-06-04T22:41:57.250820,0.7,General,view
+424,24,cart,trendy office supplies,283.0,2024-07-03T22:41:57.250825,1.0,General,view
+424,24,cart,fitness gear for home workouts,283.0,2024-07-03T22:41:57.250825,1.0,General,view
+424,24,cart,home decor under $50,283.0,2024-07-03T22:41:57.250825,1.0,General,view
+426,67,cart,modern glass coffee tables,156.0,2024-04-18T22:41:57.250837,0.7,Furniture,view
+426,67,cart,dining tables for six people,156.0,2024-04-18T22:41:57.250837,0.7,Furniture,view
+427,2,view,cold brew coffee packs,209.0,2024-05-26T22:41:57.250843,0.7,Food,view
+427,2,view,fresh berries and fruit baskets,209.0,2024-05-26T22:41:57.250843,0.7,Food,view
+427,2,view,artisanal cheese for wine pairing,209.0,2024-05-26T22:41:57.250843,0.7,Food,view
+428,84,cart,fitness gear for home workouts,330.0,2024-05-11T22:41:57.250848,1.0,General,view
+428,84,cart,popular gadgets for teens,330.0,2024-05-11T22:41:57.250848,1.0,General,view
+428,84,cart,unique gifts for nature lovers,330.0,2024-05-11T22:41:57.250848,1.0,General,view
+429,36,cart,holiday gifts for parents,52.0,2024-04-15T22:41:57.250854,0.2,General,view
+429,36,cart,popular gadgets for teens,52.0,2024-04-15T22:41:57.250854,0.2,General,view
+429,36,cart,home decor under $50,52.0,2024-04-15T22:41:57.250854,0.2,General,view
+430,47,cart,leather jackets by Harley-Davidson,5.0,2024-01-04T22:41:57.250860,0.4,Clothing,view
+431,48,cart,epic fantasy films like The Hobbit trilogy,295.0,2023-12-16T22:41:57.250870,0.7,Movie,view
+431,48,cart,nature documentaries narrated by David Attenborough,295.0,2023-12-16T22:41:57.250870,0.7,General,view
+431,48,cart,Oscar-winning dramas from the past decade,295.0,2023-12-16T22:41:57.250870,0.7,General,view
+432,41,search,gift ideas for book lovers,231.0,2024-08-14T22:41:57.250876,1.0,Book,view
+433,64,cart,leather jackets by Harley-Davidson,,2024-08-14T22:41:57.250881,0.2,Clothing,view
+434,60,cart,Levi's skinny jeans,365.0,2024-02-24T22:41:57.250892,0.4,Clothing,view
+436,12,cart,GoPro Hero cameras for adventure videos,226.0,2024-01-06T22:41:57.250904,0.4,Electronics,view
+436,12,cart,Bose Bluetooth speakers,226.0,2024-01-06T22:41:57.250904,0.4,Electronics,view
+437,71,search,home decor under $50,303.0,2024-04-21T22:41:57.250915,0.7,General,view
+437,71,search,unique gifts for nature lovers,303.0,2024-04-21T22:41:57.250915,0.7,General,view
+437,71,search,fitness gear for home workouts,303.0,2024-04-21T22:41:57.250915,0.7,General,view
+438,21,cart,romantic comedies like Notting Hill,141.0,2024-08-12T22:41:57.250920,1.0,General,view
+438,21,cart,biographical films about musicians,141.0,2024-08-12T22:41:57.250920,1.0,Movie,view
+438,21,cart,Marvel superhero sagas,141.0,2024-08-12T22:41:57.250920,1.0,General,view
+439,82,cart,Sony noise-cancelling headphones,379.0,2024-07-04T22:41:57.250926,0.7,Electronics,view
+439,82,cart,Apple MacBook Pro laptops,379.0,2024-07-04T22:41:57.250926,0.7,Book,view
+440,39,view,Marvel superhero sagas,362.0,2024-02-14T22:41:57.250932,0.2,General,view
+440,39,view,Studio Ghibli masterpieces,362.0,2024-02-14T22:41:57.250932,0.2,General,view
+440,39,view,animated movies for family nights,362.0,2024-02-14T22:41:57.250932,0.2,Movie,view
+441,44,view,Studio Ghibli masterpieces,,2024-02-05T22:41:57.250938,0.4,General,view
+441,44,view,Oscar-winning dramas from the past decade,,2024-02-05T22:41:57.250938,0.4,General,view
+441,44,view,animated movies for family nights,,2024-02-05T22:41:57.250938,0.4,Movie,view
+442,93,search,cold brew coffee packs,,2024-05-07T22:41:57.250947,1.0,Food,view
+442,93,search,artisanal cheese for wine pairing,,2024-05-07T22:41:57.250947,1.0,Food,view
+443,62,cart,holiday gifts for parents,284.0,2024-05-17T22:41:57.250953,0.4,General,view
+443,62,cart,home decor under $50,284.0,2024-05-17T22:41:57.250953,0.4,General,view
+443,62,cart,gift ideas for tech enthusiasts,284.0,2024-05-17T22:41:57.250953,0.4,General,view
+444,11,cart,Samsung Galaxy S23 smartphones,,2024-05-11T22:41:57.250958,0.4,Electronics,view
+445,3,search,popular gadgets for teens,250.0,2024-03-30T22:41:57.250968,0.4,General,view
+445,3,search,fitness gear for home workouts,250.0,2024-03-30T22:41:57.250968,0.4,General,view
+445,3,search,unique gifts for nature lovers,250.0,2024-03-30T22:41:57.250968,0.4,General,view
+446,65,search,unique gifts for nature lovers,238.0,2024-07-08T22:41:57.250975,0.7,General,view
+446,65,search,home decor under $50,238.0,2024-07-08T22:41:57.250975,0.7,General,view
+446,65,search,gift ideas for tech enthusiasts,238.0,2024-07-08T22:41:57.250975,0.7,General,view
+447,66,view,gift ideas for book lovers,100.0,2024-09-15T22:41:57.250981,0.2,Book,view
+448,35,cart,unique gifts for nature lovers,31.0,2024-08-27T22:41:57.250986,0.2,General,view
+448,35,cart,holiday gifts for parents,31.0,2024-08-27T22:41:57.250986,0.2,General,view
+448,35,cart,fitness gear for home workouts,31.0,2024-08-27T22:41:57.250986,0.2,General,view
+449,14,search,mystery novels by Agatha Christie,74.0,2024-04-04T22:41:57.250992,0.7,Book,view
+449,14,search,thrillers like Gone Girl,74.0,2024-04-04T22:41:57.250992,0.7,Movie,view
+450,85,search,gift ideas for book lovers,297.0,2024-08-23T22:41:57.251003,0.7,Book,view
+451,4,view,epic fantasy films like The Hobbit trilogy,329.0,2024-09-17T22:41:57.251009,0.4,Movie,view
+451,4,view,Oscar-winning dramas from the past decade,329.0,2024-09-17T22:41:57.251009,0.4,General,view
+451,4,view,biographical films about musicians,329.0,2024-09-17T22:41:57.251009,0.4,Movie,view
+452,80,view,unique gifts for nature lovers,87.0,2024-08-26T22:41:57.251016,0.4,General,view
+452,80,view,gift ideas for tech enthusiasts,87.0,2024-08-26T22:41:57.251016,0.4,General,view
+452,80,view,pet accessories for dog owners,87.0,2024-08-26T22:41:57.251016,0.4,General,view
+453,92,search,gift ideas for book lovers,52.0,2024-07-13T22:41:57.251026,0.2,Book,view
+454,67,view,trendy office supplies,281.0,2024-04-27T22:41:57.251032,1.0,General,view
+454,67,view,home decor under $50,281.0,2024-04-27T22:41:57.251032,1.0,General,view
+454,67,view,popular gadgets for teens,281.0,2024-04-27T22:41:57.251032,1.0,General,view
+456,14,cart,fitness gear for home workouts,396.0,2023-12-03T22:41:57.251044,0.2,General,view
+456,14,cart,home decor under $50,396.0,2023-12-03T22:41:57.251044,0.2,General,view
+456,14,cart,holiday gifts for parents,396.0,2023-12-03T22:41:57.251044,0.2,General,view
+457,60,view,romantic comedies like Notting Hill,357.0,2024-06-04T22:41:57.251054,0.7,Movie,view
+457,60,view,romantic comedies like Notting Hill,357.0,2024-06-04T22:41:57.251054,0.7,Movie,view
+457,60,view,romantic comedies like Notting Hill,357.0,2024-06-04T22:41:57.251054,0.7,Movie,view
+458,1,search,bookshelves for small spaces,129.0,2023-11-25T22:41:57.251062,0.7,Book,view
+458,1,search,L-shaped sectional sofas,129.0,2023-11-25T22:41:57.251062,0.7,Furniture,view
+459,13,purchase,home decor under $50,123.0,2024-06-05T22:41:57.251068,0.7,General,view
+459,13,purchase,trendy office supplies,123.0,2024-06-05T22:41:57.251068,0.7,General,view
+459,13,purchase,popular gadgets for teens,123.0,2024-06-05T22:41:57.251068,0.7,General,view
+460,62,cart,fresh berries and fruit baskets,87.0,2024-05-19T22:41:57.251073,1.0,Food,view
+460,62,cart,artisanal cheese for wine pairing,87.0,2024-05-19T22:41:57.251073,1.0,Food,view
+460,62,cart,gluten-free pasta and snacks,87.0,2024-05-19T22:41:57.251073,1.0,Food,view
+461,82,purchase,Samsung Galaxy S23 smartphones,304.0,2024-01-28T22:41:57.251084,0.4,Electronics,view
+461,82,purchase,GoPro Hero cameras for adventure videos,304.0,2024-01-28T22:41:57.251084,0.4,Electronics,view
+462,91,purchase,holiday gifts for parents,386.0,2024-01-30T22:41:57.251090,0.7,General,view
+462,91,purchase,affordable kitchen appliances,386.0,2024-01-30T22:41:57.251090,0.7,General,view
+462,91,purchase,gift ideas for tech enthusiasts,386.0,2024-01-30T22:41:57.251090,0.7,General,view
+463,17,view,pet accessories for dog owners,102.0,2023-12-01T22:41:57.251099,0.7,General,view
+463,17,view,trendy office supplies,102.0,2023-12-01T22:41:57.251099,0.7,General,view
+463,17,view,unique gifts for nature lovers,102.0,2023-12-01T22:41:57.251099,0.7,General,view
+464,41,purchase,Samsung Galaxy S23 smartphones,382.0,2024-10-31T22:41:57.251111,0.4,Electronics,view
+464,41,purchase,gaming monitors by ASUS,382.0,2024-10-31T22:41:57.251111,0.4,General,view
+464,41,purchase,Bose Bluetooth speakers,382.0,2024-10-31T22:41:57.251111,0.4,Electronics,view
+465,15,search,affordable kitchen appliances,241.0,2024-05-17T22:41:57.251121,0.2,General,view
+465,15,search,fitness gear for home workouts,241.0,2024-05-17T22:41:57.251121,0.2,General,view
+465,15,search,home decor under $50,241.0,2024-05-17T22:41:57.251121,0.2,General,view
+466,86,purchase,gift ideas for book lovers,,2023-11-15T22:41:57.251129,0.4,Book,view
+467,25,view,gift ideas for book lovers,173.0,2024-02-06T22:41:57.251139,0.7,Book,view
+468,79,view,king-size beds with memory foam mattresses,132.0,2024-10-25T22:41:57.251148,0.2,Furniture,view
+468,79,view,dining tables for six people,132.0,2024-10-25T22:41:57.251148,0.2,Furniture,view
+470,82,purchase,Levi's skinny jeans,,2023-12-05T22:41:57.251161,0.2,Clothing,view
+470,82,purchase,leather jackets by Harley-Davidson,,2023-12-05T22:41:57.251161,0.2,Clothing,view
+471,68,cart,gift ideas for book lovers,93.0,2024-02-15T22:41:57.251173,0.2,Book,view
+472,10,cart,fresh berries and fruit baskets,,2024-02-14T22:41:57.251183,0.7,Food,view
+472,10,cart,dark chocolate gift boxes,,2024-02-14T22:41:57.251183,0.7,Food,view
+473,63,purchase,Samsung Galaxy S23 smartphones,170.0,2024-07-24T22:41:57.251190,0.2,Electronics,view
+473,63,purchase,Canon digital cameras for photography,170.0,2024-07-24T22:41:57.251190,0.2,Electronics,view
+474,84,search,thrillers like Gone Girl,242.0,2023-11-16T22:41:57.251195,0.7,Movie,view
+475,35,search,Canon digital cameras for photography,388.0,2023-11-24T22:41:57.251201,0.2,Electronics,view
+476,66,view,pet accessories for dog owners,69.0,2024-02-02T22:41:57.251207,0.2,General,view
+476,66,view,affordable kitchen appliances,69.0,2024-02-02T22:41:57.251207,0.2,General,view
+476,66,view,popular gadgets for teens,69.0,2024-02-02T22:41:57.251207,0.2,General,view
+477,24,search,home decor under $50,70.0,2024-04-30T22:41:57.251214,1.0,General,view
+477,24,search,pet accessories for dog owners,70.0,2024-04-30T22:41:57.251214,1.0,General,view
+477,24,search,fitness gear for home workouts,70.0,2024-04-30T22:41:57.251214,1.0,General,view
+478,53,cart,unique gifts for nature lovers,313.0,2024-11-03T22:41:57.251219,1.0,General,view
+478,53,cart,holiday gifts for parents,313.0,2024-11-03T22:41:57.251219,1.0,General,view
+479,1,purchase,gift ideas for tech enthusiasts,151.0,2024-01-11T22:41:57.251225,0.4,General,view
+479,1,purchase,holiday gifts for parents,151.0,2024-01-11T22:41:57.251225,0.4,General,view
+479,1,purchase,home decor under $50,151.0,2024-01-11T22:41:57.251225,0.4,General,view
+480,5,purchase,gift ideas for book lovers,137.0,2024-03-09T22:41:57.251233,0.4,Book,view
+481,97,purchase,gift ideas for book lovers,325.0,2024-09-23T22:41:57.251242,0.7,Book,view
+481,97,purchase,affordable kitchen appliances,325.0,2024-09-23T22:41:57.251242,0.7,General,view
+481,97,purchase,gift ideas for tech enthusiasts,325.0,2024-09-23T22:41:57.251242,0.7,General,view
+482,81,cart,black hoodies and casual t-shirts,313.0,2023-12-20T22:41:57.251251,0.2,Clothing,view
+483,94,cart,holiday gifts for parents,37.0,2024-08-03T22:41:57.251257,0.2,General,view
+483,94,cart,gift ideas for tech enthusiasts,37.0,2024-08-03T22:41:57.251257,0.2,General,view
+483,94,cart,affordable kitchen appliances,37.0,2024-08-03T22:41:57.251257,0.2,General,view
+484,7,purchase,holiday gifts for parents,300.0,2024-07-19T22:41:57.251263,0.7,General,view
+484,7,purchase,home decor under $50,300.0,2024-07-19T22:41:57.251263,0.7,General,view
+484,7,purchase,popular gadgets for teens,300.0,2024-07-19T22:41:57.251263,0.7,General,view
+485,73,search,gift ideas for book lovers,18.0,2024-07-06T22:41:57.251268,0.7,Book,view
+486,71,view,trendy office supplies,107.0,2024-11-01T22:41:57.251279,1.0,General,view
+486,71,view,pet accessories for dog owners,107.0,2024-11-01T22:41:57.251279,1.0,General,view
+486,71,view,popular gadgets for teens,107.0,2024-11-01T22:41:57.251279,1.0,General,view
+487,15,purchase,gift ideas for book lovers,17.0,2024-05-12T22:41:57.251284,1.0,Book,view
+488,76,view,Sony noise-cancelling headphones,277.0,2024-07-11T22:41:57.251290,0.7,Electronics,view
+488,76,view,smartwatches for fitness tracking,277.0,2024-07-11T22:41:57.251290,0.7,Electronics,view
+488,76,view,robot vacuums by iRobot,277.0,2024-07-11T22:41:57.251290,0.7,General,view
+489,29,search,pet accessories for dog owners,393.0,2024-08-03T22:41:57.251296,1.0,General,view
+489,29,search,affordable kitchen appliances,393.0,2024-08-03T22:41:57.251296,1.0,General,view
+489,29,search,home decor under $50,393.0,2024-08-03T22:41:57.251296,1.0,General,view
+490,32,purchase,unique gifts for nature lovers,,2024-01-25T22:41:57.251301,0.4,General,view
+490,32,purchase,holiday gifts for parents,,2024-01-25T22:41:57.251301,0.4,General,view
+490,32,purchase,affordable kitchen appliances,,2024-01-25T22:41:57.251301,0.4,General,view
+491,69,search,science fiction books like Dune,208.0,2024-10-23T22:41:57.251307,0.7,Book,view
+491,69,search,young adult series like Harry Potter,208.0,2024-10-23T22:41:57.251307,0.7,Book,view
+492,26,view,gift ideas for tech enthusiasts,97.0,2024-01-26T22:41:57.251317,0.2,General,view
+492,26,view,home decor under $50,97.0,2024-01-26T22:41:57.251317,0.2,General,view
+492,26,view,affordable kitchen appliances,97.0,2024-01-26T22:41:57.251317,0.2,General,view
+493,68,search,fresh berries and fruit baskets,209.0,2024-05-18T22:41:57.251323,0.7,Food,view
+494,27,view,pet accessories for dog owners,279.0,2024-03-13T22:41:57.251328,0.7,General,view
+494,27,view,home decor under $50,279.0,2024-03-13T22:41:57.251328,0.7,General,view
+494,27,view,fitness gear for home workouts,279.0,2024-03-13T22:41:57.251328,0.7,General,view
+495,14,purchase,biographical films about musicians,,2023-11-23T22:41:57.251337,0.2,Movie,view
+495,14,purchase,animated movies for family nights,,2023-11-23T22:41:57.251337,0.2,Movie,view
+496,36,cart,gift ideas for book lovers,70.0,2024-02-15T22:41:57.251344,0.7,Book,view
+497,40,purchase,gluten-free pasta and snacks,,2023-11-23T22:41:57.251349,0.2,Food,view
+497,40,purchase,cold brew coffee packs,,2023-11-23T22:41:57.251349,0.2,Food,view
+498,78,purchase,leather jackets by Harley-Davidson,187.0,2023-12-21T22:41:57.251355,0.2,Clothing,view
+499,82,search,Marvel superhero sagas,205.0,2024-08-05T22:41:57.251360,0.2,General,view
+499,82,search,biographical films about musicians,205.0,2024-08-05T22:41:57.251360,0.2,Movie,view
+499,82,search,classic horror movies by Hitchcock,205.0,2024-08-05T22:41:57.251360,0.2,Movie,view
+500,85,purchase,recliner chairs for living rooms,259.0,2024-06-13T22:41:57.251370,1.0,Furniture,view
+500,85,purchase,ergonomic office chairs for work-from-home,259.0,2024-06-13T22:41:57.251370,1.0,Furniture,view
+500,85,purchase,minimalist desks for home offices,259.0,2024-06-13T22:41:57.251370,1.0,Furniture,view
