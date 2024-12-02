@@ -185,11 +185,8 @@ python app.py
 - **Frontend**: React.js (integrated via CORS)
 
 ### Additional Modules
-
 - **Activity Tracking**: Records user interactions for analytics.
 - **Validation**: Input validation with spell checking and prohibited keyword filtering.
+- **Testing**: Modular test cases for API endpoints and semantic search.
 <<<<<<< HEAD
-- **Testing**: Modular test cases for API endpoints and semantic search.
-=======
-- **Testing**: Modular test cases for API endpoints and semantic search.
 >>>>>>> d41b7f2 (Update README.md)

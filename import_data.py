@@ -1,15 +1,17 @@
 """
 AI-Powered Shopping Tool - Data Import
-Handles importing CSV files into database tables.
+Handles importing CSV files into database tables and generating embeddings.
 """
 import os
 import pandas as pd
+import numpy as np
 from sqlalchemy import create_engine
-from models import Base, Product, User, Activity, Session
+from models import Base, Product, User, Activity, ProductEmbedding, Session
 from dotenv import load_dotenv
 import logging
+from sentence_transformers import SentenceTransformer
 
-# Load environment variables from the .env file
+# Load environment variables
 load_dotenv()
 
 # Set up logging
@@ -26,75 +28,145 @@ database = os.getenv('DB_NAME')
 DATABASE_URI = os.getenv('DATABASE_URI')
 engine = create_engine(DATABASE_URI)
 
-# Directory where CSV files are stored
-directory = os.getenv('CSV_DATA_DIRECTORY', 'C:/Users/JMBar/Desktop/SHOPPING/data')
+# Directory where CSV files are stored - using relative path
+directory = 'data'
+
+# Initialize the sentence transformer model for embeddings
+model = SentenceTransformer('all-MiniLM-L6-v2')  # 384 dimensions, good balance of speed/quality
+
+def generate_product_embedding(product):
+    """Generate embedding for a product using its text fields"""
+    # Combine relevant text fields
+    text = f"{product.title} {product.description} {product.category} {product.brand} {product.tags}"
+    
+    # Generate embedding
+    embedding = model.encode(text)
+    return embedding
+
+def clean_price(price_str):
+    """Clean price string by removing $ and , characters"""
+    if pd.isna(price_str):
+        return None
+    return float(price_str.replace('$', '').replace(',', '').strip())
+
+def clean_tags(tags_str):
+    """Clean tags string by removing list characters and quotes"""
+    if pd.isna(tags_str):
+        return None
+    return tags_str.replace("['", "").replace("']", "").replace("'", "")
 
 def import_products(file_path, session):
-    """Import product data from CSV"""
+    """
+    Import product data from CSV and generate embeddings. Skips rows with missing critical fields.
+    """
     try:
         df = pd.read_csv(file_path)
-        required_columns = ['title', 'tags', 'category', 'description', 'brand', 'popularity', 'ratings']
         
-        if not all(col in df.columns for col in required_columns):
-            logging.error(f"Missing columns in {file_path}: {set(required_columns) - set(df.columns)}")
-            return
+        # Map CSV columns to model fields
+        column_mapping = {
+            'product_name': 'title',
+            'description': 'description',
+            'category': 'category',
+            'brand/manufacturer': 'brand',
+            'popularity_score': 'popularity',
+            'rating': 'ratings',
+            'price': 'price',
+            'was_price': 'was_price',
+            'discount': 'discount',
+            'tags': 'tags'
+        }
+
+        skipped_rows = []  # To track skipped rows
         
-        for _, row in df.iterrows():
+        for index, row in df.iterrows():
+            # Skip rows with missing critical fields
+            if pd.isna(row['product_name']) or pd.isna(row['description']) or pd.isna(row['category']):
+                skipped_rows.append(index)
+                continue
+
+            # Create product object
             product = Product(
-                title=row['title'],
-                tags=row['tags'],
-                category=row['category'],
+                title=row['product_name'],
                 description=row['description'],
-                brand=row['brand'],
-                popularity=int(row['popularity']),
-                ratings=float(row['ratings'])
+                category=row['category'],
+                brand=row['brand/manufacturer'],
+                popularity=int(row['popularity_score']),
+                ratings=float(row['rating']),
+                price=clean_price(row['price']),
+                was_price=clean_price(row['was_price']),
+                discount=float(row['discount']),
+                tags=clean_tags(row['tags'])
             )
             session.add(product)
+            session.flush()  # Flush to get the product_id
+
+            # Generate and store embedding
+            embedding = generate_product_embedding(product)
+            product_embedding = ProductEmbedding(
+                product_id=product.product_id,
+                embedding=embedding.tobytes(),
+                dimensions=len(embedding)
+            )
+            session.add(product_embedding)
+
         session.commit()
-        logging.info(f"Successfully imported products from {file_path}")
+        
+        # Log skipped rows
+        if skipped_rows:
+            logging.warning(f"Skipped rows with missing critical fields: {skipped_rows}")
+
+        logging.info(f"Successfully imported products and generated embeddings from {file_path}")
     except Exception as e:
         session.rollback()
         logging.error(f"Error importing products from {file_path}: {e}")
 
-def import_users(file_path, session):
-    """Import user data from CSV"""
-    try:
-        df = pd.read_csv(file_path)
-        required_columns = ['username', 'password', 'email']
-        
-        if not all(col in df.columns for col in required_columns):
-            logging.error(f"Missing columns in {file_path}: {set(required_columns) - set(df.columns)}")
-            return
-        
-        for _, row in df.iterrows():
+def create_dummy_users(session, user_ids):
+    """Create dummy users for the given user IDs, skipping existing users"""
+    created_count = 0
+    skipped_count = 0
+    
+    for user_id in user_ids:
+        username = f"user_{user_id}"
+        # Check if user already exists
+        existing_user = session.query(User).filter(User.username == username).first()
+        if existing_user is None:
             user = User(
-                username=row['username'],
-                password=row['password'],  # Will be hashed by User model
-                email=row['email']
+                username=username,
+                password="dummy_password",
+                email=f"user_{user_id}@example.com"
             )
             session.add(user)
+            created_count += 1
+        else:
+            skipped_count += 1
+    
+    try:
         session.commit()
-        logging.info(f"Successfully imported users from {file_path}")
+        logging.info(f"Created {created_count} new users, skipped {skipped_count} existing users")
     except Exception as e:
         session.rollback()
-        logging.error(f"Error importing users from {file_path}: {e}")
+        logging.error(f"Error creating users: {e}")
+        raise
 
 def import_activities(file_path, session):
     """Import activity data from CSV"""
     try:
         df = pd.read_csv(file_path)
-        required_columns = ['user_id', 'activity_type']
+        required_columns = ['user_id', 'action']
         
         if not all(col in df.columns for col in required_columns):
             logging.error(f"Missing columns in {file_path}: {set(required_columns) - set(df.columns)}")
             return
+
+        # Create dummy users first
+        unique_user_ids = df['user_id'].unique()
+        create_dummy_users(session, unique_user_ids)
         
         for _, row in df.iterrows():
             activity = Activity(
                 user_id=int(row['user_id']),
-                activity_type=row['activity_type'],
-                search_query=row.get('search_query'),
-                product_id=row.get('product_id')
+                action=row['action'],
+                product_id=int(row['product_id']) if pd.notna(row['product_id']) else None
             )
             if 'timestamp' in row:
                 activity.timestamp = pd.to_datetime(row['timestamp'])
@@ -105,51 +177,26 @@ def import_activities(file_path, session):
         session.rollback()
         logging.error(f"Error importing activities from {file_path}: {e}")
 
-def import_csv_to_table(csv_path, table_name, session):
-    """
-    Import data from a CSV file into the specified database table.
-    
-    Args:
-        csv_path (str): Path to the CSV file
-        table_name (str): Name of the target database table
-        session (Session): The SQLAlchemy session object
-    """
-    try:
-        # Read CSV file
-        df = pd.read_csv(csv_path)
-        
-        # Import to database based on table name
-        if table_name == 'products':
-            import_products(csv_path, session)
-        elif table_name == 'users':
-            import_users(csv_path, session)
-        elif table_name == 'activity':
-            import_activities(csv_path, session)
-        else:
-            logging.error(f"Unknown table: {table_name}")
-        
-        logging.info(f"Successfully imported {csv_path} to {table_name}")
-        
-    except Exception as e:
-        logging.error(f"Error importing {csv_path} to {table_name}: {str(e)}")
-        session.rollback()
-        raise
-
 def main():
     """Main function to process all CSV files in the data directory"""
     # Create database session
     with Session() as session:
         try:
-            # Process each CSV file in the directory
-            for filename in os.listdir(directory):
-                if filename.endswith('.csv'):
-                    file_path = os.path.join(directory, filename)
-                    table_name = filename.replace('.csv', '').lower()  # Normalize to lowercase
-                    
-                    logging.info(f"\nProcessing {filename}...")
-                    
-                    # Import data based on table name
-                    import_csv_to_table(file_path, table_name, session)
+            # First, import products from Product_Table.csv
+            products_path = os.path.join(directory, 'Product_Table.csv')
+            if os.path.exists(products_path):
+                logging.info(f"\nProcessing {products_path}...")
+                import_products(products_path, session)
+            else:
+                logging.error(f"Product file not found: {products_path}")
+            
+            # Then, import activities from Activity_Table.csv
+            activity_path = os.path.join(directory, 'Activity_Table.csv')
+            if os.path.exists(activity_path):
+                logging.info(f"\nProcessing {activity_path}...")
+                import_activities(activity_path, session)
+            else:
+                logging.error(f"Activity file not found: {activity_path}")
         
         except Exception as e:
             logging.error(f"An error occurred: {e}")
