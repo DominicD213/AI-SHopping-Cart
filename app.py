@@ -47,20 +47,23 @@ v0.6-v0.8 - 11-10 to 11-12-24 - Jakub Bartkowiak
 
 '''
 
-from flask import Flask, jsonify, request, abort
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
-from sqlalchemy.exc import SQLAlchemyError
-from models import Base, Product, User, Activity, Order, OrderItem, CartItem
-from search import search_products, suggest_products_for_item, get_trending_products
-from validation import validate_input
-from datetime import datetime, timedelta
-import os
-import jwt
 import logging
+import os
+from datetime import datetime, timedelta
 from functools import wraps
+
+import jwt
 from dotenv import load_dotenv
-from flask_cors import CORS 
+from flask import Flask, abort, jsonify, request
+from flask_cors import CORS
+from sqlalchemy import create_engine
+from sqlalchemy.exc import SQLAlchemyError
+from sqlalchemy.orm import sessionmaker
+
+from models import Activity, Base, CartItem, Order, OrderItem, Product, User
+from search import (get_trending_products, search_products,
+                    suggest_products_for_item)
+from validation import validate_input
 
 load_dotenv()
 
@@ -179,8 +182,7 @@ def login():
         return jsonify({'error': 'Internal server error'}), 500
 
 @app.route('/api/products', methods=['GET'])
-@token_required
-def get_products(user):
+def get_products():
     """Get products with role-based access control"""
     try:
         products = session.query(Product).all()
@@ -191,13 +193,9 @@ def get_products(user):
                 'title': p.title,
                 'category': p.category,
                 'price': p.price,
-                'ratings': p.ratings
+                'ratings': p.ratings,
+                'product_url' :p.product_url
             }
-            if user.is_admin():
-                product_data.update({
-                    'popularity': p.popularity,
-                    'tags': p.tags
-                })
             output.append(product_data)
         return jsonify(output)
     except SQLAlchemyError as e:

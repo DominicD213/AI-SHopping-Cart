@@ -99,18 +99,20 @@ class Product(Base):
     category = Column(String(100))
     description = Column(String(500))
     brand = Column(String(100))
+    product_url = Column(String(255))
     popularity = Column(Integer)  # Popularity score out of 1000
     ratings = Column(Float)  # Ratings out of 5.0
     price = Column(Float)  # Current price
     was_price = Column(Float)  # Original price before discount
     discount = Column(Float)  # Discount percentage
 
-    def __init__(self, title, tags, category, description, brand, popularity, ratings, price=None, was_price=None, discount=None):
+    def __init__(self, title, tags, category, description, brand,product_url, popularity, ratings, price=None, was_price=None, discount=None):
         self.title = title
         self.tags = tags
         self.category = category
         self.description = description
         self.brand = brand
+        self.product_url = product_url
         self.popularity = popularity
         self.ratings = ratings
         self.price = price
@@ -119,7 +121,7 @@ class Product(Base):
 
     def __repr__(self):
         return (f"Product(title={self.title}, tags={self.tags}, category={self.category}, "
-                f"description={self.description}, brand={self.brand}, popularity={self.popularity}, "
+                f"description={self.description}, brand={self.brand}, product_url={self.product_url}, popularity={self.popularity}, "
                 f"ratings={self.ratings}, price={self.price}, was_price={self.was_price}, "
                 f"discount={self.discount})")
 
